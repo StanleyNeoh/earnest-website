@@ -1,12 +1,11 @@
-import { title } from "process"
 import { Image } from "@/types/types";
 
-export interface Paragraph {
+export interface ParagraphProps {
     title?: string;
     text?: string;
 }
 
-export interface Button {
+export interface ButtonProps {
     text?: string;
     URL?: string;
     target?: string;
@@ -16,7 +15,7 @@ export interface Button {
 export interface FeaturedProjectProps {
     title?: string;
     logo?: Image;
-    paragraphs: Paragraph[];
-    CTAs: Button[];
+    paragraphs: ParagraphProps[];
+    CTAs: ButtonProps[];
     images: Image[];
 }

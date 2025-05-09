@@ -7,7 +7,15 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import Autoscroll from "embla-carousel-auto-scroll";
 
-export const Brands = ({ heading, sub_heading, logos }: { heading: string, sub_heading: string, logos: any[] }) => {
+export const Brands = ({
+  heading, 
+  sub_heading, 
+  logos 
+}: { 
+  heading: string, 
+  sub_heading: string, 
+  logos: any[] 
+}) => {
   return (
     <div className="relative z-20 pb-10">
       <Heading className="pt-4">{heading}</Heading>

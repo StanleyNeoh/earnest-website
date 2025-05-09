@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { BlurImage } from "@/components/blur-image";
-import { FeaturedProjectProps } from "./types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { FeaturedProjectProps } from "@/types/components/shared";
 
 export const FeaturedProject = ({
   title,
@@ -17,7 +17,7 @@ export const FeaturedProject = ({
   locale: string;
 }) => {
   return (
-    <div className="w-3xl max-w-8xl bg-neutral-100 flex flex-col gap-4 lg:rounded-3xl shadow-lg md:px-20 py-10">
+    <div className="max-w-8xl bg-neutral-100 flex flex-col gap-4 lg:rounded-3xl shadow-lg md:px-20 py-10">
       <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
         {
           title && (
