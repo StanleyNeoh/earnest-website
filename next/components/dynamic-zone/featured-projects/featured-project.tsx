@@ -5,6 +5,7 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { FeaturedProjectProps } from "@/types/components/shared";
+import Autoplay from "embla-carousel-autoplay";
 
 export const FeaturedProject = ({
   title,
@@ -42,9 +43,9 @@ export const FeaturedProject = ({
           {images && images.length > 1 ? (
             <Carousel
               opts={{
-                align: "start",
                 loop: true,
               }}
+              plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]} 
             >
               <CarouselContent>
                 {images.map((image, index) => (
@@ -54,13 +55,11 @@ export const FeaturedProject = ({
                       alt="Project Image"
                       width={400}
                       height={400}
-                      className="rounded-3xl object-cover"
+                      className="w-full md:rounded-3xl object-cover"
                     />
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
             </Carousel>
           ) : (
             images[0] && (
@@ -103,7 +102,7 @@ export const FeaturedProject = ({
           <div className="flex flex-row gap-2 mt-4 justify-center">
             {CTAs.map((cta) => (
               <Button
-                className="md:py-2 md:px-4 md:text-lg lg:py-5 lg:px-10 lg:text-3xl"
+                className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
                 key={cta?.URL}
                 as={Link}
                 href={`/${locale}${cta.URL}`}
