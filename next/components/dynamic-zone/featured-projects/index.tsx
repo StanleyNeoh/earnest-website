@@ -1,14 +1,7 @@
-"use client";
 import React from "react";
-import Link from "next/link";
-
 import { Heading } from "../../elements/heading";
-import { Button } from "../../elements/button";
-import { BlurImage } from "../../blur-image";
-import { Image } from "@/types/types";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Subheading } from "../../elements/subheading";
-import { FeaturedProjectProps } from "./types";
+import { FeaturedProjectProps } from "@/types/components/shared";
 import { FeaturedProject } from "./featured-project";
 
 export const FeaturedProjects = ({ 

@@ -1,7 +1,8 @@
 {
   "collectionName": "components_dynamic_zone_about_uses",
   "info": {
-    "displayName": "About_Us"
+    "displayName": "About_Us",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,7 +14,7 @@
     },
     "what_we_do": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "shared.paragraph"
     },
     "our_team": {
@@ -25,6 +26,17 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.paragraph"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

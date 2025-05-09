@@ -64,14 +64,19 @@ export interface CardsSocialMediaCard extends Struct.ComponentSchema {
 export interface DynamicZoneAboutUs extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_about_uses';
   info: {
+    description: '';
     displayName: 'About_Us';
   };
   attributes: {
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     our_team: Schema.Attribute.Component<'shared.paragraph', false>;
     our_values: Schema.Attribute.Component<'shared.paragraph', false>;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
-    what_we_do: Schema.Attribute.Component<'shared.paragraph', true>;
+    what_we_do: Schema.Attribute.Component<'shared.paragraph', false>;
   };
 }
 

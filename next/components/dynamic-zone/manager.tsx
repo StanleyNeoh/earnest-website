@@ -25,6 +25,7 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.faq': dynamic(() => import('./faq').then(mod => mod.FAQ), { ssr: false }),
   'dynamic-zone.related-products': dynamic(() => import('./related-products').then(mod => mod.RelatedProducts), { ssr: false }),
   'dynamic-zone.related-articles': dynamic(() => import('./related-articles').then(mod => mod.RelatedArticles), { ssr: false }),
+  'dynamic-zone.about-us': dynamic(() => import('./about-us').then(mod => mod.AboutUs), { ssr: false }),
   'dynamic-zone.featured-projects': dynamic(() => import('./featured-projects').then(mod => mod.FeaturedProjects), { ssr: false })
 }
 

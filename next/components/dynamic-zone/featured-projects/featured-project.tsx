@@ -3,9 +3,10 @@ import Link from "next/link";
 import { BlurImage } from "@/components/blur-image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { FeaturedProjectProps } from "@/types/components/shared";
-import Autoplay from "embla-carousel-autoplay";
+import { RowsPhotoAlbum } from "react-photo-album";
+import "react-photo-album/rows.css";
+
 
 export const FeaturedProject = ({
   title,
@@ -40,38 +41,15 @@ export const FeaturedProject = ({
 
       <div className="flex flex-col lg:flex-row gap-16 mb-8 items-center justify-between">
         <div className="w-full lg:w-1/2">
-          {images && images.length > 1 ? (
-            <Carousel
-              opts={{
-                loop: true,
-              }}
-              plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]} 
-            >
-              <CarouselContent>
-                {images.map((image, index) => (
-                  <CarouselItem key={index} className="flex items-center justify-center">
-                    <BlurImage
-                      src={strapiImage(image.url)}
-                      alt="Project Image"
-                      width={400}
-                      height={400}
-                      className="w-full md:rounded-3xl object-cover"
-                    />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          ) : (
-            images[0] && (
-              <BlurImage
-                key={images[0].url}
-                src={strapiImage(images[0].url)}
-                alt="Project Image"
-                width={400}
-                height={200}
-                className="w-full md:rounded-3xl object-cover"
-              />
-            )
+          {images && (
+            <RowsPhotoAlbum 
+              photos={images.slice(0, 10).map(({ url, width, height, alternativeText }) => ({
+                src: strapiImage(url), 
+                alt: alternativeText || "featured project image",
+                width: width,
+                height: height,
+              }))} 
+            />
           )}
         </div>
 
