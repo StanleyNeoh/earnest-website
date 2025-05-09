@@ -13,20 +13,20 @@ interface Props {
 }
 
 const componentMapping: { [key: string]: any } = {
-  'dynamic-zone.hero': dynamic(() => import('./hero').then(mod => mod.Hero), { ssr: false }),
-  'dynamic-zone.features': dynamic(() => import('./features').then(mod => mod.Features), { ssr: false }),
-  'dynamic-zone.testimonials': dynamic(() => import('./testimonials').then(mod => mod.Testimonials), { ssr: false }),
-  'dynamic-zone.how-it-works': dynamic(() => import('./how-it-works').then(mod => mod.HowItWorks), { ssr: false }),
-  'dynamic-zone.brands': dynamic(() => import('./brands').then(mod => mod.Brands), { ssr: false }),
-  'dynamic-zone.pricing': dynamic(() => import('./pricing').then(mod => mod.Pricing), { ssr: false }),
-  'dynamic-zone.launches': dynamic(() => import('./launches').then(mod => mod.Launches), { ssr: false }),
-  'dynamic-zone.cta': dynamic(() => import('./cta').then(mod => mod.CTA), { ssr: false }),
-  'dynamic-zone.form-next-to-section': dynamic(() => import('./form-next-to-section').then(mod => mod.FormNextToSection), { ssr: false }),
-  'dynamic-zone.faq': dynamic(() => import('./faq').then(mod => mod.FAQ), { ssr: false }),
-  'dynamic-zone.related-products': dynamic(() => import('./related-products').then(mod => mod.RelatedProducts), { ssr: false }),
-  'dynamic-zone.related-articles': dynamic(() => import('./related-articles').then(mod => mod.RelatedArticles), { ssr: false }),
-  'dynamic-zone.about-us': dynamic(() => import('./about-us').then(mod => mod.AboutUs), { ssr: false }),
-  'dynamic-zone.featured-projects': dynamic(() => import('./featured-projects').then(mod => mod.FeaturedProjects), { ssr: false })
+  'dynamic-zone.hero': dynamic(() => import('./hero').then(mod => mod.Hero), { ssr: true }),
+  'dynamic-zone.features': dynamic(() => import('./features').then(mod => mod.Features), { ssr: true }),
+  'dynamic-zone.testimonials': dynamic(() => import('./testimonials').then(mod => mod.Testimonials), { ssr: true }),
+  'dynamic-zone.how-it-works': dynamic(() => import('./how-it-works').then(mod => mod.HowItWorks), { ssr: true }),
+  'dynamic-zone.brands': dynamic(() => import('./brands').then(mod => mod.Brands), { ssr: true }),
+  'dynamic-zone.pricing': dynamic(() => import('./pricing').then(mod => mod.Pricing), { ssr: true }),
+  'dynamic-zone.launches': dynamic(() => import('./launches').then(mod => mod.Launches), { ssr: true }),
+  'dynamic-zone.cta': dynamic(() => import('./cta').then(mod => mod.CTA), { ssr: true }),
+  'dynamic-zone.form-next-to-section': dynamic(() => import('./form-next-to-section').then(mod => mod.FormNextToSection), { ssr: true }),
+  'dynamic-zone.faq': dynamic(() => import('./faq').then(mod => mod.FAQ), { ssr: true }),
+  'dynamic-zone.related-products': dynamic(() => import('./related-products').then(mod => mod.RelatedProducts), { ssr: true }),
+  'dynamic-zone.related-articles': dynamic(() => import('./related-articles').then(mod => mod.RelatedArticles), { ssr: true }),
+  'dynamic-zone.about-us': dynamic(() => import('./about-us').then(mod => mod.AboutUs), { ssr: true }),
+  'dynamic-zone.featured-projects': dynamic(() => import('./featured-projects').then(mod => mod.FeaturedProjects), { ssr: true })
 }
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {

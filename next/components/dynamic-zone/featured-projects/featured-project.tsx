@@ -5,6 +5,7 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
 import { FeaturedProjectProps } from "@/types/components/shared";
 import { RowsPhotoAlbum } from "react-photo-album";
+import SSR from "react-photo-album/ssr"
 import "react-photo-album/rows.css";
 
 
@@ -42,14 +43,20 @@ export const FeaturedProject = ({
       <div className="flex flex-col lg:flex-row gap-16 mb-8 items-center justify-between">
         <div className="w-full lg:w-1/2">
           {images && (
-            <RowsPhotoAlbum 
-              photos={images.slice(0, 10).map(({ url, width, height, alternativeText }) => ({
-                src: strapiImage(url), 
-                alt: alternativeText || "featured project image",
-                width: width,
-                height: height,
-              }))} 
-            />
+            <SSR breakpoints={[240, 380, 600, 900]}>
+              <RowsPhotoAlbum 
+                photos={images.slice(0, 10).map(({ url, width, height, alternativeText }) => ({
+                  src: strapiImage(url), 
+                  alt: alternativeText || "featured project image",
+                  width: width,
+                  height: height,
+                }))} 
+                sizes={{
+                  size: "1168px",
+                  sizes: [{ viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" }],
+                }}
+              />
+            </SSR>
           )}
         </div>
 

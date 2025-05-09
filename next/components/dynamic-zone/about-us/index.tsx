@@ -1,12 +1,8 @@
 import React from "react";
-import { BlurImage } from "@/components/blur-image";
 import { Heading } from "@/components/elements/heading";
 import { Subheading } from "@/components/elements/subheading";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { ParagraphProps } from "@/types/components/shared";
 import { Image } from "@/types/types";
-import Autoplay from "embla-carousel-autoplay";
 import { ImageCarousel } from "./image-carousel";
 
 export const AboutUs = ({
