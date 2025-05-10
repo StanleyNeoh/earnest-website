@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_image_paragraphs",
+  "info": {
+    "displayName": "ImageParagraph",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "paragraphs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.paragraph"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "direction": {
+      "type": "enumeration",
+      "enum": [
+        "img-on-left",
+        "img-on-right"
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "collectionName": "components_dynamic_zone_about_uses",
   "info": {
-    "displayName": "About_Us",
+    "displayName": "Paragraph_Story",
     "description": ""
   },
   "options": {},
@@ -12,31 +12,10 @@
     "subtitle": {
       "type": "string"
     },
-    "what_we_do": {
+    "sections": {
       "type": "component",
-      "repeatable": false,
-      "component": "shared.paragraph"
-    },
-    "our_team": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.paragraph"
-    },
-    "our_values": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.paragraph"
-    },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "repeatable": true,
+      "component": "shared.image-paragraph"
     }
   }
 }

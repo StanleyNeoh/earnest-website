@@ -65,18 +65,12 @@ export interface DynamicZoneAboutUs extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_about_uses';
   info: {
     description: '';
-    displayName: 'About_Us';
+    displayName: 'Paragraph_Story';
   };
   attributes: {
-    images: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    our_team: Schema.Attribute.Component<'shared.paragraph', false>;
-    our_values: Schema.Attribute.Component<'shared.paragraph', false>;
+    sections: Schema.Attribute.Component<'shared.image-paragraph', true>;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
-    what_we_do: Schema.Attribute.Component<'shared.paragraph', false>;
   };
 }
 
@@ -436,6 +430,22 @@ export interface SharedForm extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedImageParagraph extends Struct.ComponentSchema {
+  collectionName: 'components_shared_image_paragraphs';
+  info: {
+    description: '';
+    displayName: 'ImageParagraph';
+  };
+  attributes: {
+    direction: Schema.Attribute.Enumeration<['img-on-left', 'img-on-right']>;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    paragraphs: Schema.Attribute.Component<'shared.paragraph', true>;
+  };
+}
+
 export interface SharedLaunches extends Struct.ComponentSchema {
   collectionName: 'components_shared_launches';
   info: {
@@ -599,6 +609,7 @@ declare module '@strapi/strapi' {
       'shared.button': SharedButton;
       'shared.featured-project': SharedFeaturedProject;
       'shared.form': SharedForm;
+      'shared.image-paragraph': SharedImageParagraph;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
       'shared.paragraph': SharedParagraph;

@@ -5,6 +5,12 @@ export interface ParagraphProps {
     text?: string;
 }
 
+export interface ParagaraphStoryProps {
+    paragraphs: ParagraphProps[];
+    images: Image[];
+    direction: "img-on-left" | "img-on-right";
+}
+
 export interface ButtonProps {
     text?: string;
     URL?: string;

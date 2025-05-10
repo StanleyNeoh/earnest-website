@@ -15,9 +15,9 @@ export const ImageCarousel = ({logos}: {logos: any[]}) => {
       plugins={[Autoscroll({ speed: 2, stopOnInteraction: false })]}
     >
       <CarouselContent>
-        {logos.map((logo) => (
+        {logos.map((logo, index) => (
           <CarouselItem
-            key={logo.title}
+            key={index}
             className="flex items-center justify-center basis-1/5"
           >
             <Image
