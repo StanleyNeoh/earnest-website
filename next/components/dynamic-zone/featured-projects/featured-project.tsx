@@ -85,17 +85,22 @@ export const FeaturedProject = ({
           }
           </div>
           <div className="flex flex-row gap-2 mt-4 justify-center">
-            {CTAs.map((cta) => (
-              <Button
-                className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
-                key={cta?.URL}
-                as={Link}
-                href={`/${locale}${cta.URL}`}
-                {...(cta.variant && { variant: cta.variant })}
-              >
-                {cta.text}
-              </Button>
-            ))}
+            {
+              CTAs.map((cta) => {
+                cta.URL = cta.URL?.trimStart().startsWith("/") ? `/${locale}${cta.URL}` : cta.URL;
+                return (
+                  <Button
+                    className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
+                    key={cta?.URL}
+                    as={Link}
+                    href={cta.URL}
+                    {...(cta.variant && { variant: cta.variant })}
+                  >
+                    {cta.text}
+                  </Button>
+                )
+              })
+            }
           </div>
         </div>
       </div>
