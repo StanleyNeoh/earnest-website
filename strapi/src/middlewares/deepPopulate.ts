@@ -6,6 +6,7 @@ import type { Core } from '@strapi/strapi';
 import { UID } from '@strapi/types';
 import { contentTypes } from '@strapi/utils';
 import pluralize from 'pluralize';
+import util from 'util';
 
 
 interface Options {
@@ -36,11 +37,7 @@ const getDeepPopulate = (uid: UID.Schema, opts: Options = {}) => {
         const isCreatorField = [CREATED_BY_ATTRIBUTE, UPDATED_BY_ATTRIBUTE].includes(attributeName);
 
         if (isVisible) {
-          if (attributeName === 'testimonials') {
-            acc[attributeName] = { populate: "user.image" };
-          } else {
-            acc[attributeName] = { populate: "*" };
-          }
+          acc[attributeName] = { populate: "*" };
         }
 
         break;
@@ -88,10 +85,11 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
       const contentType = extractPathSegment(ctx.request.url);
       const singular = pluralize.singular(contentType)
       const uid = `api::${singular}.${singular}`;
+      // @ts-ignores 
+      const populate = getDeepPopulate(uid);
 
       ctx.query.populate = {
-        // @ts-ignores 
-        ...getDeepPopulate(uid),
+        ...populate,
         ...(!ctx.request.url.includes("products") && { localizations: { populate: {} } })
       };
     }

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Articles",
+    "displayName": "_Articles",
     "description": ""
   },
   "options": {
@@ -58,12 +58,6 @@
         }
       },
       "type": "blocks"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "articles"
     },
     "dynamic_zone": {
       "pluginOptions": {

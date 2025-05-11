@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "testimonials",
+  "collectionName": "services",
   "info": {
-    "singularName": "testimonial",
-    "pluralName": "testimonials",
-    "displayName": "Testimonials",
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Services",
     "description": ""
   },
   "options": {
@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "representative_name": {
+    "name": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -24,27 +24,22 @@
         }
       }
     },
-    "representative_role": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+    "slug": {
+      "type": "uid"
     },
-    "project": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::project.project",
-      "inversedBy": "testimonials"
-    },
-    "remarks": {
+    "description": {
       "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "mappedBy": "services"
     }
   }
 }

@@ -373,7 +373,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
     description: '';
-    displayName: 'Articles';
+    displayName: '_Articles';
     pluralName: 'articles';
     singularName: 'article';
   };
@@ -386,10 +386,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    categories: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::category.category'
-    >;
     content: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -453,7 +449,7 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
   collectionName: 'blog_pages';
   info: {
     description: '';
-    displayName: '/blog';
+    displayName: '_/blog';
     pluralName: 'blog-pages';
     singularName: 'blog-page';
   };
@@ -520,47 +516,16 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
+export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
+  collectionName: 'companies';
   info: {
     description: '';
-    displayName: 'Categories';
-    pluralName: 'categories';
-    singularName: 'category';
+    displayName: 'Companies';
+    pluralName: 'companies';
+    singularName: 'company';
   };
   options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
-  collectionName: 'faqs';
-  info: {
-    description: '';
-    displayName: 'FAQ';
-    pluralName: 'faqs';
-    singularName: 'faq';
-  };
-  options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -568,24 +533,33 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    answer: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    industries: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::industry.industry'
+    >;
     locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
-    publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.String &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company.company'
+    >;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -639,11 +613,51 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
+  collectionName: 'industries';
+  info: {
+    description: '';
+    displayName: 'Industries';
+    pluralName: 'industries';
+    singularName: 'industry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::industry.industry'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLogoLogo extends Struct.CollectionTypeSchema {
   collectionName: 'logos';
   info: {
     description: '';
-    displayName: 'Logos';
+    displayName: '_Logos';
     pluralName: 'logos';
     singularName: 'logo';
   };
@@ -731,48 +745,16 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
-  collectionName: 'plans';
+export interface ApiProjectPageProjectPage extends Struct.SingleTypeSchema {
+  collectionName: 'project_pages';
   info: {
     description: '';
-    displayName: 'Plans';
-    pluralName: 'plans';
-    singularName: 'plan';
+    displayName: '/projects';
+    pluralName: 'project-pages';
+    singularName: 'project-page';
   };
   options: {
     draftAndPublish: true;
-  };
-  attributes: {
-    additional_perks: Schema.Attribute.Component<'shared.perks', true>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    CTA: Schema.Attribute.Component<'shared.button', false>;
-    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    perks: Schema.Attribute.Component<'shared.perks', true>;
-    price: Schema.Attribute.Integer;
-    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
-    publishedAt: Schema.Attribute.DateTime;
-    sub_text: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
-  collectionName: 'product_pages';
-  info: {
-    displayName: '/products';
-    pluralName: 'product-pages';
-    singularName: 'product-page';
-  };
-  options: {
-    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -784,20 +766,7 @@ export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dynamic_zone: Schema.Attribute.DynamicZone<
-      [
-        'dynamic-zone.testimonials',
-        'dynamic-zone.related-products',
-        'dynamic-zone.related-articles',
-        'dynamic-zone.pricing',
-        'dynamic-zone.launches',
-        'dynamic-zone.how-it-works',
-        'dynamic-zone.hero',
-        'dynamic-zone.form-next-to-section',
-        'dynamic-zone.features',
-        'dynamic-zone.faq',
-        'dynamic-zone.cta',
-        'dynamic-zone.brands',
-      ]
+      ['dynamic-zone.hero', 'dynamic-zone.featured-projects']
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -813,7 +782,7 @@ export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::product-page.product-page'
+      'api::project-page.project-page'
     >;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> &
@@ -834,43 +803,53 @@ export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiProductProduct extends Struct.CollectionTypeSchema {
-  collectionName: 'products';
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
   info: {
     description: '';
-    displayName: 'Products';
-    pluralName: 'products';
-    singularName: 'product';
+    displayName: 'Projects';
+    pluralName: 'projects';
+    singularName: 'project';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
+    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    dynamic_zone: Schema.Attribute.DynamicZone<
-      ['dynamic-zone.related-products', 'dynamic-zone.cta']
-    >;
-    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    images: Schema.Attribute.Media<'images' | 'files' | 'videos', true>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::product.product'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    perks: Schema.Attribute.Component<'shared.perks', true>;
-    plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
-    price: Schema.Attribute.Integer;
+      'api::project.project'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
+    services: Schema.Attribute.Relation<'manyToMany', 'api::service.service'>;
     slug: Schema.Attribute.UID<'name'>;
+    story: Schema.Attribute.Component<'shared.paragraph-story', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    testimonials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -880,7 +859,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiRedirectionRedirection extends Struct.CollectionTypeSchema {
   collectionName: 'redirections';
   info: {
-    displayName: 'Redirection';
+    description: '';
+    displayName: '_Redirection';
     pluralName: 'redirections';
     singularName: 'redirection';
   };
@@ -900,6 +880,52 @@ export interface ApiRedirectionRedirection extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     source: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiServiceService extends Struct.CollectionTypeSchema {
+  collectionName: 'services';
+  info: {
+    description: '';
+    displayName: 'Services';
+    pluralName: 'services';
+    singularName: 'service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -931,8 +957,21 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::testimonial.testimonial'
     >;
+    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.String &
+    remarks: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    representative_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    representative_role: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -941,12 +980,6 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Component<'shared.user', false> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
   };
 }
 
@@ -1461,15 +1494,15 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
-      'api::category.category': ApiCategoryCategory;
-      'api::faq.faq': ApiFaqFaq;
+      'api::company.company': ApiCompanyCompany;
       'api::global.global': ApiGlobalGlobal;
+      'api::industry.industry': ApiIndustryIndustry;
       'api::logo.logo': ApiLogoLogo;
       'api::page.page': ApiPagePage;
-      'api::plan.plan': ApiPlanPlan;
-      'api::product-page.product-page': ApiProductPageProductPage;
-      'api::product.product': ApiProductProduct;
+      'api::project-page.project-page': ApiProjectPageProjectPage;
+      'api::project.project': ApiProjectProject;
       'api::redirection.redirection': ApiRedirectionRedirection;
+      'api::service.service': ApiServiceService;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

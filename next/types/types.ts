@@ -1,6 +1,4 @@
-export interface Category {
-  name: string;
-}
+import { ParagraphStoryProps } from "./components/dynamic-zone";
 
 export interface Image {
   url: string;
@@ -9,34 +7,41 @@ export interface Image {
   height: number;
 }
 
-export interface Article {
-  title: string;
-  description: string;
+export interface Company {
+  name: string;
   slug: string;
-  content: string;
-  dynamic_zone: any[];
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  locale: string;
-  image: Image;
-  categories: Category[]
+  logo: Image;
+  industries?: Industry[];
+  projects?: Project[];
 }
 
-export interface Product {
-  id: number;
+export interface Industry {
+  name: string;
+  slug: string;
+  companies?: Company[];
+}
+
+export interface Project {
+  companies: Company[];
+  story: ParagraphStoryProps[];
+  slug: string;
+  name: string;
+  description: string;
+  thumbnail: Image;
+  services?: Service[];
+  testimonials?: Testimonial[];
+}
+
+export interface Service {
   name: string;
   slug: string;
   description: string;
-  price: number;
-  plans: any[];
-  perks: any[];
-  featured?: boolean;
-  images: any[];
-  categories?: any[];
-};
+  projects?: Project[];
+}
 
-export interface Logo {
-  image: Image;
-  company: string;
+export interface Testimonial {
+  representative_name: string;
+  representative_role: string;
+  remarks: string;
+  project?: Project;
 }

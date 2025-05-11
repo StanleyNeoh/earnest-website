@@ -4,7 +4,8 @@
   "info": {
     "singularName": "redirection",
     "pluralName": "redirections",
-    "displayName": "Redirection"
+    "displayName": "_Redirection",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
