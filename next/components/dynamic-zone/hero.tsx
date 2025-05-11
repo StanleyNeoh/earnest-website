@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Heading } from "../elements/heading";
 import { Button } from "../elements/button";
 import { BlurImage } from "../blur-image";
-import { Image } from "@/types/types";
+import { ImageProps } from "@/types/types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Subheading } from "../elements/subheading";
 
@@ -20,7 +20,7 @@ export const Hero = ({
   heading: string; 
   sub_heading: string; 
   CTAs: any[]; 
-  image: Image; 
+  image: ImageProps; 
   locale: string;
   company_start_date: string;
 }) => {

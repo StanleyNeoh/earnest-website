@@ -12,10 +12,10 @@
     "sub_header": {
       "type": "string"
     },
-    "featured_projects": {
+    "projects": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.featured-project"
+      "component": "dynamic-zone.about-us"
     }
   }
 }

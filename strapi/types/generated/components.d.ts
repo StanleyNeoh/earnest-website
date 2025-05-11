@@ -68,6 +68,10 @@ export interface DynamicZoneAboutUs extends Struct.ComponentSchema {
     displayName: 'Paragraph_Story';
   };
   attributes: {
+    badges: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     sections: Schema.Attribute.Component<'shared.image-paragraph', true>;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
@@ -122,11 +126,8 @@ export interface DynamicZoneFeaturedProjects extends Struct.ComponentSchema {
     displayName: 'Featured_Projects';
   };
   attributes: {
-    featured_projects: Schema.Attribute.Component<
-      'shared.featured-project',
-      true
-    >;
     header: Schema.Attribute.String;
+    projects: Schema.Attribute.Component<'dynamic-zone.about-us', true>;
     sub_header: Schema.Attribute.String;
   };
 }
@@ -400,24 +401,6 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedFeaturedProject extends Struct.ComponentSchema {
-  collectionName: 'components_shared_featured_projects';
-  info: {
-    description: '';
-    displayName: 'Featured_Project';
-  };
-  attributes: {
-    CTAs: Schema.Attribute.Component<'shared.button', true>;
-    images: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    paragraphs: Schema.Attribute.Component<'shared.paragraph', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -434,10 +417,12 @@ export interface SharedImageParagraph extends Struct.ComponentSchema {
   collectionName: 'components_shared_image_paragraphs';
   info: {
     description: '';
-    displayName: 'ImageParagraph';
+    displayName: 'Image_Paragraph';
   };
   attributes: {
+    CTAs: Schema.Attribute.Component<'shared.button', true>;
     direction: Schema.Attribute.Enumeration<['img-on-left', 'img-on-right']>;
+    display: Schema.Attribute.Enumeration<['tile', 'carousel']>;
     images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -607,7 +592,6 @@ declare module '@strapi/strapi' {
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.ray-items': ItemsRayItems;
       'shared.button': SharedButton;
-      'shared.featured-project': SharedFeaturedProject;
       'shared.form': SharedForm;
       'shared.image-paragraph': SharedImageParagraph;
       'shared.launches': SharedLaunches;

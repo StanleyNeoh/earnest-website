@@ -1,18 +1,18 @@
 import React from "react";
-import { Heading } from "../../elements/heading";
-import { Subheading } from "../../elements/subheading";
-import { FeaturedProjectProps } from "@/types/components/shared";
-import { FeaturedProject } from "./featured-project";
+import { Heading } from "../elements/heading";
+import { Subheading } from "../elements/subheading";
+import { ParagraphStory } from "../paragraph-story";
+import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
 
 export const FeaturedProjects = ({ 
   header,
   sub_header,
-  featured_projects,
+  projects,
   locale,
 }: {
   header?: string;
   sub_header?: string;
-  featured_projects: FeaturedProjectProps[];
+  projects: ParagraphStoryProps[];
   locale: string;
 }) => {
   return (
@@ -32,11 +32,11 @@ export const FeaturedProjects = ({
         )
       }
       {
-        featured_projects.map((featured_projects, i) => (
-          <FeaturedProject
+        projects.map((project, i) => (
+          <ParagraphStory
             key={i}
             locale={locale}
-            {...featured_projects}
+            {...project}
           />
         ))
       }

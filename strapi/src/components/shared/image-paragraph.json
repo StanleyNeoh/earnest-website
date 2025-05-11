@@ -1,7 +1,7 @@
 {
   "collectionName": "components_shared_image_paragraphs",
   "info": {
-    "displayName": "ImageParagraph",
+    "displayName": "Image_Paragraph",
     "description": ""
   },
   "options": {},
@@ -28,6 +28,18 @@
         "img-on-left",
         "img-on-right"
       ]
+    },
+    "display": {
+      "type": "enumeration",
+      "enum": [
+        "tile",
+        "carousel"
+      ]
+    },
+    "CTAs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.button"
     }
   }
 }

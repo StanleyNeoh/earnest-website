@@ -1,15 +1,4 @@
-import { Image } from "@/types/types";
-
-export interface ParagraphProps {
-    title?: string;
-    text?: string;
-}
-
-export interface ParagaraphStoryProps {
-    paragraphs: ParagraphProps[];
-    images: Image[];
-    direction: "img-on-left" | "img-on-right";
-}
+import { ImageProps } from "@/types/types";
 
 export interface ButtonProps {
     text?: string;
@@ -18,10 +7,17 @@ export interface ButtonProps {
     variant: "simple" | "primary" | "outline" | "muted";
 }
 
-export interface FeaturedProjectProps {
+export interface ParagraphProps {
     title?: string;
-    logo?: Image;
-    paragraphs: ParagraphProps[];
-    CTAs: ButtonProps[];
-    images: Image[];
+    text?: string;
 }
+
+export interface ImageParagraphProps {
+    paragraphs: ParagraphProps[];
+    images: ImageProps[];
+    direction: "img-on-left" | "img-on-right";
+    display: "tile" | "carousel";
+    CTAs: ButtonProps[];
+}
+
+

@@ -35,3 +35,8 @@ export interface Product {
   images: any[];
   categories?: any[];
 };
+
+export interface Logo {
+  image: Image;
+  company: string;
+}

@@ -16,6 +16,17 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.image-paragraph"
+    },
+    "badges": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
