@@ -4,7 +4,6 @@ import { Heading } from "../elements/heading";
 import { Subheading } from "../elements/subheading";
 import { AnimatePresence } from "framer-motion";
 import { ImageCarousel } from "../image-carousel";
-import { Logo } from "@/types/types";
 
 export const Brands = ({
   heading,
@@ -13,7 +12,7 @@ export const Brands = ({
 }: {
   heading: string,
   sub_heading: string,
-  logos: Logo[]
+  logos: any[]
 }) => {
   return (
     <div className="relative z-20 pb-10">

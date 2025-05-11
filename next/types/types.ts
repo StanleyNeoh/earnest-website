@@ -15,7 +15,7 @@ export interface Article {
   publishedAt: string;
   locale: string;
   image: Image;
-  categories: Category[]
+  categories: Category[];
 }
 
 export interface Image {

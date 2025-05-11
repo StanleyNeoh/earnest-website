@@ -1,16 +1,15 @@
 "use client";
 import React, { createContext, useContext, useState, useCallback } from "react";
-import { Product } from "@/types/types";
 
 type CartItem = {
-  product: Product;
+  product: any;
   quantity: number;
 };
 
 type CartContextType = {
   items: CartItem[];
-  updateQuantity: (product: Product, quantity: number) => void;
-  addToCart: (product: Product) => void;
+  updateQuantity: (product: any, quantity: number) => void;
+  addToCart: (product: any) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
@@ -23,7 +22,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addToCart = useCallback((product: Product) => {
+  const addToCart = useCallback((product: any) => {
     setItems((prevItems) => {
       const existingItem = prevItems.find(
         (item) => item.product.id === product.id
@@ -49,7 +48,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     setItems([]);
   }, []);
 
-  const updateQuantity = useCallback((product: Product, quantity: number) => {
+  const updateQuantity = useCallback((product: any, quantity: number) => {
     setItems((prevItems) =>
       prevItems.map((item) =>
         item.product.id === product.id ? { ...item, quantity } : item

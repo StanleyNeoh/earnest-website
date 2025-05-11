@@ -23,7 +23,6 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.cta': dynamic(() => import('./cta').then(mod => mod.CTA), { ssr: true }),
   'dynamic-zone.form-next-to-section': dynamic(() => import('./form-next-to-section').then(mod => mod.FormNextToSection), { ssr: true }),
   'dynamic-zone.faq': dynamic(() => import('./faq').then(mod => mod.FAQ), { ssr: true }),
-  'dynamic-zone.related-products': dynamic(() => import('./related-products').then(mod => mod.RelatedProducts), { ssr: true }),
   'dynamic-zone.related-articles': dynamic(() => import('./related-articles').then(mod => mod.RelatedArticles), { ssr: true }),
   'dynamic-zone.about-us': dynamic(() => import('./about-us').then(mod => mod.AboutUs), { ssr: true }),
   'dynamic-zone.our-services': dynamic(() => import('./our-services').then(mod => mod.OurServices), { ssr: true }),
