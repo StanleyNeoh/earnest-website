@@ -9,7 +9,6 @@ export const OurServices = ({
   services: ParagraphStoryProps;
   locale: string;
 }) => {
-  console.log("OurServices", services);
   return (
     <div className="max-w-8xl py-10 md:px-20 lg:px-8 ">
       <ParagraphStory

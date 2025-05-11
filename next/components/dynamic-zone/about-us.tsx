@@ -14,7 +14,7 @@ export const AboutUs = ({
       <ParagraphStory
         {...about_us}
         locale={locale}
-        className="lg:rounded-3xl shadow-lg md:px-20"
+        className="md:px-20"
       />
     </div>
   )

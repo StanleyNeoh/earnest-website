@@ -48,6 +48,10 @@ export default async function fetchContentType(
     // Perform the fetch request with the provided query parameters
     const response = await fetch(`${url.href}?${qs.stringify(queryParams)}`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
+      },
       cache: 'no-store',
     });
 
