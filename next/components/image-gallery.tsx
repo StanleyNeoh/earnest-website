@@ -3,9 +3,9 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { RowsPhotoAlbum } from "react-photo-album";
 import SSR from "react-photo-album/ssr"
 import "react-photo-album/rows.css";
-import { ImageProps } from "@/types/types";
+import { Image } from "@/types/types";
 
-export const ImageGallery = ({ images }: { images: ImageProps[] }) => {
+export const ImageGallery = ({ images }: { images: Image[] }) => {
   return (
     <SSR breakpoints={[240, 380, 600, 900]}>
       <RowsPhotoAlbum

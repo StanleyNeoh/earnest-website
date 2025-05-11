@@ -1,4 +1,4 @@
-import { ImageProps } from "@/types/types";
+import { Image } from "@/types/types";
 
 export interface ButtonProps {
     text?: string;
@@ -14,7 +14,7 @@ export interface ParagraphProps {
 
 export interface ImageParagraphProps {
     paragraphs: ParagraphProps[];
-    images: ImageProps[];
+    images: Image[];
     direction: "img-on-left" | "img-on-right";
     display: "tile" | "carousel";
     CTAs: ButtonProps[];

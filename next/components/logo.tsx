@@ -4,13 +4,13 @@ import { Link } from "next-view-transitions";
 import { BlurImage } from "./blur-image";
 
 import { strapiImage } from "@/lib/strapi/strapiImage";
-import { ImageProps } from "@/types/types";
+import { Image } from "@/types/types";
 
 export const Logo = ({
   image,
   locale,
 }: { 
-  image?: ImageProps, 
+  image?: Image, 
   locale?: string 
 }) => {
   if (image) {
