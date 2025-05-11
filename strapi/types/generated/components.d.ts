@@ -64,17 +64,10 @@ export interface CardsSocialMediaCard extends Struct.ComponentSchema {
 export interface DynamicZoneAboutUs extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_about_uses';
   info: {
-    description: '';
-    displayName: 'Paragraph_Story';
+    displayName: 'About_Us';
   };
   attributes: {
-    badges: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    sections: Schema.Attribute.Component<'shared.image-paragraph', true>;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    about_us: Schema.Attribute.Component<'shared.paragraph-story', false>;
   };
 }
 
@@ -127,7 +120,7 @@ export interface DynamicZoneFeaturedProjects extends Struct.ComponentSchema {
   };
   attributes: {
     header: Schema.Attribute.String;
-    projects: Schema.Attribute.Component<'dynamic-zone.about-us', true>;
+    projects: Schema.Attribute.Component<'shared.paragraph-story', true>;
     sub_header: Schema.Attribute.String;
   };
 }
@@ -212,6 +205,16 @@ export interface DynamicZoneLaunches extends Struct.ComponentSchema {
     heading: Schema.Attribute.String;
     launches: Schema.Attribute.Component<'shared.launches', true>;
     sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneOurServices extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_our_services';
+  info: {
+    displayName: 'Our_Services';
+  };
+  attributes: {
+    services: Schema.Attribute.Component<'shared.paragraph-story', false>;
   };
 }
 
@@ -472,6 +475,23 @@ export interface SharedParagraph extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedParagraphStory extends Struct.ComponentSchema {
+  collectionName: 'components_shared_paragraph_stories';
+  info: {
+    description: '';
+    displayName: 'Paragraph_Story';
+  };
+  attributes: {
+    badges: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    sections: Schema.Attribute.Component<'shared.image-paragraph', true>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedPerks extends Struct.ComponentSchema {
   collectionName: 'components_shared_perks';
   info: {
@@ -581,6 +601,7 @@ declare module '@strapi/strapi' {
       'dynamic-zone.hero': DynamicZoneHero;
       'dynamic-zone.how-it-works': DynamicZoneHowItWorks;
       'dynamic-zone.launches': DynamicZoneLaunches;
+      'dynamic-zone.our-services': DynamicZoneOurServices;
       'dynamic-zone.pricing': DynamicZonePricing;
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
@@ -597,6 +618,7 @@ declare module '@strapi/strapi' {
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
       'shared.paragraph': SharedParagraph;
+      'shared.paragraph-story': SharedParagraphStory;
       'shared.perks': SharedPerks;
       'shared.section': SharedSection;
       'shared.seo': SharedSeo;

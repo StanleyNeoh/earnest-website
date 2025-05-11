@@ -36,6 +36,7 @@ export const FeaturedProjects = ({
           <ParagraphStory
             key={i}
             locale={locale}
+            className="md:px-20"
             {...project}
           />
         ))

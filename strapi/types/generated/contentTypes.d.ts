@@ -699,6 +699,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.form-next-to-section',
         'dynamic-zone.faq',
         'dynamic-zone.featured-projects',
+        'dynamic-zone.our-services',
         'dynamic-zone.about-us',
       ]
     > &

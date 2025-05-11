@@ -37,6 +37,7 @@ export default async function Page({ params }: { params: { locale: string, slug:
     },
     true,
   );
+  console.log('pageData', pageData);
 
   const localizedSlugs = pageData.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {

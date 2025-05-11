@@ -26,12 +26,14 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.related-products': dynamic(() => import('./related-products').then(mod => mod.RelatedProducts), { ssr: true }),
   'dynamic-zone.related-articles': dynamic(() => import('./related-articles').then(mod => mod.RelatedArticles), { ssr: true }),
   'dynamic-zone.about-us': dynamic(() => import('./about-us').then(mod => mod.AboutUs), { ssr: true }),
+  'dynamic-zone.our-services': dynamic(() => import('./our-services').then(mod => mod.OurServices), { ssr: true }),
   'dynamic-zone.featured-projects': dynamic(() => import('./featured-projects').then(mod => mod.FeaturedProjects), { ssr: true })
 }
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {
+  console.log('DynamicZoneManager', dynamicZone);
   return (
-    <div>
+    <div className="mt-12">
       {
         dynamicZone.map((componentData) => {
           const Component = componentMapping[componentData.__component];

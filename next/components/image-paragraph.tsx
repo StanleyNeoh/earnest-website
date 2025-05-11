@@ -4,6 +4,7 @@ import { Button } from "@/components/elements/button";
 import { ImageParagraphProps } from "@/types/components/shared";
 import { ImageCarousel } from "@/components/image-carousel";
 import { ImageGallery } from "./image-gallery";
+import { Heading } from "./elements/heading";
 
 export const ImageParagraph = ({
   images,
@@ -36,7 +37,7 @@ export const ImageParagraph = ({
             const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
             return (
               <>
-                {title && <h1 className="text-4xl text-charcoal font-bold mb-8">{title}</h1>}
+                {title && <Heading size="sm" className="text-charcoal font-semibold">{title}</Heading>}
                 {chunks.map((chunk, index) => (
                   <p key={index} className="text-base md:text-lg text-charcoal mb-4">
                     {chunk}
@@ -46,22 +47,26 @@ export const ImageParagraph = ({
             );
           })}
         </div>
-        <div className="flex flex-row gap-2 mt-4 justify-center">
-          {CTAs.map((cta) => {
-            cta.URL = cta.URL?.trimStart().startsWith("/") ? `/${locale}${cta.URL}` : cta.URL;
-            return (
-              <Button
-                className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
-                key={cta?.URL}
-                as={Link}
-                href={cta.URL}
-                {...(cta.variant && { variant: cta.variant })}
-              >
-                {cta.text}
-              </Button>
-            );
-          })}
-        </div>
+        {
+          CTAs?.length > 0 && (
+            <div className="flex flex-row gap-2 mt-4 justify-center">
+              {CTAs.map((cta, i) => {
+                cta.URL = cta.URL?.trimStart().startsWith("/") ? `/${locale}${cta.URL}` : cta.URL;
+                return (
+                  <Button
+                    className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
+                    key={i}
+                    as={Link}
+                    href={cta.URL}
+                    {...(cta.variant && { variant: cta.variant })}
+                  >
+                    {cta.text}
+                  </Button>
+                );
+              })}
+            </div>
+          )
+        }
       </div>
     </div>
   );

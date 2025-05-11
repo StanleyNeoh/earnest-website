@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Heading } from "../elements/heading";
 import { Button } from "../elements/button";
 import { BlurImage } from "../blur-image";
-import { ImageProps } from "@/types/types";
+import { Image } from "@/types/types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Subheading } from "../elements/subheading";
 
@@ -20,7 +20,7 @@ export const Hero = ({
   heading: string; 
   sub_heading: string; 
   CTAs: any[]; 
-  image: ImageProps; 
+  image: Image; 
   locale: string;
   company_start_date: string;
 }) => {
@@ -30,7 +30,7 @@ export const Hero = ({
     <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center">
       <Heading
         as="h1"
-        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-8xl mx-auto text-center mt-12 relative z-10 pt-12"
+        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-8xl mx-auto text-center relative z-10 pt-12"
       >
         {heading}
       </Heading>

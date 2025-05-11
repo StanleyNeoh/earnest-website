@@ -1,11 +1,11 @@
 {
-  "collectionName": "components_dynamic_zone_about_uses",
+  "collectionName": "components_dynamic_zone_our_services",
   "info": {
-    "displayName": "About_Us"
+    "displayName": "Our_Services"
   },
   "options": {},
   "attributes": {
-    "about_us": {
+    "services": {
       "type": "component",
       "repeatable": false,
       "component": "shared.paragraph-story"

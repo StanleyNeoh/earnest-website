@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_paragraph_stories",
+  "info": {
+    "displayName": "Paragraph_Story",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.image-paragraph"
+    },
+    "badges": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

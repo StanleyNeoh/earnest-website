@@ -2,19 +2,20 @@ import React from "react";
 import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
 import { ParagraphStory } from "../paragraph-story";
 
-export const AboutUs = ({
+export const OurServices = ({
   locale,
-  about_us,
+  services,
 }: {
-  about_us: ParagraphStoryProps;
+  services: ParagraphStoryProps;
   locale: string;
 }) => {
+  console.log("OurServices", services);
   return (
     <div className="max-w-8xl py-10 md:px-20 lg:px-8 ">
       <ParagraphStory
-        {...about_us}
+        {...services}
         locale={locale}
-        className="lg:rounded-3xl shadow-lg md:px-20"
+        className="md:px-20"
       />
     </div>
   )
