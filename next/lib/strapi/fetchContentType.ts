@@ -50,13 +50,13 @@ export default async function fetchContentType(
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
       cache: 'no-store',
     });
 
     if (!response.ok) {
-      console.log('FetchContentTypeError', await response.json());
+      console.error('Error response', await response.json());
       throw new Error(`Failed to fetch data from Strapi (url=${url.toString()}, status=${response.status})`);
     }
     const jsonData: StrapiResponse = await response.json();

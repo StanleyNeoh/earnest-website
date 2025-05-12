@@ -99,7 +99,7 @@ export const SingleProject = ({
           )
         }
       </div>
-      <div className="max-w-7xl mx-auto mt-16 bg-neutral-200 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-lg">
+      <div className="max-w-7xl mx-auto mt-16 bg-neutral-100 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl border-4 shadow-xl">
         {
           project.story.map((story, index) => (
             <ParagraphStory
@@ -110,13 +110,13 @@ export const SingleProject = ({
           ))
         }
       </div>
-      <div className="flex flex-col gap-4 mt-10">
+      <div className="flex flex-col gap-4 my-10">
         <Heading className="text-center text-charcoal">
           Testimonials
         </Heading>
         {
           project.testimonials?.map((testimonial, index) => (
-            <div key={index} className="bg-neutral-200 py-5 px-10 mx-10 rounded-xl shadow-lg flex flex-col gap-2">
+            <div key={index} className="bg-neutral-100 py-5 px-10 rounded-xl border-4 shadow-xl flex flex-col gap-2">
               <p className="text-neutral-500 text-lg">
                 "{testimonial.remarks}"
               </p>

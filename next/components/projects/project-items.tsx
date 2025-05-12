@@ -30,7 +30,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
   return (
     <Link 
       href={`/${locale}/projects/${project.slug}` as never} 
-      className="group relative block bg-neutral-200 rounded-md p-4 shadow-lg hover:shadow-xl transition duration-200"
+      className="group relative block bg-neutral-100 rounded-md p-4 shadow-lg hover:shadow-xl transition duration-200"
       prefetch={true}
     >
       <div className="relative border border-neutral-900 rounded-md overflow-hidden">

@@ -32,7 +32,8 @@
         "tel",
         "time",
         "url",
-        "week"
+        "week",
+        "enum"
       ],
       "default": "text"
     },
@@ -41,6 +42,14 @@
     },
     "placeholder": {
       "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.option"
     }
   }
 }

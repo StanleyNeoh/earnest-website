@@ -1,5 +1,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
+import util from 'util';
+import { ValueWithRandom } from '@tsparticles/engine';
 
 interface DynamicZoneComponent {
   __component: string;

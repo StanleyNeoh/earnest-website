@@ -64,3 +64,16 @@ export interface Testimonial {
   remarks: string;
   project?: Project;
 }
+
+export interface Leads {
+  name: string;
+  email: string;
+  phone: string;
+  company_name: string;
+  inquiry_type: string;
+  service_interest: string;
+  estimated_budget: string;
+  message: string;
+  received_on?: string;
+  notes?: string;
+}

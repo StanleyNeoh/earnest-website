@@ -652,6 +652,53 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiLeadLead extends Struct.CollectionTypeSchema {
+  collectionName: 'leads';
+  info: {
+    description: '';
+    displayName: 'Leads';
+    pluralName: 'leads';
+    singularName: 'lead';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    estimated_budget: Schema.Attribute.Enumeration<
+      ['tiny', 'small', 'medium', 'large']
+    >;
+    inquiry_type: Schema.Attribute.Enumeration<
+      ['project_inquiry', 'invitation_to_quote', 'supplier_proposal', 'others']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.RichText;
+    name: Schema.Attribute.String;
+    notes: Schema.Attribute.RichText;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    received_on: Schema.Attribute.DateTime;
+    service_interest: Schema.Attribute.Enumeration<
+      [
+        'prelease',
+        'design_consultancy',
+        'design_and_build',
+        'reinstatement',
+        'others',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLogoLogo extends Struct.CollectionTypeSchema {
   collectionName: 'logos';
   info: {
@@ -1501,6 +1548,7 @@ declare module '@strapi/strapi' {
       'api::company.company': ApiCompanyCompany;
       'api::global.global': ApiGlobalGlobal;
       'api::industry.industry': ApiIndustryIndustry;
+      'api::lead.lead': ApiLeadLead;
       'api::logo.logo': ApiLogoLogo;
       'api::page.page': ApiPagePage;
       'api::project-page.project-page': ApiProjectPageProjectPage;

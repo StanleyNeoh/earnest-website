@@ -154,7 +154,7 @@ export interface DynamicZoneFormNextToSection extends Struct.ComponentSchema {
   attributes: {
     form: Schema.Attribute.Component<'shared.form', false>;
     heading: Schema.Attribute.String;
-    section: Schema.Attribute.Component<'shared.section', false>;
+    sections: Schema.Attribute.Component<'shared.paragraph-story', true>;
     social_media_icon_links: Schema.Attribute.Component<
       'shared.social-media-icon-links',
       true
@@ -320,7 +320,9 @@ export interface ItemsInput extends Struct.ComponentSchema {
     icon: 'apps';
   };
   attributes: {
+    display_name: Schema.Attribute.String;
     name: Schema.Attribute.String;
+    options: Schema.Attribute.Component<'items.option', true>;
     placeholder: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<
       [
@@ -347,6 +349,7 @@ export interface ItemsInput extends Struct.ComponentSchema {
         'time',
         'url',
         'week',
+        'enum',
       ]
     > &
       Schema.Attribute.DefaultTo<'text'>;
@@ -362,6 +365,17 @@ export interface ItemsLeftNavbarItems extends Struct.ComponentSchema {
   attributes: {
     name: Schema.Attribute.String;
     URL: Schema.Attribute.String;
+  };
+}
+
+export interface ItemsOption extends Struct.ComponentSchema {
+  collectionName: 'components_items_options';
+  info: {
+    displayName: 'option';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    value: Schema.Attribute.String;
   };
 }
 
@@ -489,18 +503,6 @@ export interface SharedParagraphStory extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedPerks extends Struct.ComponentSchema {
-  collectionName: 'components_shared_perks';
-  info: {
-    description: '';
-    displayName: 'Perks';
-    icon: 'check';
-  };
-  attributes: {
-    text: Schema.Attribute.String;
-  };
-}
-
 export interface SharedSection extends Struct.ComponentSchema {
   collectionName: 'components_shared_sections';
   info: {
@@ -608,6 +610,7 @@ declare module '@strapi/strapi' {
       'items.graph-card-top-items': ItemsGraphCardTopItems;
       'items.input': ItemsInput;
       'items.left-navbar-items': ItemsLeftNavbarItems;
+      'items.option': ItemsOption;
       'items.ray-items': ItemsRayItems;
       'shared.button': SharedButton;
       'shared.form': SharedForm;
@@ -616,7 +619,6 @@ declare module '@strapi/strapi' {
       'shared.link': SharedLink;
       'shared.paragraph': SharedParagraph;
       'shared.paragraph-story': SharedParagraphStory;
-      'shared.perks': SharedPerks;
       'shared.section': SharedSection;
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
