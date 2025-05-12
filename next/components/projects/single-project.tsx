@@ -118,7 +118,7 @@ export const SingleProject = ({
           project.testimonials?.map((testimonial, index) => (
             <div key={index} className="bg-neutral-100 py-5 px-10 rounded-xl border-4 shadow-xl flex flex-col gap-2">
               <p className="text-neutral-500 text-lg">
-                "{testimonial.remarks}"
+                {`"${testimonial.remarks}"`}
               </p>
               <p className="text-neutral-500 text-lg font-bold text-right">
                 {testimonial.representative_name}
