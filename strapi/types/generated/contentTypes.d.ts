@@ -467,7 +467,6 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     dynamic_zone: Schema.Attribute.DynamicZone<
       [
-        'dynamic-zone.testimonials',
         'dynamic-zone.related-products',
         'dynamic-zone.related-articles',
         'dynamic-zone.pricing',
@@ -704,7 +703,6 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
       [
         'dynamic-zone.hero',
         'dynamic-zone.features',
-        'dynamic-zone.testimonials',
         'dynamic-zone.how-it-works',
         'dynamic-zone.brands',
         'dynamic-zone.pricing',
@@ -715,6 +713,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.featured-projects',
         'dynamic-zone.our-services',
         'dynamic-zone.about-us',
+        'dynamic-zone.testimonials',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

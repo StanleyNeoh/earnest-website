@@ -29,7 +29,7 @@ export const ParagraphStory = ({
   const headerJustify = badges ? "justify-between": "justify-center";
   const titleJustify = badges ? "text-center lg:text-start": "text-center";
   return (
-    <div className={cn("max-w-8xl flex flex-col gap-4", containerClassName)}>
+    <div className={cn("max-w-7xl flex flex-col gap-4", containerClassName)}>
       <div className={cn("flex flex-col-reverse lg:flex-row items-center", headerJustify, headerClassName)}>
         {title && (
           <div className={cn("flex flex-col gap-2 mb-4 mt-10 lg:mt-0", headerLeftClassName)}>

@@ -259,13 +259,15 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
 export interface DynamicZoneTestimonials extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_testimonials';
   info: {
-    description: '';
     displayName: 'Testimonials';
-    icon: 'emotionHappy';
   };
   attributes: {
     heading: Schema.Attribute.String;
     sub_heading: Schema.Attribute.String;
+    testimonials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
   };
 }
 

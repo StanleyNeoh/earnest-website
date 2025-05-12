@@ -31,11 +31,11 @@ export const Hero = ({
     <Container className="overflow-hidden relative flex flex-col items-center justify-center">
       <Heading
         as="h1"
-        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-8xl mx-auto text-center relative z-10"
+        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center relative z-10"
       >
         {heading}
       </Heading>
-      <Subheading className="text-center text-xl md:text-2xl lg:text-4xl text-charcoal max-w-8xl relative z-10">
+      <Subheading className="text-center text-xl md:text-2xl lg:text-4xl text-charcoal max-w-7xl relative z-10">
         {sub_heading}
       </Subheading>
       <BlurImage

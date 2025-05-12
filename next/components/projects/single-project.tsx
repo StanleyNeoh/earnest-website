@@ -99,7 +99,7 @@ export const SingleProject = ({
           )
         }
       </div>
-      <div className="max-w-8xl mx-auto mt-16 bg-neutral-200 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-lg">
+      <div className="max-w-7xl mx-auto mt-16 bg-neutral-200 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-lg">
         {
           project.story.map((story, index) => (
             <ParagraphStory

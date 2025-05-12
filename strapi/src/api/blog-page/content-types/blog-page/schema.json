@@ -45,7 +45,6 @@
     "dynamic_zone": {
       "type": "dynamiczone",
       "components": [
-        "dynamic-zone.testimonials",
         "dynamic-zone.related-products",
         "dynamic-zone.related-articles",
         "dynamic-zone.pricing",
