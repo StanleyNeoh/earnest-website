@@ -1,11 +1,18 @@
-import React from "react";
+"use client";
+import React, { useMemo } from "react";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { RowsPhotoAlbum } from "react-photo-album";
-import SSR from "react-photo-album/ssr"
 import "react-photo-album/rows.css";
 import { Image } from "@/types/types";
-import { LimitMode } from "@tsparticles/engine";
-import { max } from "date-fns";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export const ImageGallery = ({
   images,
@@ -17,19 +24,29 @@ export const ImageGallery = ({
   if (maxNumber !== undefined) {
     images = images.slice(0, maxNumber);
   }
+  const [index, setIndex] = React.useState(-1);
+  const photos = useMemo(() => (images.map(({ url, width, height, alternativeText }) => ({
+    src: strapiImage(url),
+    alt: alternativeText || "featured project image",
+    width: width,
+    height: height,
+  }))), [images]);
+
   return (
-    <SSR breakpoints={[240, 380, 600, 900]}>
+    <>
       <RowsPhotoAlbum
-        photos={images.map(({ url, width, height, alternativeText }) => ({
-          src: strapiImage(url),
-          alt: alternativeText || "featured project image",
-          width: width,
-          height: height,
-        }))}
-        sizes={{
-          size: "1168px",
-          sizes: [{ viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" }],
-        }} />
-    </SSR>
+        photos={photos}
+        onClick={({ index }) => {
+          setIndex(index);
+        }}
+      />
+      <Lightbox
+        slides={photos}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+      />
+    </>
   )
 }

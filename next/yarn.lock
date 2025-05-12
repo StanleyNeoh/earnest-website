@@ -5514,6 +5514,11 @@ yaot@^1.1:
   dependencies:
     rafor "^1.0.2"
 
+yet-another-react-lightbox@^3.23.1:
+  version "3.23.1"
+  resolved "https://registry.yarnpkg.com/yet-another-react-lightbox/-/yet-another-react-lightbox-3.23.1.tgz#45a060e2f5913cb1c511a3e6bbdd2ce467c6bb66"
+  integrity sha512-W0eI89iSmCfSFAbDfcLYJzVXP71lIRykokqlnUw6ocw2Rx0xVhqldoR1/PrRf+XMdazrgwNWKtlcsKOYKLZ65Q==
+
 yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"

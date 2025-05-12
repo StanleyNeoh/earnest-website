@@ -1,12 +1,20 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import React, { useMemo } from "react";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoscroll from "embla-carousel-auto-scroll";
 import Autoplay from "embla-carousel-autoplay";
 import { Image as StrapiImage } from "@/types/types";
 import { BlurImage } from "./blur-image";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export const ImageCarousel = ({
   images,
@@ -26,6 +34,14 @@ export const ImageCarousel = ({
     : auto === "scroll"
       ? [Autoscroll({ speed: 2, stopOnInteraction: false })]
       : [];
+  const [index, setIndex] = React.useState(-1);
+  const photos = useMemo(() => (images.map(({ url, width, height, alternativeText }) => ({
+    src: strapiImage(url),
+    alt: alternativeText || "featured project image",
+    width: width,
+    height: height,
+  }))), [images]);
+
   const basis = numPerPage > 1 ? `basis-1/${numPerPage}` : "";
   return (
     <Carousel
@@ -36,21 +52,21 @@ export const ImageCarousel = ({
       plugins={plugin}
     >
       <CarouselContent>
-        {images.map((image, index) => (
-          <CarouselItem
-            key={index}
-            className={`flex items-center justify-center ${basis}`}
-          >
-            <BlurImage
-              src={strapiImage(image.url)}
-              alt={image.alternativeText}
-              width={400}
-              height={400}
-              draggable={false} 
-              className={className}
-            />
-          </CarouselItem>
-        ))}
+        {
+          photos.map((photo, index) => (
+            <CarouselItem
+              key={index}
+              className={`flex items-center justify-center ${basis}`}
+              onClick={() => setIndex(index)}
+            >
+              <BlurImage
+                {...photo}
+                draggable={false}
+                className={className}
+              />
+            </CarouselItem>
+          ))
+        }
       </CarouselContent>
       {
         showArrows && (
@@ -60,6 +76,13 @@ export const ImageCarousel = ({
           </>
         )
       }
+      <Lightbox
+        slides={photos}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+      />
     </Carousel>
   );
 }
