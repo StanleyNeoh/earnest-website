@@ -50,18 +50,25 @@ export default async function Projects({
     },
     { [params.locale]: "projects" }
   );
+
   return (
-    <div className="relative overflow-hidden w-full">
+    <Container>
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
-      <Container className="pt-40 pb-40">
-        <Heading as="h1" className="pt-4">
+      {
+        projectPage.heading && (
+        <Heading as="h1">
           {projectPage.heading}
         </Heading>
+        )
+      }
+      {
+        projectPage.sub_heading && (
         <Subheading className="max-w-3xl mx-auto">
           {projectPage.sub_heading}
         </Subheading>
-        <ProjectItems projects={projects?.data} locale={params.locale} />
-      </Container>
-    </div>
+        )
+      }
+      <ProjectItems projects={projects?.data} locale={params.locale} />
+    </Container>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
 import { ParagraphStory } from "../paragraph-story";
+import { Container } from "../container";
 
 export const OurServices = ({
   locale,
@@ -10,12 +11,12 @@ export const OurServices = ({
   locale: string;
 }) => {
   return (
-    <div className="max-w-8xl py-10 md:px-20 lg:px-8 ">
+    <Container>
       <ParagraphStory
         {...services}
         locale={locale}
         className="md:px-20"
       />
-    </div>
+    </Container>
   )
 }

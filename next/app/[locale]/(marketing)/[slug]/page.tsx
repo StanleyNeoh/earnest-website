@@ -51,6 +51,5 @@ export default async function Page({ params }: { params: { locale: string, slug:
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
       <PageContent pageData={pageData} />
     </>
-
   );
 }

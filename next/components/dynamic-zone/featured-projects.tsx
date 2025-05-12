@@ -3,6 +3,7 @@ import { Heading } from "../elements/heading";
 import { Subheading } from "../elements/subheading";
 import { ParagraphStory } from "../paragraph-story";
 import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
+import { Container } from "../container";
 
 export const FeaturedProjects = ({ 
   header,
@@ -16,7 +17,7 @@ export const FeaturedProjects = ({
   locale: string;
 }) => {
   return (
-    <div className="md:mx-20 my-10 max-w-8xl space-y-5">
+    <Container className="space-y-5">
       {
         header && (
           <Heading className="text-charcoal font-semibold">
@@ -41,6 +42,6 @@ export const FeaturedProjects = ({
           />
         ))
       }
-  </div>
+    </Container>
   );
 };

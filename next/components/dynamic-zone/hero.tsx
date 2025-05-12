@@ -8,6 +8,7 @@ import { BlurImage } from "../blur-image";
 import { Image } from "@/types/types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Subheading } from "../elements/subheading";
+import { Container } from "../container";
 
 export const Hero = ({ 
   heading, 
@@ -27,10 +28,10 @@ export const Hero = ({
   const company_age = new Date().getFullYear() - new Date(company_start_date).getFullYear();
   heading = heading.replace(/{company_age}/g, company_age.toString());
   return (
-    <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center">
+    <Container className="overflow-hidden relative flex flex-col items-center justify-center">
       <Heading
         as="h1"
-        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-8xl mx-auto text-center relative z-10 pt-12"
+        className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-8xl mx-auto text-center relative z-10"
       >
         {heading}
       </Heading>
@@ -56,6 +57,6 @@ export const Hero = ({
           </Button>
         ))}
       </div>
-  </div>
+    </Container>
   );
 };

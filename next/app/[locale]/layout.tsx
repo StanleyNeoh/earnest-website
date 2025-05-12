@@ -57,7 +57,9 @@ export default async function LocaleLayout({
             )}
           >
             <Navbar data={pageData.navbar} locale={locale} />
-              {children}
+              <div className="pt-32 relative overflow-hidden w-full">
+                {children}
+              </div>
             <Footer data={pageData.footer} locale={locale} />
           </body>
         </CartProvider>

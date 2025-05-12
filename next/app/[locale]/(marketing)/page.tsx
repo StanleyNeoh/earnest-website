@@ -49,8 +49,10 @@ export default async function HomePage({ params }: { params: { locale: string } 
     { [params.locale]: "" }
   );
 
-  return <>
-    <ClientSlugHandler localizedSlugs={localizedSlugs} />
-    <PageContent pageData={pageData} />
-  </>;
+  return (
+    <>
+      <ClientSlugHandler localizedSlugs={localizedSlugs} />
+      <PageContent pageData={pageData} />
+    </>
+  )
 }
