@@ -1,15 +1,15 @@
+import React from "react";
 import { Metadata } from 'next';
 
 import { Container } from "@/components/container";
-import { FeatureIconContainer } from "@/components/dynamic-zone/features/feature-icon-container";
 import { Heading } from "@/components/elements/heading";
 import { ProjectItems } from '@/components/projects/project-items'; 
 import { Subheading } from "@/components/elements/subheading";
-import { IconShoppingCartUp } from "@tabler/icons-react";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { generateMetadataObject } from '@/lib/shared/metadata';
 
 import ClientSlugHandler from '../ClientSlugHandler';
+import { MultiSelect } from '@/components/ui/multi-select';
 
 export async function generateMetadata({
   params,
@@ -42,6 +42,17 @@ export default async function Projects({
     },
   }, true);
   const projects = await fetchContentType('projects');
+
+  // const services = Object.values(
+  //   projects.data.reduce((acc: any, project: any) => {
+  //   project.services?.forEach(({ slug, name }: any) => {
+  //     acc[slug] = {
+  //       label: name,
+  //       value: slug,
+  //     }
+  //   });
+  //   return acc;
+  // }, {}));
 
   const localizedSlugs = projectPage.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {

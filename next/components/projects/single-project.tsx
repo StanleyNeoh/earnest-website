@@ -65,6 +65,15 @@ export const SingleProject = ({
               </ul>
             </div>
           </div>
+
+          <div className={infoSectionClassName}>
+            <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
+              Completed On
+            </Subheading>
+            <p className="text-neutral-500 text-lg">
+              {project?.completion_date || "N/A"}
+            </p>
+          </div>
         </div>
 
         {

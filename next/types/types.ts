@@ -48,6 +48,7 @@ export interface Project {
   thumbnail: Image;
   services?: Service[];
   testimonials?: Testimonial[];
+  completion_date?: string;
 }
 
 export interface Service {
