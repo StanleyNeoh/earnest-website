@@ -37,7 +37,7 @@ export const FeaturedProjects = ({
           <ParagraphStory
             key={i}
             locale={locale}
-            className="bg-neutral-100 lg:rounded-3xl shadow-lg md:px-20"
+            containerClassName="bg-neutral-100 lg:rounded-3xl shadow-lg md:px-20"
             {...project}
           />
         ))

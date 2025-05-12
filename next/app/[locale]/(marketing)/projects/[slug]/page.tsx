@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: { locale: string, slug: string };
 }): Promise<Metadata> {
 
-  const pageData = await fetchContentType("project-page", {
+  const pageData = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: "seo.metaImage",
   }, true)
@@ -40,12 +40,9 @@ export default async function SingleProjectPage({
   }
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <Container>
       <AmbientColor />
-      <Container className="py-20 md:py-40">
-        <SingleProject project={project} />
-        {project?.dynamic_zone && (<DynamicZoneManager dynamicZone={project?.dynamic_zone} locale={params.locale} />)}
-      </Container>
-    </div>
+      <SingleProject project={project} locale={params.locale} />
+    </Container>
   );
 }

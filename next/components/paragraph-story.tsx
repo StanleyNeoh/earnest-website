@@ -10,27 +10,41 @@ import { cn } from "@/lib/utils";
 
 export const ParagraphStory = ({
   title, subtitle, sections, badges, locale,
-  className
+  containerClassName, 
+  headerClassName, 
+  headerLeftClassName, headerRightClassName,
+  titleClassName, subtitleClassName,
+  imgParaTitleClassName, imgParaParagraphClassName
 }: ParagraphStoryProps & {
   locale: string;
-  className?: string;
+  containerClassName?: string;
+  headerClassName?: string;
+  headerLeftClassName?: string;
+  headerRightClassName?: string;
+  titleClassName?: string;
+  subtitleClassName?: string;
+  imgParaTitleClassName?: string;
+  imgParaParagraphClassName?: string;
 }) => {
-  const titleJustify = badges ? "justify-between": "justify-center"; ;
+  const headerJustify = badges ? "justify-between": "justify-center";
+  const titleJustify = badges ? "text-center lg:text-start": "text-center";
   return (
-    <div className={cn("max-w-8xl flex flex-col gap-4", className)}>
-      <div className={`flex flex-col-reverse lg:flex-row items-center ${titleJustify}`}>
+    <div className={cn("max-w-8xl flex flex-col gap-4", containerClassName)}>
+      <div className={cn("flex flex-col-reverse lg:flex-row items-center", headerJustify, headerClassName)}>
         {title && (
-          <div className="flex flex-col gap-2 mb-4 justify-items-start items-start">
-            <Heading size="md" className="text-charcoal font-bold m-0">{title}</Heading>
+          <div className={cn("flex flex-col gap-2 mb-4 mt-10 lg:mt-0", headerLeftClassName)}>
+            <Heading size="md" className={cn("m-0", titleJustify, titleClassName)}>
+              {title}
+            </Heading>
             {subtitle && (
-              <Subheading className="text-base md:text-lg text-charcoal m-0">
+              <Subheading className={cn("text-base md:text-lg text-charcoal m-0", titleJustify, subtitleClassName)}>
                 {subtitle}
               </Subheading>
             )}
           </div>
         )}
         {badges && (
-          <div className="flex flex-row gap-2 mb-4">
+          <div className={cn("flex flex-row gap-2 mb-4", headerRightClassName)}>
             {badges.map((badge, index) => (
               <BlurImage
                 key={index}
@@ -54,7 +68,10 @@ export const ParagraphStory = ({
             direction={direction}
             display={display}
             CTAs={CTAs}
-            locale={locale} />
+            locale={locale}
+            titleClassName={imgParaTitleClassName}
+            paragraphClassName={imgParaParagraphClassName}
+          />
         );
       })}
     </div>

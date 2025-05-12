@@ -4,12 +4,23 @@ import { RowsPhotoAlbum } from "react-photo-album";
 import SSR from "react-photo-album/ssr"
 import "react-photo-album/rows.css";
 import { Image } from "@/types/types";
+import { LimitMode } from "@tsparticles/engine";
+import { max } from "date-fns";
 
-export const ImageGallery = ({ images }: { images: Image[] }) => {
+export const ImageGallery = ({
+  images,
+  maxNumber,
+}: {
+  images: Image[] 
+  maxNumber?: number;
+}) => {
+  if (maxNumber !== undefined) {
+    images = images.slice(0, maxNumber);
+  }
   return (
     <SSR breakpoints={[240, 380, 600, 900]}>
       <RowsPhotoAlbum
-        photos={images.slice(0, 10).map(({ url, width, height, alternativeText }) => ({
+        photos={images.map(({ url, width, height, alternativeText }) => ({
           src: strapiImage(url),
           alt: alternativeText || "featured project image",
           width: width,

@@ -417,7 +417,9 @@ export interface SharedImageParagraph extends Struct.ComponentSchema {
   };
   attributes: {
     CTAs: Schema.Attribute.Component<'shared.button', true>;
-    direction: Schema.Attribute.Enumeration<['img-on-left', 'img-on-right']>;
+    direction: Schema.Attribute.Enumeration<
+      ['img-on-left', 'img-on-right', 'img-on-top', 'img-on-bottom']
+    >;
     display: Schema.Attribute.Enumeration<['tile', 'carousel']>;
     images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',

@@ -15,7 +15,7 @@ export interface ParagraphProps {
 export interface ImageParagraphProps {
     paragraphs: ParagraphProps[];
     images: Image[];
-    direction: "img-on-left" | "img-on-right";
+    direction: "img-on-left" | "img-on-right" | "img-on-top" | "img-on-bottom";
     display: "tile" | "carousel";
     CTAs: ButtonProps[];
 }

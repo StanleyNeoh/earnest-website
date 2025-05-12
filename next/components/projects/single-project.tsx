@@ -1,142 +1,126 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Project } from "@/types/types";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { IconCheck } from "@tabler/icons-react";
-import { cn, formatNumber } from "@/lib/utils";
-import AddToCartModal from "@/components/projects/modal";
-import { useCart } from "@/context/cart-context";
 import { strapiImage } from "@/lib/strapi/strapiImage";
+import { Heading } from "../elements/heading";
+import { Subheading } from "../elements/subheading";
+import { BlurImage } from "../blur-image";
+import { ParagraphStory } from "../paragraph-story";
+import { Container } from "../container";
 
-export const SingleProject = ({ project }: { project: Project }) => {
+export const SingleProject = ({
+  project,
+  locale
+}: {
+  project: Project,
+  locale: string
+}) => {
+  const infoSectionClassName = "flex flex-col lg:flex-row gap-2 lg:gap-20 items-center lg:items-start";
   return (
-    <div className="py-20">
-      <h2 className="text-2xl md:text-4xl font-medium bg-clip-text text-charcoal mb-2">
-        {project.name}
-      </h2>
-      <p className="text-neutral-500 text-lg mt-4 mb-10">
-        {project.description}
-      </p>
-    </div>
+    <>
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div className="flex flex-col justify-center gap-4">
+          <Heading className="text-center lg:text-start mx-0 font-medium text-charcoal">
+            {project.name}
+          </Heading>
+
+          <Subheading className="text-center lg:text-start mx-0 text-neutral-500 text-lg">
+            {project.description}
+          </Subheading>
+
+          <div className={infoSectionClassName}>
+            <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
+              Companies:
+            </Subheading>
+            <div className="flex flex-col gap-2">
+              {
+                project.companies?.map((company, index) => (
+                  <BlurImage
+                    key={index}
+                    src={strapiImage(company.logo?.url)}
+                    alt="Featured Project Logo"
+                    width={200}
+                    height={200}
+                    className="object-cover"
+                  />
+                ))
+              }
+            </div>
+          </div>
+
+          <div className={infoSectionClassName}>
+            <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
+              Services
+            </Subheading>
+            <div className="flex flex-col gap-2">
+              <ul className="list-disc list-inside">
+              {
+                project.services?.map((services, index) => (
+                    <li key={index} className="text-neutral-500 text-lg">
+                      {services.name}
+                    </li>
+                ))
+              }
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {
+          project.thumbnail && (
+            <motion.div
+              initial={{ x: 1000 }}
+              animate={{ x: 0 }}
+              className="rounded-lg relative overflow-hidden"
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 35,
+              }}
+              >
+                <BlurImage
+                  src={strapiImage(project.thumbnail.url)}
+                  alt={project.name}
+                  width={600}
+                  height={600}
+                  className="rounded-lg object-cover"
+                />
+              </motion.div>
+          )
+        }
+      </div>
+      <div className="max-w-8xl mx-auto mt-16 bg-neutral-200 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-lg">
+        {
+          project.story.map((story, index) => (
+            <ParagraphStory
+              key={index}
+              {...story}
+              locale={locale}
+            />
+          ))
+        }
+      </div>
+      <div className="flex flex-col gap-4 mt-10">
+        <Heading className="text-center text-charcoal">
+          Testimonials
+        </Heading>
+        {
+          project.testimonials?.map((testimonial, index) => (
+            <div key={index} className="bg-neutral-200 py-5 px-10 mx-10 rounded-xl shadow-lg flex flex-col gap-2">
+              <p className="text-neutral-500 text-lg">
+                "{testimonial.remarks}"
+              </p>
+              <p className="text-neutral-500 text-lg font-bold text-right">
+                {testimonial.representative_name}
+              </p>
+              <p className="text-neutral-500 text-lg font-bold text-right">
+                {testimonial.representative_role}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </>
   )
 }
-
-//   const [activeThumbnail, setActiveThumbnail] = useState(strapiImage(project.images[0].url || ""));
-//   const { addToCart } = useCart();
-//   return (
-//     <div className="bg-gradient-to-b from-neutral-900 to-neutral-950  p-4 md:p-10 rounded-md">
-//       <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
-//         <div>
-//           {/* <AnimatePresence initial={false} mode="popLayout"> */}
-//           <motion.div
-//             initial={{ x: 50 }}
-//             animate={{ x: 0 }}
-//             exit={{ x: 50 }}
-//             key={activeThumbnail}
-//             className="rounded-lg relative overflow-hidden"
-//             transition={{
-//               type: "spring",
-//               stiffness: 260,
-//               damping: 35,
-//             }}
-//           >
-//             <Image
-//               src={activeThumbnail}
-//               alt={product.name}
-//               width={600}
-//               height={600}
-//               // fill
-//               className="rounded-lg object-cover"
-//             />
-//           </motion.div>
-//           {/* </AnimatePresence> */}
-//           <div className="flex gap-4 justify-center items-center mt-4">
-//             {product.images && product.images.map((image, index) => (
-//               <button
-//                 onClick={() => setActiveThumbnail(strapiImage(image.url))}
-//                 key={"product-image" + index}
-//                 className={cn(
-//                   "h-20 w-20 rounded-xl",
-//                   activeThumbnail === image
-//                     ? "border-2 border-neutral-200"
-//                     : "border-2 border-transparent"
-//                 )}
-//                 style={{
-//                   backgroundImage: `url(${strapiImage(image.url)})`,
-//                   backgroundSize: "cover",
-//                   backgroundPosition: "center",
-//                   backgroundRepeat: "no-repeat",
-//                 }}
-//               ></button>
-//             ))}
-//           </div>
-//         </div>
-//         <div>
-//           <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
-//           <p className=" mb-6 bg-white text-xs px-4 py-1 rounded-full text-black w-fit">
-//             ${formatNumber(product.price)}
-//           </p>
-//           <p className="text-base font-normal mb-4 text-neutral-400">
-//             {product.description}
-//           </p>
-
-//           <Divider />
-//           <ul className="list-disc list-inside mb-6">
-//             {product.perks && product.perks.map((perk, index) => (
-//               <Step key={index}>{perk.text}</Step>
-//             ))}
-//           </ul>
-//           <h3 className="text-sm font-medium text-neutral-400 mb-2">
-//             Available for
-//           </h3>
-//           <ul className="list-none flex gap-4 flex-wrap">
-//             {product.plans && product.plans.map((plan, index) => (
-//               <li
-//                 key={index}
-//                 className=" bg-neutral-800 text-sm text-white px-3 py-1 rounded-full font-medium"
-//               >
-//                 {plan.name}
-//               </li>
-//             ))}
-//           </ul>
-
-//           <h3 className="text-sm font-medium text-neutral-400 mb-2 mt-8">
-//             Categories
-//           </h3>
-//           <ul className="flex gap-4 flex-wrap">
-//             {product.categories && product.categories?.map((category, idx) => (
-//               <li
-//                 key={`category-${idx}`}
-//                 className=" bg-neutral-800 text-sm text-white px-3 py-1 rounded-full font-medium"
-//               >
-//                 {category.name}
-//               </li>
-//             ))}
-//           </ul>
-//           <AddToCartModal onClick={() => addToCart(product)} />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const Divider = () => {
-//   return (
-//     <div className="relative">
-//       <div className="w-full h-px bg-neutral-950" />
-//       <div className="w-full h-px bg-neutral-800" />
-//     </div>
-//   );
-// };
-
-// const Step = ({ children }: { children: React.ReactNode }) => {
-//   return (
-//     <div className="flex items-start justify-start gap-2 my-4">
-//       <div className="h-4 w-4 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-//         <IconCheck className="h-3 w-3 [stroke-width:4px] text-neutral-300" />
-//       </div>
-//       <div className="font-medium text-white text-sm">{children}</div>
-//     </div>
-//   );
-// };

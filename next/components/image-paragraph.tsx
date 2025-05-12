@@ -5,6 +5,7 @@ import { ImageParagraphProps } from "@/types/components/shared";
 import { ImageCarousel } from "@/components/image-carousel";
 import { ImageGallery } from "./image-gallery";
 import { Heading } from "./elements/heading";
+import { cn } from "@/lib/utils";
 
 export const ImageParagraph = ({
   images,
@@ -13,12 +14,22 @@ export const ImageParagraph = ({
   display,
   CTAs,
   locale,
+  titleClassName,
+  paragraphClassName,
 }: ImageParagraphProps & {
   locale: string;
+  titleClassName?: string;
+  paragraphClassName?: string;
 }) => {
-  const flex_dir = direction === "img-on-left" ? "lg:flex-row" : "lg:flex-row-reverse";
+  const flex_dir = direction === "img-on-left" 
+    ? "flex-col lg:flex-row" 
+    : direction === "img-on-right"
+    ? "flex-col lg:flex-row-reverse"
+    : direction === "img-on-top"
+    ? "flex-col"
+    : "flex-col-reverse";
   return (
-    <div className={`flex flex-col ${flex_dir} gap-16 mb-8 items-center justify-between`}>
+    <div className={`flex ${flex_dir} gap-16 mb-8 items-center justify-between`}>
       <div className="w-full lg:w-1/2">
         {
           images && (
@@ -30,23 +41,27 @@ export const ImageParagraph = ({
       </div>
 
       {/* Paragraphs */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-between">
-        <div className="flex flex-col gap-4 text-center px-5">
-          {paragraphs && paragraphs.map(({ title, text }) => {
-            // @TODO: Use markdown parser with custom react components for translation
-            const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
-            return (
-              <>
-                {title && <Heading size="sm" className="text-charcoal font-semibold">{title}</Heading>}
-                {chunks.map((chunk, index) => (
-                  <p key={index} className="text-base md:text-lg text-charcoal mb-4">
-                    {chunk}
-                  </p>
-                ))}
-              </>
-            );
-          })}
-        </div>
+      <div className="w-full lg:w-1/2 flex flex-col gap-4 text-center px-5">
+        {paragraphs && paragraphs.map(({ title, text }, index) => {
+          // @TODO: Use markdown parser with custom react components for translation
+          const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
+          return (
+            <div key={index} className="flex flex-col gap-4">
+              {
+                title && (
+                  <Heading size="sm" className={cn("text-charcoal font-semibold", titleClassName)}>
+                    {title}
+                  </Heading>
+                )
+              }
+              {chunks.map((chunk, index) => (
+                <p key={index} className={cn("text-base md:text-lg text-charcoal mb-4", paragraphClassName)}>
+                  {chunk}
+                </p>
+              ))}
+            </div>
+          );
+        })}
         {
           CTAs?.length > 0 && (
             <div className="flex flex-row gap-2 mt-4 justify-center">

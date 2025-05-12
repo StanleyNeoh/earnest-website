@@ -56,6 +56,7 @@ export default async function fetchContentType(
     });
 
     if (!response.ok) {
+      console.log('FetchContentTypeError', await response.json());
       throw new Error(`Failed to fetch data from Strapi (url=${url.toString()}, status=${response.status})`);
     }
     const jsonData: StrapiResponse = await response.json();
