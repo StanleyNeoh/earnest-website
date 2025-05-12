@@ -13,10 +13,10 @@
     "sub_heading": {
       "type": "string"
     },
-    "logos": {
+    "companies": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::logo.logo"
+      "target": "api::company.company"
     }
   }
 }

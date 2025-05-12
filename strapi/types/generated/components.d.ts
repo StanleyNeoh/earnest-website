@@ -79,8 +79,8 @@ export interface DynamicZoneBrands extends Struct.ComponentSchema {
     icon: 'bulletList';
   };
   attributes: {
+    companies: Schema.Attribute.Relation<'oneToMany', 'api::company.company'>;
     heading: Schema.Attribute.String;
-    logos: Schema.Attribute.Relation<'oneToMany', 'api::logo.logo'>;
     sub_heading: Schema.Attribute.String;
   };
 }

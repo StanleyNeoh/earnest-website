@@ -15,7 +15,6 @@ export const AboutUs = ({
       <ParagraphStory
         {...about_us}
         locale={locale}
-        className="md:px-20"
       />
     </Container>
   )
