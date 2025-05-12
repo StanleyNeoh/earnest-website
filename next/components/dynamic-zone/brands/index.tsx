@@ -2,10 +2,9 @@ import React from "react";
 
 import { Heading } from "../../elements/heading";
 import { Subheading } from "../../elements/subheading";
-import { AnimatePresence } from "framer-motion";
-import { ImageCarousel } from "../../image-carousel";
 import { Company } from "@/types/types";
 import { BrandsMarquee } from "./brands-marquee";
+import { Container } from "@/components/container";
 
 export const Brands = ({
   heading,
@@ -17,7 +16,7 @@ export const Brands = ({
   companies: Company[]
 }) => {
   return (
-    <div className="max-w-7xl mx-auto relative z-20 pb-10">
+    <Container className="bg-gradient-to-b from-slate-100 via-white to-slate-100 py-20 rounded-md shadow-sm">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}
@@ -30,6 +29,6 @@ export const Brands = ({
           />
         )
       }
-    </div>
+    </Container>
   );
 };

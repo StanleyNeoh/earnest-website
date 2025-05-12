@@ -7,12 +7,14 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 export const ProjectItems = ({
   projects,
   locale,
+  className,
 }: {
   projects: Project[];
-  locale: string
+  locale: string;
+  className?: string;
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mt-10">
+    <div className={`grid grid-cols-1 md:grid-cols-3 gap-20 mt-10 ${className}`}>
       {
         projects.map((project) => (
           <ProjectItem
@@ -30,10 +32,10 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
   return (
     <Link 
       href={`/${locale}/projects/${project.slug}` as never} 
-      className="group relative block bg-neutral-100 rounded-md p-4 shadow-lg hover:shadow-xl transition duration-200"
+      className="group relative block bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-4 border-4 border-gray-300 shadow-md hover:shadow-lg transition duration-200"
       prefetch={true}
     >
-      <div className="relative border border-neutral-900 rounded-md overflow-hidden">
+      <div className="relative rounded-md overflow-hidden">
         {
           project?.thumbnail && (
             <Image

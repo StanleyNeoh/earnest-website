@@ -29,22 +29,22 @@ export const ParagraphStory = ({
   const headerJustify = badges ? "justify-between": "justify-center";
   const titleJustify = badges ? "text-center lg:text-start": "text-center";
   return (
-    <div className={cn("max-w-7xl flex flex-col gap-4", containerClassName)}>
+    <div className={cn("max-w-7xl flex flex-col gap-6 p-6 bg-white", containerClassName)}>
       <div className={cn("flex flex-col-reverse lg:flex-row items-center", headerJustify, headerClassName)}>
         {title && (
-          <div className={cn("flex flex-col gap-2 mb-4 mt-10 lg:mt-0", headerLeftClassName)}>
-            <Heading size="md" className={cn("m-0", titleJustify, titleClassName)}>
+          <div className={cn("flex flex-col gap-4 mb-6 mt-10 lg:mt-0", headerLeftClassName)}>
+            <Heading size="md" className={cn("m-0 text-gray-800", titleJustify, titleClassName)}>
               {title}
             </Heading>
             {subtitle && (
-              <Subheading className={cn("text-base md:text-lg text-charcoal m-0", titleJustify, subtitleClassName)}>
+              <Subheading className={cn("text-base md:text-lg text-gray-600 m-0", titleJustify, subtitleClassName)}>
                 {subtitle}
               </Subheading>
             )}
           </div>
         )}
         {badges && (
-          <div className={cn("flex flex-row gap-2 mb-4", headerRightClassName)}>
+          <div className={cn("flex flex-row gap-4 mb-6", headerRightClassName)}>
             {badges.map((badge, index) => (
               <BlurImage
                 key={index}

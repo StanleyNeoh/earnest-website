@@ -43,17 +43,6 @@ export default async function Projects({
   }, true);
   const projects = await fetchContentType('projects');
 
-  // const services = Object.values(
-  //   projects.data.reduce((acc: any, project: any) => {
-  //   project.services?.forEach(({ slug, name }: any) => {
-  //     acc[slug] = {
-  //       label: name,
-  //       value: slug,
-  //     }
-  //   });
-  //   return acc;
-  // }, {}));
-
   const localizedSlugs = projectPage.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = "projects";
@@ -63,23 +52,23 @@ export default async function Projects({
   );
 
   return (
-    <Container>
+    <Container className="space-y-8 bg-gradient-to-b from-white to-slate-100 rounded-md shadow-sm p-8">
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
       {
         projectPage.heading && (
-        <Heading as="h1">
+        <Heading as="h1" className="text-3xl font-bold text-gray-800">
           {projectPage.heading}
         </Heading>
         )
       }
       {
         projectPage.sub_heading && (
-        <Subheading className="max-w-3xl mx-auto">
+        <Subheading className="max-w-3xl mx-auto text-lg text-gray-600">
           {projectPage.sub_heading}
         </Subheading>
         )
       }
-      <ProjectItems projects={projects?.data} locale={params.locale} />
+      <ProjectItems projects={projects?.data} locale={params.locale} className="grid grid-cols-1 md:grid-cols-2 gap-6" />
     </Container>
   );
 }

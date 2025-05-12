@@ -17,7 +17,7 @@ export const FeaturedProjects = ({
   locale: string;
 }) => {
   return (
-    <Container className="space-y-5">
+    <Container className="bg-gradient-to-b from-slate-100 via-white to-slate-100 rounded-md shaodow-sm py-10 space-y-5">
       {
         header && (
           <Heading className="text-charcoal font-semibold">
@@ -37,7 +37,7 @@ export const FeaturedProjects = ({
           <ParagraphStory
             key={i}
             locale={locale}
-            containerClassName="bg-neutral-100 lg:rounded-3xl shadow-lg md:px-20"
+            containerClassName="bg-transparent lg:mx-5"
             {...project}
           />
         ))

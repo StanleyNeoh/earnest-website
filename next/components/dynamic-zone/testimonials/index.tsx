@@ -4,6 +4,7 @@ import { Heading } from "../../elements/heading";
 import { Subheading } from "../../elements/subheading";
 import { TestimonialsMarquee } from "./testimonials-marquee";
 import { Testimonial } from "@/types/types";
+import { Container } from "@/components/container";
 
 export const Testimonials = ({
   heading, 
@@ -15,7 +16,7 @@ export const Testimonials = ({
   testimonials: Testimonial[],
 }) => {
   return (
-    <div className="max-w-7xl mx-auto relative z-20 pb-10">
+    <Container className="bg-gradient-to-b from-slate-100 to-white rounded-md shadow-sm py-20">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}
@@ -23,6 +24,6 @@ export const Testimonials = ({
       {testimonials && (
         <TestimonialsMarquee testimonials={testimonials} />
       )}
-    </div>
+    </Container>
   );
 };

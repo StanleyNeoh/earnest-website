@@ -11,10 +11,11 @@ export const OurServices = ({
   locale: string;
 }) => {
   return (
-    <Container>
+    <Container className="bg-gradient-to-b from-white via-slate-100 to-white shadow-sm rounded-md">
       <ParagraphStory
         {...services}
         locale={locale}
+        containerClassName="bg-transparent lg:py-10 lg:px-20"
       />
     </Container>
   )

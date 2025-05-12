@@ -84,8 +84,8 @@ const TestimonialLevel = ({
   className?: string;
 }) => {
   return <div className={cn("flex h-full relative", className)}>
-    <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-slate-100 to-transparent" />
-    <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-slate-100 to-transparent" />
+    <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-white to-transparent" />
+    <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-white to-transparent" />
     <Marquee speed={speed} direction={direction}>
       {
         level.map((testimonial: Testimonial, index: any) => {

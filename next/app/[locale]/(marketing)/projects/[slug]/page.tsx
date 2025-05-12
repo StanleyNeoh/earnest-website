@@ -30,19 +30,21 @@ export default async function SingleProjectPage({
 }: {
   params: { slug: string, locale: string };
 }) {
-
   const project = await fetchContentType("projects", {
     filters: { slug: params.slug },
-  }, true)
+  }, true);
 
   if (!project) {
     redirect("/projects");
   }
 
   return (
-    <Container>
-      <AmbientColor />
-      <SingleProject project={project} locale={params.locale} />
+    <Container className="space-y-8 bg-gradient-to-b from-white via-slate-100 to-white rounded-md shadow-sm p-8">
+      <SingleProject
+        project={project}
+        locale={params.locale}
+        containerClassName="bg-transparent lg:mx-5"
+      />
     </Container>
   );
 }

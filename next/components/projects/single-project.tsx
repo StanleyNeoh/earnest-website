@@ -7,18 +7,21 @@ import { Heading } from "../elements/heading";
 import { Subheading } from "../elements/subheading";
 import { BlurImage } from "../blur-image";
 import { ParagraphStory } from "../paragraph-story";
-import { Container } from "../container";
+import { cn } from "@/lib/utils";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 
 export const SingleProject = ({
   project,
-  locale
+  locale,
+  containerClassName,
 }: {
   project: Project,
-  locale: string
+  locale: string,
+  containerClassName?: string,
 }) => {
   const infoSectionClassName = "flex flex-col lg:flex-row gap-2 lg:gap-20 items-center lg:items-start";
   return (
-    <>
+    <div className={cn(containerClassName)}>
       <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
         <div className="flex flex-col justify-center gap-4">
           <Heading className="text-center lg:text-start mx-0 font-medium text-charcoal">
@@ -99,37 +102,44 @@ export const SingleProject = ({
           )
         }
       </div>
-      <div className="max-w-7xl mx-auto mt-16 bg-neutral-100 py-10 px-4 sm:px-6 lg:px-8 rounded-3xl border-4 shadow-xl">
-        {
-          project.story.map((story, index) => (
-            <ParagraphStory
-              key={index}
-              {...story}
-              locale={locale}
-            />
-          ))
-        }
-      </div>
-      <div className="flex flex-col gap-4 my-10">
-        <Heading className="text-center text-charcoal">
+      {
+        project.story.map((story, index) => (
+          <ParagraphStory
+            key={index}
+            {...story}
+            locale={locale}
+            containerClassName="bg-white my-10 rounded-lg shadow-md p-8"
+          />
+        ))
+      }
+      <div className="my-10">
+        <Heading className="text-center text-charcoal mb-8">
           Testimonials
         </Heading>
-        {
-          project.testimonials?.map((testimonial, index) => (
-            <div key={index} className="bg-neutral-100 py-5 px-10 rounded-xl border-4 shadow-xl flex flex-col gap-2">
-              <p className="text-neutral-500 text-lg">
-                {`"${testimonial.remarks}"`}
-              </p>
-              <p className="text-neutral-500 text-lg font-bold text-right">
-                {testimonial.representative_name}
-              </p>
-              <p className="text-neutral-500 text-lg font-bold text-right">
-                {testimonial.representative_role}
-              </p>
-            </div>
-          ))
-        }
+        <Carousel>
+          <CarouselContent>
+            {
+              project.testimonials?.map((testimonial, index) => (
+                <CarouselItem key={index}
+                  className="flex items-center justify-center"
+                >
+                  <div className="w-96 flex flex-col gap-2 bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-4 border-4 border-gray-300 shadow-md hover:shadow-lg">
+                    <p className="text-neutral-500 text-lg">
+                      {`"${testimonial.remarks}"`}
+                    </p>
+                    <p className="text-neutral-500 text-lg font-bold text-right">
+                      {testimonial.representative_name}
+                    </p>
+                    <p className="text-neutral-500 text-lg font-bold text-right">
+                      {testimonial.representative_role}
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))
+            }
+          </CarouselContent>
+        </Carousel>
       </div>
-    </>
+    </div>
   )
 }
