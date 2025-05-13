@@ -11,14 +11,5 @@ export interface ParagraphStoryProps {
 export interface FormNextToSectionProps {
     heading: string;
     sub_heading: string;
-    form: FormProps;
-    social_media_icon_links: {
-        image: Image;
-        link: {
-            text: string;
-            url: string;
-            target: string;
-        }
-    }
     sections: ParagraphStoryProps[];
 }

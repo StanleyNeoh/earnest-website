@@ -30,7 +30,7 @@ export const ImageParagraph = ({
     : "flex-col-reverse";
   const paragraph_width = images?.length > 0 ? "w-full lg:w-1/2" : "w-full";
   return (
-    <div className={`flex ${flex_dir} gap-16 mb-8 items-center justify-between`}>
+    <div className={`flex ${flex_dir} gap-16 items-center justify-between`}>
       {
         images && (
           <div className="w-full lg:w-1/2">
@@ -41,7 +41,7 @@ export const ImageParagraph = ({
       }
 
       {/* Paragraphs */}
-      <div className={cn("flex flex-col gap-4 text-center px-5", paragraph_width)}>
+      <div className={cn("flex flex-col gap-4 text-center", paragraph_width)}>
         {paragraphs && paragraphs.map(({ title, text }, index) => {
           // @TODO: Use markdown parser with custom react components for translation
           const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
@@ -55,7 +55,7 @@ export const ImageParagraph = ({
                 )
               }
               {chunks.map((chunk, index) => (
-                <p key={index} className={cn("text-base md:text-lg text-charcoal mb-4", paragraphClassName)}>
+                <p key={index} className={cn("text-base md:text-lg text-charcoal", paragraphClassName)}>
                   {chunk}
                 </p>
               ))}

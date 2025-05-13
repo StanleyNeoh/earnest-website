@@ -7,7 +7,6 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { cn } from '@/lib/utils';
-import { ViewTransitions } from 'next-view-transitions';
 import fetchContentType from '@/lib/strapi/fetchContentType';
 
 const inter = Inter({
@@ -38,29 +37,24 @@ export async function generateMetadata({
 
 export default async function LocaleLayout({
   children,
-  params: { locale }
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-
   const pageData = await fetchContentType('global', { filters: { locale } }, true);
   return (
-    <html lang={locale}>
-      <ViewTransitions>
-          <body
-            className={cn(
-              inter.className,
-              "bg-slate-100 antialiased h-full w-full"
-            )}
-          >
-            <Navbar data={pageData.navbar} locale={locale} />
-              <div className="pt-32 relative overflow-hidden w-full">
-                {children}
-              </div>
-            <Footer data={pageData.footer} locale={locale} />
-          </body>
-      </ViewTransitions>
-    </html>
+    <div
+      className={cn(
+        inter.className,
+        "bg-slate-100 antialiased h-full w-full"
+      )}
+    >
+      <Navbar data={pageData.navbar} locale={locale} />
+      <div className="pt-32 relative overflow-hidden w-full">
+        {children}
+      </div>
+      <Footer data={pageData.footer} locale={locale} />
+    </div>
   );
 }

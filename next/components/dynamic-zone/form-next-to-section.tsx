@@ -1,148 +1,295 @@
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 import StarBackground from "@/components/decorations/star-background";
 import ShootingStars from "@/components/decorations/shooting-star";
-import { Button } from "../elements/button";
 import { FormNextToSectionProps } from "@/types/components/dynamic-zone";
-import { toast, Toaster } from "react-hot-toast";
+import { Button } from "../elements/button";
+import { ParagraphStory } from "../paragraph-story";
+import { useState } from "react";
 
-export const FormNextToSection = async ({
+const EmailTemplate = ({
+  name,
+  email,
+  phone,
+  company_name,
+  service_interest,
+  message,
+}: {
+  name: string;
+  email: string;
+  phone: string;
+  company_name: string;
+  service_interest: string;
+  message: string;
+}) => {
+  return (
+    <div>
+      <h1>New Lead</h1>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Company Name:</strong> ${company_name}</p>
+      <p><strong>Service Interest:</strong> ${service_interest}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    </div>
+  )
+}
+
+/**
+ * Form fields
+ * 
+ * name: string
+ * email: email
+ * phone: phonenumber
+ * company_name: string
+ * service_interest: pre-lease | design-and-build | design-consultancy | reinstatement
+ * message: string
+ * attachments: File[]
+ * 
+ * Upon submission send an email to process.env.NEXT_PUBLIC_EMAIL_TO
+ */
+export const FormNextToSection = ({
   heading,
   sub_heading,
-  form,
   sections,
-}: FormNextToSectionProps) => {
+  locale,
+}: FormNextToSectionProps & {
+  locale: string;
+}) => {
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    const { name, email, phone, company_name, inquiry_type, service_interest, estimated_budget, message } = data;
-    const url = new URL(`api/leads`, process.env.NEXT_PUBLIC_API_URL);
-
+    const attachments = formData.getAll("attachments") as File[];
+    const attachmentsBase64 = await Promise.all(
+      attachments.map(
+        (file) =>
+          new Promise<{ content: string; filename: string }>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () =>
+              resolve({
+                content: reader.result as string,
+                filename: file.name,
+              });
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(file);
+          })
+      )
+    );
     try {
-      const response = await fetch(url.href, {
+      const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
         },
         body: JSON.stringify({
-          data: {
-            name,
-            email,
-            phone,
-            company_name,
-            inquiry_type,
-            service_interest,
-            estimated_budget,
-            message,
-          },
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          company_name: formData.get("company_name"),
+          service_interest: formData.get("service_interest"),
+          message: formData.get("message"),
+          attachments: attachmentsBase64,
         }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.log("Error response", errorData);
-        toast.error(`Error: ${errorData.error.message || "Something went wrong"}`);
-        return;
+        throw new Error(errorData.error || "Something went wrong");
       }
 
+      toast.success("Form submitted successfully!");
       router.push("/submit-success");
     } catch (error: any) {
       console.error("Unexpected error", error);
       toast.error(`Error: ${error.message || "Something went wrong"}`);
+    } finally {
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <>
-      <Toaster />
-      <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
-        <div className="flex relative z-20 items-center w-full justify-center px-4 py-4 lg:py-40 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-md">
-            <div>
-              <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-charcoal">
-                {heading || "Let's Bring Your Vision to Life"}
-              </h1>
-              <p className="mt-4 text-charcoal text-sm max-w-sm">
-                {sub_heading ||
-                  "Ready to start your next design project? Reach out to us — we'd love to hear from you"}
-              </p>
-            </div>
-
-            <div className="py-10">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {form?.inputs?.map((input: any) => (
-                  <div key={input.id}>
-                    {input.type !== "submit" && (
-                      <label
-                        htmlFor={input.name}
-                        className="block text-sm font-medium leading-6 text-neutral-800"
-                      >
-                        {input.display_name}
-                      </label>
-                    )}
-
-                    <div className="mt-2">
-                      {input.type === "textarea" ? (
-                        <textarea
-                          rows={5}
-                          id={input.name}
-                          name={input.name}
-                          placeholder={input.placeholder}
-                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        />
-                      ) : input.type === "enum" ? (
-                        <select
-                          id={input.name}
-                          name={input.name}
-                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        >
-                          <option value="" disabled>
-                            {input.placeholder}
-                          </option>
-                          {input.options.map((option: any) => (
-                            <option key={option.id} value={option.value}>
-                              {option.name}
-                            </option>
-                          ))}
-                        </select>
-                      ) : input.type === "submit" ? (
-                        <Button className="w-full mt-6" type="submit">
-                          {input.display_name || "Submit"}
-                        </Button>
-                      ) : (
-                        <input
-                          id={input.name}
-                          name={input.name}
-                          type={input.type}
-                          placeholder={input.placeholder}
-                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        />
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </form>
-            </div>
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
+      <div className="flex relative items-center w-full justify-center px-6">
+        <div className="mx-auto w-full max-w-md">
+          <div>
+            <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-charcoal">
+              {heading || "Let's Bring Your Vision to Life"}
+            </h1>
+            <p className="mt-4 text-charcoal text-sm max-w-sm">
+              {sub_heading ||
+                "Ready to start your next design project? Reach out to us — we'd love to hear from you"}
+            </p>
           </div>
-        </div>
-        <div className="relative w-full z-20 hidden md:flex border-l border-charcoal overflow-hidden bg-neutral-900 items-center justify-center">
-          <StarBackground />
-          <ShootingStars />
-          <div className="max-w-sm mx-auto">
-            <p className="font-semibold text-xl text-center text-muted text-balance">
-              {sections?.[0]?.title || "We're Here to Help"}
-            </p>
-            <p className="font-normal text-base text-center text-neutral-500 mt-8 text-balance">
-              {sections?.[0]?.subtitle ||
-                "Our team is ready to guide you through every step of your workspace journey."}
-            </p>
+
+          <div className="py-10">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Email
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Phone
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="company_name"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Company Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="company_name"
+                    name="company_name"
+                    type="text"
+                    placeholder="Enter your company name"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="service_interest"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Service Interest
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="service_interest"
+                    name="service_interest"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  >
+                    <option value="" disabled>
+                      Select a service
+                    </option>
+                    <option value="pre-lease">Pre-Lease</option>
+                    <option value="design-and-build">Design and Build</option>
+                    <option value="design-consultancy">Design Consultancy</option>
+                    <option value="reinstatement">Reinstatement</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Message
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    placeholder="Enter your message"
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="attachments"
+                  className="block text-sm font-medium leading-6 text-neutral-800"
+                >
+                  Attachments
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="attachments"
+                    name="attachments"
+                    type="file"
+                    multiple
+                    className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <Button
+                className="w-full mt-6"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            </form>
           </div>
         </div>
       </div>
-    </>
+      <div className="relative w-full z-20 hidden md:flex border-l border-charcoal overflow-hidden bg-neutral-900 items-center justify-center px-12">
+        <StarBackground />
+        <ShootingStars />
+        {
+          sections?.map((section, index) => (
+            <ParagraphStory
+              {...section}
+              key={index}
+              locale={locale}
+              containerClassName="bg-transparent"
+              headerClassName="lg:flex-col-reverse xl:flex-row"
+              titleClassName="text-white text-2xl font-bold"
+              subtitleClassName="text-white text-sm font-normal"
+              imgParaParagraphClassName="text-white text-sm font-normal"
+              imgParaTitleClassName="text-white text-2xl font-bold"
+            />
+          ))
+        }
+      </div>
+    </div>
   );
 };
