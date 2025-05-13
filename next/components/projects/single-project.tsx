@@ -54,19 +54,11 @@ export const SingleProject = ({
 
           <div className={infoSectionClassName}>
             <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
-              Services
+              Category
             </Subheading>
-            <div className="flex flex-col gap-2">
-              <ul className="list-disc list-inside">
-              {
-                project.services?.map((services, index) => (
-                    <li key={index} className="text-neutral-500 text-lg">
-                      {services.name}
-                    </li>
-                ))
-              }
-              </ul>
-            </div>
+            <p className="flex flex-col gap-2">
+              {project.category || "N/A"}
+            </p>
           </div>
 
           <div className={infoSectionClassName}>
