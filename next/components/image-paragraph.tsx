@@ -8,7 +8,7 @@ import { Heading } from "./elements/heading";
 import { cn } from "@/lib/utils";
 
 export const ImageParagraph = ({
-  images,
+  images = [],
   paragraphs,
   direction,
   display,
@@ -28,20 +28,20 @@ export const ImageParagraph = ({
     : direction === "img-on-top"
     ? "flex-col"
     : "flex-col-reverse";
+  const paragraph_width = images?.length > 0 ? "w-full lg:w-1/2" : "w-full";
   return (
     <div className={`flex ${flex_dir} gap-16 mb-8 items-center justify-between`}>
-      <div className="w-full lg:w-1/2">
-        {
-          images && (
-            display == "carousel" && <ImageCarousel images={images} auto="play" showArrows={false} />
-          ) || (
-            display == "tile" && <ImageGallery images={images} />
-          )
-        }
-      </div>
+      {
+        images && (
+          <div className="w-full lg:w-1/2">
+            {display == "carousel" && <ImageCarousel images={images} auto="play" showArrows={false} />}
+            {display == "tile" && <ImageGallery images={images} />}
+          </div>
+        )
+      }
 
       {/* Paragraphs */}
-      <div className="w-full lg:w-1/2 flex flex-col gap-4 text-center px-5">
+      <div className={cn("flex flex-col gap-4 text-center px-5", paragraph_width)}>
         {paragraphs && paragraphs.map(({ title, text }, index) => {
           // @TODO: Use markdown parser with custom react components for translation
           const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];

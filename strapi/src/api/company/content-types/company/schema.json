@@ -28,12 +28,6 @@
       "type": "uid",
       "targetField": "name"
     },
-    "industries": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::industry.industry",
-      "inversedBy": "companies"
-    },
     "logo": {
       "type": "media",
       "multiple": false,

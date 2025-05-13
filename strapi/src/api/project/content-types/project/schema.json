@@ -22,12 +22,6 @@
       "target": "api::company.company",
       "inversedBy": "projects"
     },
-    "services": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::service.service",
-      "inversedBy": "projects"
-    },
     "story": {
       "type": "component",
       "repeatable": true,
@@ -77,6 +71,13 @@
     },
     "completion_date": {
       "type": "date"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "office-interior",
+        "industrial"
+      ]
     }
   }
 }

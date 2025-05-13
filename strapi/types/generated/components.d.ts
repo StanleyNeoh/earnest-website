@@ -152,13 +152,8 @@ export interface DynamicZoneFormNextToSection extends Struct.ComponentSchema {
     icon: 'book';
   };
   attributes: {
-    form: Schema.Attribute.Component<'shared.form', false>;
     heading: Schema.Attribute.String;
     sections: Schema.Attribute.Component<'shared.paragraph-story', true>;
-    social_media_icon_links: Schema.Attribute.Component<
-      'shared.social-media-icon-links',
-      true
-    >;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -312,50 +307,6 @@ export interface ItemsGraphCardTopItems extends Struct.ComponentSchema {
   };
 }
 
-export interface ItemsInput extends Struct.ComponentSchema {
-  collectionName: 'components_items_inputs';
-  info: {
-    description: '';
-    displayName: 'Input';
-    icon: 'apps';
-  };
-  attributes: {
-    display_name: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    options: Schema.Attribute.Component<'items.option', true>;
-    placeholder: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<
-      [
-        'text',
-        'email',
-        'password',
-        'submit',
-        'textarea',
-        'button',
-        'checkbox',
-        'color',
-        'date',
-        'datetime-local',
-        'file',
-        'hidden',
-        'image',
-        'month',
-        'number',
-        'radio',
-        'range',
-        'reset',
-        'search',
-        'tel',
-        'time',
-        'url',
-        'week',
-        'enum',
-      ]
-    > &
-      Schema.Attribute.DefaultTo<'text'>;
-  };
-}
-
 export interface ItemsLeftNavbarItems extends Struct.ComponentSchema {
   collectionName: 'components_items_left_navbar_items';
   info: {
@@ -410,18 +361,6 @@ export interface SharedButton extends Struct.ComponentSchema {
       ['simple', 'outline', 'primary', 'muted']
     > &
       Schema.Attribute.DefaultTo<'primary'>;
-  };
-}
-
-export interface SharedForm extends Struct.ComponentSchema {
-  collectionName: 'components_shared_forms';
-  info: {
-    description: '';
-    displayName: 'Form';
-    icon: 'paperPlane';
-  };
-  attributes: {
-    inputs: Schema.Attribute.Component<'items.input', true>;
   };
 }
 
@@ -608,12 +547,10 @@ declare module '@strapi/strapi' {
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;
       'items.graph-card-top-items': ItemsGraphCardTopItems;
-      'items.input': ItemsInput;
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.option': ItemsOption;
       'items.ray-items': ItemsRayItems;
       'shared.button': SharedButton;
-      'shared.form': SharedForm;
       'shared.image-paragraph': SharedImageParagraph;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;

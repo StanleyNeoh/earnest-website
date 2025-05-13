@@ -18,19 +18,19 @@ export const ImageGallery = ({
   images,
   maxNumber,
 }: {
-  images: Image[] 
+  images?: Image[];
   maxNumber?: number;
 }) => {
   if (maxNumber !== undefined) {
-    images = images.slice(0, maxNumber);
+    images = images?.slice(0, maxNumber);
   }
   const [index, setIndex] = React.useState(-1);
-  const photos = useMemo(() => (images.map(({ url, width, height, alternativeText }) => ({
+  const photos = useMemo(() => (images?.map(({ url, width, height, alternativeText }) => ({
     src: strapiImage(url),
     alt: alternativeText || "featured project image",
     width: width,
     height: height,
-  }))), [images]);
+  })) || []), [images]);
 
   return (
     <>

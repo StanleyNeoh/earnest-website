@@ -13,18 +13,6 @@
     "sub_heading": {
       "type": "string"
     },
-    "form": {
-      "displayName": "Form",
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.form"
-    },
-    "social_media_icon_links": {
-      "displayName": "Social_Media_Icon_Links",
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.social-media-icon-links"
-    },
     "sections": {
       "type": "component",
       "repeatable": true,
