@@ -1,41 +1,47 @@
 import { NextResponse } from "next/server";
 
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: process.env.NEXT_PUBLIC_EMAIL_FROM,
-//     pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
-//   },
-// });
+import { createTransport } from "nodemailer";
+
+const transporter = createTransport({
+  service: "gmail",
+  auth: {
+    type: "OAuth2",
+    user: process.env.CLIENT_EMAIL,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.CLIENT_REFRESH_TOKEN,
+  }
+})
 
 export async function POST(req: Request) {
-  try {
-    const formData = await req.json();
-
-    const mailOptions = {
-      from: process.env.NEXT_PUBLIC_EMAIL_FROM,
-      to: process.env.NEXT_PUBLIC_EMAIL_TO,
-      subject: "New Lead",
-      html: `
-        <div>
-          <h1>New Lead</h1>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone}</p>
-          <p><strong>Company Name:</strong> ${formData.company_name}</p>
-          <p><strong>Service Interest:</strong> ${formData.service_interest}</p>
-          <p><strong>Message:</strong> ${formData.message}</p>
-        </div>
-      `,
-      attachments: formData.attachments,
+  const data = await req.formData()
+  const attachments = data.getAll("attachments") as File[]
+  const attachmentData = await Promise.all(attachments.map(async (file: File) => {
+    return {
+      filename: file.name,
+      content: Buffer.from(await file.arrayBuffer()).toString("base64"),
+      encoding: "base64"
     };
+  }));
 
-    // const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", mailOptions);
-
-    return NextResponse.json({ success: false, info: "Email sending not yet setup" }, { status: 200 });
-  } catch (error: any) {
-    console.error("Error sending email:", error);
-    return NextResponse.json({ error: error.message || "Something went wrong" }, { status: 500 });
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.CLIENT_EMAIL,
+      to: process.env.GMAIL_RECIPIENT,
+      subject: "New Form Submission",
+      attachments: attachmentData,
+      text: `
+        Name: ${data.get("name")}
+        Email: ${data.get("email")}
+        Phone: ${data.get("phone")}
+        Company Name: ${data.get("company_name")}
+        Service Interest: ${data.get("service_interest")}
+        Message: ${data.get("message")}
+      `,
+    })
+    return NextResponse.json({ success: true, data: info })
+  } catch (error) {
+    console.error("Error sending email: ", error)
+    return NextResponse.json({ success: false, error: "Failed to send email" })
   }
 }

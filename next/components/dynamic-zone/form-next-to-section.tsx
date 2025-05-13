@@ -1,40 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import StarBackground from "@/components/decorations/star-background";
 import ShootingStars from "@/components/decorations/shooting-star";
 import { FormNextToSectionProps } from "@/types/components/dynamic-zone";
 import { Button } from "../elements/button";
 import { ParagraphStory } from "../paragraph-story";
 import { useState } from "react";
-
-const EmailTemplate = ({
-  name,
-  email,
-  phone,
-  company_name,
-  service_interest,
-  message,
-}: {
-  name: string;
-  email: string;
-  phone: string;
-  company_name: string;
-  service_interest: string;
-  message: string;
-}) => {
-  return (
-    <div>
-      <h1>New Lead</h1>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Company Name:</strong> ${company_name}</p>
-      <p><strong>Service Interest:</strong> ${service_interest}</p>
-      <p><strong>Message:</strong> ${message}</p>
-    </div>
-  )
-}
 
 /**
  * Form fields
@@ -65,41 +37,33 @@ export const FormNextToSection = ({
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
     const attachments = formData.getAll("attachments") as File[];
-    const attachmentsBase64 = await Promise.all(
-      attachments.map(
-        (file) =>
-          new Promise<{ content: string; filename: string }>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () =>
-              resolve({
-                content: reader.result as string,
-                filename: file.name,
-              });
-            reader.onerror = (error) => reject(error);
-            reader.readAsDataURL(file);
-          })
-      )
-    );
+
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.get("name") as string);
+      formDataToSend.append("email", formData.get("email") as string);
+      formDataToSend.append("phone", formData.get("phone") as string);
+      formDataToSend.append("company_name", formData.get("company_name") as string);
+      formDataToSend.append("service_interest", formData.get("service_interest") as string);
+      formDataToSend.append("message", formData.get("message") as string);
+      attachments.forEach((file) => {
+        formDataToSend.append("attachments", file, file.name);
+      });
+
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          company_name: formData.get("company_name"),
-          service_interest: formData.get("service_interest"),
-          message: formData.get("message"),
-          attachments: attachmentsBase64,
-        }),
+        body: formDataToSend,
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Something went wrong");
+      }
+      const data = await response.json();
+      console.log("Data", data);
+      const { success } = data;
+      if (!success) {
+        throw new Error("Failed to send email");
       }
 
       toast.success("Form submitted successfully!");
@@ -114,6 +78,7 @@ export const FormNextToSection = ({
 
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
+      <Toaster />
       <div className="flex relative items-center w-full justify-center px-6">
         <div className="mx-auto w-full max-w-md">
           <div>
