@@ -3,6 +3,7 @@ import { Locale, i18n } from '@/i18n.config'
 import Link from 'next/link';
 import Image from 'next/image';
 import whatsappIcon from '@/blob/whatsapp.svg';
+import Script from 'next/script';
 
 import "./globals.css";
 
@@ -28,6 +29,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang} suppressHydrationWarning>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GTAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${process.env.GTAG_ID}');
+          `}
+        </Script>
+      </head>
       <body suppressHydrationWarning>
         <SlugProvider>
           {children}
