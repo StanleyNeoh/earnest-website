@@ -22,9 +22,9 @@ export const Logo = ({
         <BlurImage
           src={strapiImage(image?.url)}
           alt={image.alternativeText}
-          width={200}
-          height={200}
-          className="h-20 w-20 rounded-xl"
+          width={150}
+          height={150}
+          className="rounded-xl"
         />
       </Link>
     );

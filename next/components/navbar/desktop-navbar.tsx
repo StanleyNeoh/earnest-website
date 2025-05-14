@@ -45,7 +45,7 @@ export const DesktopNavbar = ({
   return (
     <motion.div
       className={cn(
-        "w-full flex relative justify-between px-4 rounded-md transition duration-200 mx-auto"
+        "w-full flex relative justify-between px-4 py-4 rounded-md transition duration-200 mx-auto"
       )}
       animate={{
         width: showBackground ? "80%" : "100%",

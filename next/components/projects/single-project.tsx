@@ -54,16 +54,16 @@ export const SingleProject = ({
 
           <div className={infoSectionClassName}>
             <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
-              Category
+              Category:
             </Subheading>
-            <p className="flex flex-col gap-2">
+            <p className="text-neutral-500 text-lg">
               {project.category || "N/A"}
             </p>
           </div>
 
           <div className={infoSectionClassName}>
             <Subheading className="text-center lg:text-start m-0 text-neutral-500 text-lg font-bold">
-              Completed On
+              Completed On:
             </Subheading>
             <p className="text-neutral-500 text-lg">
               {project?.completion_date || "N/A"}
