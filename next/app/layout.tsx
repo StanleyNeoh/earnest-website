@@ -2,7 +2,7 @@ import type { Viewport } from "next";
 import { Locale, i18n } from '@/i18n.config'
 import Link from 'next/link';
 import Image from 'next/image';
-import whatsappIcon from '@/blob/whatsapp.svg';
+import whatsappIcon from '@/public/whatsapp.svg';
 import Script from 'next/script';
 
 import "./globals.css";

@@ -1,6 +1,6 @@
 import { NavbarItem } from "./navbar-item";
 import { LocaleSwitcher } from "../locale-switcher";
-import Image from "next/image";
+import { Logo } from "../simple/logo";
 
 export const DesktopNavbar = ({
   navbarItems,
@@ -18,11 +18,11 @@ export const DesktopNavbar = ({
     <div className="fixed top-0 inset-x-0 w-full z-10 bg-white">
       <div className="max-w-7xl flex flex-row items-center justify-between mx-auto">
         <div className="w-full py-4 flex flex-row gap-4 items-center">
-          <Image
-            src={logoUrl}
-            alt="Logo Image"
+          <Logo 
+            logoUrl={logoUrl}
             width={150}
             height={150}
+            locale={locale}
             className="ml-8"
           />
           <div className="flex items-center gap-1.5">

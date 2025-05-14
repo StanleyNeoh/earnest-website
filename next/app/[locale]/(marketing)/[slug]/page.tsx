@@ -3,7 +3,6 @@ import PageContent from '@/lib/shared/PageContent';
 import fetchContentType from '@/lib/strapi/fetchContentType';
 import { generateMetadataObject } from '@/lib/shared/metadata';
 import ClientSlugHandler from '../ClientSlugHandler';
-import util from "util";
 
 export async function generateMetadata({
   params,

@@ -47,11 +47,11 @@ export default async function LocaleLayout({
     <div
       className={cn(
         inter.className,
-        "bg-slate-100 antialiased h-full w-full"
+        "bg-neutral-100 antialiased h-full w-full"
       )}
     >
-      <Navbar data={pageData.navbar} locale={locale} />
-      <div className="pt-28 lg:pt-36 relative overflow-hidden w-full">
+      <Navbar locale={locale} />
+      <div className="relative overflow-hidden w-full">
         {children}
       </div>
       <Footer data={pageData.footer} locale={locale} />
