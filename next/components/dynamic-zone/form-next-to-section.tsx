@@ -6,21 +6,9 @@ import ShootingStars from "@/components/decorations/shooting-star";
 import { FormNextToSectionProps } from "@/types/components/dynamic-zone";
 import { Button } from "../elements/button";
 import { ParagraphStory } from "../paragraph-story";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
-/**
- * Form fields
- * 
- * name: string
- * email: email
- * phone: phonenumber
- * company_name: string
- * service_interest: pre-lease | design-and-build | design-consultancy | reinstatement
- * message: string
- * attachments: File[]
- * 
- * Upon submission send an email to process.env.NEXT_PUBLIC_EMAIL_TO
- */
 export const FormNextToSection = ({
   heading,
   sub_heading,
@@ -31,20 +19,65 @@ export const FormNextToSection = ({
 }) => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [verified, setVerified] = useState(false);
+
+  const handleCaptchaChange = async (token: string | null) => {
+    try {
+      if (!token) throw new Error("No recaptcha token received");
+      const response = await fetch("/api/recaptcha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+
+      if (!response.ok) throw new Error("Failed to verify reCAPTCHA");
+      setVerified(true);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to verify reCAPTCHA");
+      recaptchaRef.current?.reset();
+      setVerified(false);
+    }
+  };
+
+  const handleCaptchaExpired = () => {
+    setVerified(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     const formData = new FormData(e.currentTarget);
-    const attachments = formData.getAll("attachments") as File[];
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const companyName = formData.get("company_name") as string;
+    const serviceInterest = formData.get("service_interest") as string;
+
+    if (!name || !email || !phone || !companyName || !serviceInterest) {
+      toast.error("Please fill in all required fields.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!verified) {
+      toast.error("Please verify that you are not a robot");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
+      const attachments = formData.getAll("attachments") as File[];
       const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.get("name") as string);
-      formDataToSend.append("email", formData.get("email") as string);
-      formDataToSend.append("phone", formData.get("phone") as string);
-      formDataToSend.append("company_name", formData.get("company_name") as string);
-      formDataToSend.append("service_interest", formData.get("service_interest") as string);
+      formDataToSend.append("name", name);
+      formDataToSend.append("email", email);
+      formDataToSend.append("phone", phone);
+      formDataToSend.append("company_name", companyName);
+      formDataToSend.append("service_interest", serviceInterest);
       formDataToSend.append("message", formData.get("message") as string);
       attachments.forEach((file) => {
         formDataToSend.append("attachments", file, file.name);
@@ -59,13 +92,10 @@ export const FormNextToSection = ({
         const errorData = await response.json();
         throw new Error(errorData.error || "Something went wrong");
       }
-      const data = await response.json();
-      console.log("Data", data);
-      const { success } = data;
+      const { success } = await response.json();
       if (!success) {
         throw new Error("Failed to send email");
       }
-
       toast.success("Form submitted successfully!");
       router.push("/submit-success");
     } catch (error: any) {
@@ -98,7 +128,7 @@ export const FormNextToSection = ({
                   htmlFor="name"
                   className="block text-sm font-medium leading-6 text-neutral-800"
                 >
-                  Name
+                  Name <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -116,7 +146,7 @@ export const FormNextToSection = ({
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-neutral-800"
                 >
-                  Email
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -134,7 +164,7 @@ export const FormNextToSection = ({
                   htmlFor="phone"
                   className="block text-sm font-medium leading-6 text-neutral-800"
                 >
-                  Phone
+                  Phone <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -152,7 +182,7 @@ export const FormNextToSection = ({
                   htmlFor="company_name"
                   className="block text-sm font-medium leading-6 text-neutral-800"
                 >
-                  Company Name
+                  Company Name <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -170,7 +200,7 @@ export const FormNextToSection = ({
                   htmlFor="service_interest"
                   className="block text-sm font-medium leading-6 text-neutral-800"
                 >
-                  Service Interest
+                  Service Interest <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <select
@@ -225,10 +255,25 @@ export const FormNextToSection = ({
                 </div>
               </div>
 
+              <div>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                  onChange={handleCaptchaChange}
+                  onExpired={handleCaptchaExpired}
+                />
+              </div>
+
+              { !verified && (
+                <div className="text-sm text-red-500">
+                  Please verify that you are not a robot
+                </div>
+              )}
               <Button
-                className="w-full mt-6"
+                className={`w-full mt-6 ${!verified ? "opacity-50 cursor-not-allowed" : ""}`}
+                variant="muted"
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !verified}
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </Button>
