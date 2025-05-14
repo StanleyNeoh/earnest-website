@@ -1,79 +1,42 @@
-"use client";
-import { Logo } from "@/components/logo";
-import { Button } from "@/components/elements/button";
 import { NavbarItem } from "./navbar-item";
-import {
-  useMotionValueEvent,
-  useScroll,
-  motion,
-} from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { Link } from "next-view-transitions";
 import { LocaleSwitcher } from "../locale-switcher";
+import Image from "next/image";
 
-export const DesktopNavbar = ({ 
-  leftNavbarItems, 
-  rightNavbarItems, 
-  logo, 
+export const DesktopNavbar = ({
+  navbarItems,
   locale,
+  logoUrl,
 }: {
-  leftNavbarItems: {
+  navbarItems: {
     URL: string;
     text: string;
-    target?: string;
   }[];
-  rightNavbarItems: {
-    URL: string;
-    text: string;
-    target?: string;
-  }[];
-  logo: any;
   locale: string;
+  logoUrl: string;
 }) => {
-  const { scrollY } = useScroll();
-
-  const [showBackground, setShowBackground] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (value) => {
-    if (value > 100) {
-      setShowBackground(true);
-    } else {
-      setShowBackground(false);
-    }
-  });
   return (
-    <motion.div
-      className={cn(
-        "w-full flex relative justify-between px-4 py-4 rounded-md transition duration-200 mx-auto"
-      )}
-      animate={{
-        width: showBackground ? "80%" : "100%",
-        background: showBackground ? "var(--slate-200)" : "transparent",
-      }}
-      transition={{
-        duration: 0.4,
-      }}
-    >
-      <div className="flex flex-row gap-2 items-center">
-        <Logo locale={locale} image={logo?.image} />
-        <div className="flex items-center gap-1.5">
-          {leftNavbarItems.map((item) => (
-            <NavbarItem href={`/${locale}${item.URL}` as never} key={item.text} target={item.target}>
-              {item.text}
-            </NavbarItem>
-          ))}
+    <div className="fixed top-0 inset-x-0 w-full z-10 bg-white">
+      <div className="max-w-7xl flex flex-row items-center justify-between mx-auto">
+        <div className="w-full py-4 flex flex-row gap-4 items-center">
+          <Image
+            src={logoUrl}
+            alt="Logo Image"
+            width={150}
+            height={150}
+            className="ml-8"
+          />
+          <div className="flex items-center gap-1.5">
+            {navbarItems.map((item) => (
+              <NavbarItem href={item.URL} key={item.text}>
+                {item.text}
+              </NavbarItem>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center">
+          <LocaleSwitcher currentLocale={locale} />
         </div>
       </div>
-      <div className="flex space-x-2 items-center">
-        <LocaleSwitcher currentLocale={locale} />
-
-        {rightNavbarItems.map((item, index) => (
-          <Button key={item.text} variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} as={Link} href={`/${locale}${item.URL}`}>
-            {item.text}
-          </Button>
-        ))}
-      </div>
-    </motion.div>
+    </div>
   );
 };
