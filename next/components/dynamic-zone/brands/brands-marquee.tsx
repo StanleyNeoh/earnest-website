@@ -16,8 +16,8 @@ export const BrandsMarquee = ({
   const levelTwo = companies.slice(8, 16);
   return (
     <div className="max-w-7xl mx-auto">
-      <BrandLevel level={levelOne} speed={20} direction="left" />
-      <BrandLevel level={levelTwo} speed={20} direction="right" className="mt-8" />
+      <BrandLevel level={levelOne} speed={80} direction="left" />
+      <BrandLevel level={levelTwo} speed={80} direction="right" className="mt-8" />
     </div>
   );
 };
@@ -33,6 +33,8 @@ const BrandLevel = ({
   direction: "left" | "right";
   className?: string;
 }) => {
+  if (!level) return null;
+
   return (
     <div className={cn("flex h-full relative", className)}>
       <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-white to-transparent" />
