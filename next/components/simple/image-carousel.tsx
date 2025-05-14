@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import Autoscroll from "embla-carousel-auto-scroll";
 import Autoplay from "embla-carousel-autoplay";
-import { Image as StrapiImage } from "@/types/types";
+import { Image as ImageType } from "@/types/types";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -22,7 +22,7 @@ export const ImageCarousel = ({
   numPerPage = 1,
   className = "",
 }: {
-  images: StrapiImage[];
+  images: ImageType[];
   auto?: "play" | "scroll" | "none";
   showArrows?: boolean;
   numPerPage?: number;
@@ -40,7 +40,6 @@ export const ImageCarousel = ({
     width: width,
     height: height,
   }))), [images]);
-  console.log("photos", photos);
 
   const basis = numPerPage > 1 ? `basis-1/${numPerPage}` : "";
   return (

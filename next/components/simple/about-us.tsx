@@ -12,10 +12,13 @@ import aboutUs6 from '@/public/about-us/acl-2017/6.jpg';
 const aboutUsImages = [ aboutUs1, aboutUs2, aboutUs3, aboutUs4, aboutUs5, aboutUs6];
 
 export const AboutUs = ({
+  companyStartDate,
   locale,
 }: {
+  companyStartDate: string;
   locale: string;
 }) => {
+  const companyAge = new Date().getFullYear() - new Date(companyStartDate).getFullYear();
   const about_us: ParagraphStoryProps = {
     title: "About Earnest",
     sections: [
@@ -29,7 +32,7 @@ export const AboutUs = ({
         paragraphs: [
           {
             title: "Who We Are",
-            text: "At Earnest, we specialize in creating workspaces that inspire. For over 17 years, we’ve helped companies across industries find the perfect balance between design, functionality, and cost-effectiveness.",
+            text: `At Earnest, we specialize in creating workspaces that inspire. For over ${companyAge} years, we’ve helped companies across industries find the perfect balance between design, functionality, and cost-effectiveness.`,
           },
           {
             title: "Our Team",
@@ -50,7 +53,7 @@ export const AboutUs = ({
 
 
   return (
-    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 shadow-sm">
+    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 shadow-sm px-12 py-8">
       <ParagraphStory
         {...about_us}
         locale={locale}

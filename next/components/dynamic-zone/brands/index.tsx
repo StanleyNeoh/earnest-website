@@ -16,7 +16,7 @@ export const Brands = ({
   companies: Company[]
 }) => {
   return (
-    <Container className="bg-gradient-to-b from-slate-100 via-white to-slate-100 py-20 rounded-md shadow-sm">
+    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 py-20 rounded-md shadow-sm">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}

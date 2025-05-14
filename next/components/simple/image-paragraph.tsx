@@ -41,7 +41,7 @@ export const ImageParagraph = ({
       }
 
       {/* Paragraphs */}
-      <div className={cn("flex flex-col gap-4 text-center", paragraph_width)}>
+      <div className={cn("flex flex-col gap-8 text-center", paragraph_width)}>
         {paragraphs && paragraphs.map(({ title, text }, index) => {
           // @TODO: Use markdown parser with custom react components for translation
           const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
