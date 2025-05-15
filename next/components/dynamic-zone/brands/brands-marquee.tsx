@@ -8,18 +8,28 @@ import { BlurImage } from "@/components/blur-image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 
 export const BrandsMarquee = ({
-  companies
+  companies,
+  className,
 }: {
   companies: Company[]
+  className?: string;
 }) => {
-  const levelOne = companies.slice(0, 8);
-  const levelTwo = companies.slice(8, 16);
-  return (
-    <div className="max-w-7xl mx-auto">
-      <BrandLevel level={levelOne} speed={80} direction="left" />
-      <BrandLevel level={levelTwo} speed={80} direction="right" className="mt-8" />
-    </div>
-  );
+  if (companies.length < 8) {
+    return (
+      <div className={cn("max-w-7xl mx-auto", className)}>
+        <BrandLevel level={companies} speed={80} direction="left" />
+      </div>
+    );
+  } else {
+    const levelOne = companies.slice(0, companies.length / 2);
+    const levelTwo = companies.slice(companies.length / 2, companies.length);
+    return (
+      <div className={cn("max-w-7xl mx-auto", className)}>
+        <BrandLevel level={levelOne} speed={80} direction="left" />
+        <BrandLevel level={levelTwo} speed={80} direction="right" className="mt-2" />
+      </div>
+    );
+  }
 };
 
 const BrandLevel = ({
@@ -37,8 +47,6 @@ const BrandLevel = ({
 
   return (
     <div className={cn("flex h-full relative", className)}>
-      <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-white to-transparent" />
-      <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-white to-transparent" />
       <Marquee speed={speed} direction={direction}>
         {
           level.map((company: Company, index: any) => {
@@ -48,10 +56,10 @@ const BrandLevel = ({
                 key={index}
                 src={strapiImage(logo?.url)}
                 alt={logo?.alternativeText}
-                width={400}
-                height={400}
+                width={100}
+                height={50}
                 draggable={false}
-                className="rounded-lg shadow-sm border border-gray-200 mx-4"
+                className="mx-4"
               />
             );
           })

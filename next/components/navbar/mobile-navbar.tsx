@@ -36,6 +36,7 @@ export const MobileNavbar = ({
               logoUrl={logoUrl}
               width={100}
               height={100}
+              redirectUrl="/"
               locale={locale}
               className="ml-4"
             />
@@ -55,6 +56,8 @@ export const MobileNavbar = ({
                 logoUrl={logoUrl}
                 width={150}
                 height={150}
+                redirectUrl="/"
+                locale={locale}
                 className="ml-4"
               />
               <div className="flex items-center space-x-2">

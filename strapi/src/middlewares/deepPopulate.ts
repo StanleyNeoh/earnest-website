@@ -36,7 +36,7 @@ const getDeepPopulate = (uid: UID.Schema, opts: Options = {}) => {
         const isVisible = contentTypes.isVisibleAttribute(model, attributeName);
         const isCreatorField = [CREATED_BY_ATTRIBUTE, UPDATED_BY_ATTRIBUTE].includes(attributeName);
 
-        if (isVisible) {
+        if (isVisible && !isCreatorField) {
           acc[attributeName] = { populate: "*" };
         }
 
@@ -78,7 +78,11 @@ const getDeepPopulate = (uid: UID.Schema, opts: Options = {}) => {
 
 export default (config, { strapi }: { strapi: Core.Strapi }) => {
   return async (ctx, next) => {
-    if (ctx.request.url.startsWith('/api/') && ctx.request.method === 'GET' && !ctx.query.populate && !ctx.request.url.includes('/api/users') && !ctx.request.url.includes('/api/seo')
+    if (
+      ctx.request.url.startsWith('/api/') 
+      && ctx.request.method === 'GET'
+      && !ctx.query.populate
+      && ['/api/users', '/api/seo'].every((path) => !ctx.request.url.includes(path))
     ) {
       strapi.log.info('Using custom Dynamic-Zone population Middleware...');
 
@@ -90,8 +94,8 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
 
       ctx.query.populate = {
         ...populate,
-        ...(!ctx.request.url.includes("products") && { localizations: { populate: {} } })
-      };
+        localizations: { populate: {} },
+      }
     }
     await next();
   };

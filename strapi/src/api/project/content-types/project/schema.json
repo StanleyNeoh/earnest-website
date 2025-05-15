@@ -16,9 +16,9 @@
     }
   },
   "attributes": {
-    "companies": {
+    "company": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::company.company",
       "inversedBy": "projects"
     },
@@ -43,12 +43,6 @@
           "localized": true
         }
       }
-    },
-    "testimonials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::testimonial.testimonial",
-      "mappedBy": "project"
     },
     "thumbnail": {
       "type": "media",
@@ -78,6 +72,12 @@
         "office-interior",
         "industrial"
       ]
+    },
+    "testimonial": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::testimonial.testimonial",
+      "mappedBy": "project"
     }
   }
 }

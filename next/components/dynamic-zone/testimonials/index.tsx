@@ -7,22 +7,27 @@ import { Testimonial } from "@/types/types";
 import { Container } from "@/components/container";
 
 export const Testimonials = ({
-  heading, 
-  sub_heading, 
-  testimonials 
-}: { 
-  heading: string, 
-  sub_heading: string, 
+  heading,
+  sub_heading,
+  testimonials,
+  locale,
+}: {
+  heading: string,
+  sub_heading: string,
   testimonials: Testimonial[],
+  locale: string,
 }) => {
   return (
-    <Container className="bg-gradient-to-b from-slate-100 to-white rounded-md shadow-sm py-20">
+    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 pt-12">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}
       </Subheading>
       {testimonials && (
-        <TestimonialsMarquee testimonials={testimonials} />
+        <TestimonialsMarquee
+          testimonials={testimonials}
+          locale={locale}
+        />
       )}
     </Container>
   );

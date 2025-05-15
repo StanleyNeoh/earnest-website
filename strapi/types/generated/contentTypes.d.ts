@@ -535,6 +535,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    featured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -552,9 +553,13 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
+    testimonials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -776,7 +781,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
   attributes: {
     category: Schema.Attribute.Enumeration<['office-interior', 'industrial']>;
-    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
+    company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
     completion_date: Schema.Attribute.Date;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -802,8 +807,8 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    testimonials: Schema.Attribute.Relation<
-      'oneToMany',
+    testimonial: Schema.Attribute.Relation<
+      'oneToOne',
       'api::testimonial.testimonial'
     >;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
@@ -860,6 +865,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -869,7 +875,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::testimonial.testimonial'
     >;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     remarks: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
@@ -890,6 +896,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
         };
       }>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

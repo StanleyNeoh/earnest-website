@@ -44,11 +44,20 @@
         }
       }
     },
+    "featured": {
+      "type": "boolean"
+    },
     "projects": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::project.project",
-      "mappedBy": "companies"
+      "mappedBy": "company"
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial",
+      "mappedBy": "company"
     }
   }
 }

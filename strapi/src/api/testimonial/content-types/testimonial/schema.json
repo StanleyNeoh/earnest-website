@@ -32,12 +32,6 @@
         }
       }
     },
-    "project": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::project.project",
-      "inversedBy": "testimonials"
-    },
     "remarks": {
       "type": "richtext",
       "pluginOptions": {
@@ -53,6 +47,21 @@
     },
     "featured": {
       "type": "boolean"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "testimonials"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project",
+      "inversedBy": "testimonial"
     }
   }
 }

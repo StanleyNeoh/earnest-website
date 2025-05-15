@@ -5,7 +5,9 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Hero } from '@/components/simple/hero';
 import { AboutUs } from '@/components/simple/about-us';
 import { Brands } from '@/components/dynamic-zone/brands';
-import { FeaturedProjects } from '@/components/dynamic-zone/featured-projects';
+import { Testimonials } from '@/components/dynamic-zone/testimonials';
+import util from 'util';
+import { cache } from 'react';
 
 export async function generateMetadata({
   params,
@@ -32,7 +34,28 @@ export async function generateMetadata({
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   const companyStartDate = "2007-01-01";
-  const companies = await fetchContentType('companies');
+  const [
+    companies, 
+    testimonials,
+  ] = await Promise.all([
+    fetchContentType("companies", { 
+      populate: [],
+      filters: {
+        featured: true
+      },
+      cache: true,
+    }),
+    fetchContentType("testimonials", {
+      populate: ['company', 'project', 'company.logo'], 
+      filters: {
+        featured: true
+      },
+      cache: true,
+    }),
+  ]);
+  // console.log("companies", companies);
+  console.log("testimonials", util.inspect(testimonials, { depth: null, colors: true }));
+
   return (
     <>
       <Hero companyStartDate={companyStartDate} />
@@ -41,6 +64,12 @@ export default async function HomePage({ params }: { params: { locale: string } 
         heading="Trusted by Major Brands"
         sub_heading="Proudly trusted by leading companies across industries."
         companies={companies.data}
+      />
+      <Testimonials
+        heading="What Our Clients Say"
+        sub_heading="Hear from our satisfied users who have experienced the benefits of our service firsthand."
+        testimonials={testimonials.data}
+        locale={params.locale}
       />
     </>
   );

@@ -16,6 +16,17 @@ export interface Article {
   }[];
 }
 
+export interface Seo {
+  metaTitle: string;
+  metaDescription: string;
+  metaImage: Image;
+  keywords: string;
+  metaRobots: string;
+  structuredData: string;
+  metaViewport: string;
+  canonicalURL: string;
+}
+
 export interface Image {
   url: string;
   alternativeText: string;
@@ -27,7 +38,9 @@ export interface Company {
   name: string;
   slug: string;
   logo: Image;
+  featured: boolean;
   projects?: Project[];
+  testimonials?: Testimonial[];
 }
 
 export interface Project {
@@ -37,6 +50,7 @@ export interface Project {
   name: string;
   description: string;
   thumbnail: Image;
+  seo?: Seo;
   category: string;
   testimonials?: Testimonial[];
   completion_date?: string;
@@ -46,5 +60,9 @@ export interface Testimonial {
   representative_name: string;
   representative_role: string;
   remarks: string;
+  seo?: Seo;
+  featured: boolean;
+  slug: string;
+  company?: Company;
   project?: Project;
 }

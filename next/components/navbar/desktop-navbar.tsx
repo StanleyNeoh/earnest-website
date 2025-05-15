@@ -22,6 +22,7 @@ export const DesktopNavbar = ({
             logoUrl={logoUrl}
             width={150}
             height={150}
+            redirectUrl="/"
             locale={locale}
             className="ml-8"
           />
