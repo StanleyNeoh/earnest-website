@@ -6,29 +6,29 @@ import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
 import { Container } from "../container";
 
 export const FeaturedProjects = ({ 
-  header,
-  sub_header,
+  heading,
+  sub_heading,
   projects,
   locale,
 }: {
-  header?: string;
-  sub_header?: string;
+  heading?: string;
+  sub_heading?: string;
   projects: ParagraphStoryProps[];
   locale: string;
 }) => {
   return (
     <Container className="bg-gradient-to-b from-slate-100 via-white to-slate-100 rounded-md shaodow-sm py-10 space-y-5">
       {
-        header && (
+        heading && (
           <Heading className="text-charcoal font-semibold">
-            {header}
+            {heading}
           </Heading>
         )
       }
       {
-        sub_header && (
+        sub_heading && (
           <Subheading className="text-charcoal">
-            {sub_header}
+            {sub_heading}
           </Subheading>
         )
       }

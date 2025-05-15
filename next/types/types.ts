@@ -38,7 +38,7 @@ export interface Company {
   name: string;
   slug: string;
   logo: Image;
-  featured: boolean;
+  selected: boolean;
   projects?: Project[];
   testimonials?: Testimonial[];
 }
@@ -54,6 +54,7 @@ export interface Project {
   category: string;
   testimonials?: Testimonial[];
   completion_date?: string;
+  featured?: ParagraphStoryProps;
 }
 
 export interface Testimonial {

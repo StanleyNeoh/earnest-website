@@ -535,7 +535,6 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    featured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -555,6 +554,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
       }>;
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
+    selected: Schema.Attribute.Boolean;
     slug: Schema.Attribute.UID<'name'>;
     testimonials: Schema.Attribute.Relation<
       'oneToMany',
@@ -787,6 +787,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
+    featured: Schema.Attribute.Component<'shared.paragraph-story', false>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

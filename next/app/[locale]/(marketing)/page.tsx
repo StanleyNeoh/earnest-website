@@ -8,6 +8,8 @@ import { Brands } from '@/components/dynamic-zone/brands';
 import { Testimonials } from '@/components/dynamic-zone/testimonials';
 import util from 'util';
 import { cache } from 'react';
+import { FeaturedProjects } from '@/components/dynamic-zone/featured-projects';
+import { Company, Project, Testimonial } from '@/types/types';
 
 export async function generateMetadata({
   params,
@@ -37,24 +39,32 @@ export default async function HomePage({ params }: { params: { locale: string } 
   const [
     companies, 
     testimonials,
+    projects,
+  ]: [
+    { data: Company[] }, 
+    { data: Testimonial[] },
+    { data: Project[] },
   ] = await Promise.all([
     fetchContentType("companies", { 
       populate: [],
       filters: {
-        featured: true
+        selected: true
       },
       cache: true,
     }),
     fetchContentType("testimonials", {
       populate: ['company', 'project', 'company.logo'], 
-      filters: {
-        featured: true
-      },
       cache: true,
     }),
+    fetchContentType("projects", {
+      populate: {},
+      filters: {
+        featured: {
+          $notNull: true,
+        }
+      }
+    }),
   ]);
-  // console.log("companies", companies);
-  console.log("testimonials", util.inspect(testimonials, { depth: null, colors: true }));
 
   return (
     <>
@@ -69,6 +79,12 @@ export default async function HomePage({ params }: { params: { locale: string } 
         heading="What Our Clients Say"
         sub_heading="Hear from our satisfied users who have experienced the benefits of our service firsthand."
         testimonials={testimonials.data}
+        locale={params.locale}
+      />
+      <FeaturedProjects 
+        heading="Featured Projects"
+        sub_heading="Explore our portfolio of successful projects that showcase our expertise and creativity."
+        projects={projects.data.map((project) => project.featured!)}
         locale={params.locale}
       />
     </>

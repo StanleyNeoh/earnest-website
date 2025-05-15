@@ -44,7 +44,7 @@
         }
       }
     },
-    "featured": {
+    "selected": {
       "type": "boolean"
     },
     "projects": {

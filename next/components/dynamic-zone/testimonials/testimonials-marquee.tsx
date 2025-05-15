@@ -94,7 +94,6 @@ const TestimonialLevel = ({
     <Marquee speed={speed} direction={direction}>
       {
         level.map((testimonial: Testimonial, index: any) => {
-          console.log("testimonial", testimonial);
           return (
             <Card
               href={`/projects/${testimonial.project?.slug || ""}`}

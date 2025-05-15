@@ -78,6 +78,11 @@
       "relation": "oneToOne",
       "target": "api::testimonial.testimonial",
       "mappedBy": "project"
+    },
+    "featured": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.paragraph-story"
     }
   }
 }
