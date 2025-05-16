@@ -44,9 +44,6 @@
         }
       }
     },
-    "selected": {
-      "type": "boolean"
-    },
     "projects": {
       "type": "relation",
       "relation": "oneToMany",
@@ -58,6 +55,9 @@
       "relation": "oneToMany",
       "target": "api::testimonial.testimonial",
       "mappedBy": "company"
+    },
+    "selected": {
+      "type": "boolean"
     }
   }
 }

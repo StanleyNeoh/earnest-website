@@ -31,7 +31,6 @@ export default async function fetchContentType(
   contentType: string,
   params: Record<string, unknown> = {},
   spreadData?: boolean,
-  options: any = {},
 ): Promise<any> {
   const { isEnabled } = await draftMode()
 
@@ -53,7 +52,9 @@ export default async function fetchContentType(
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
-      cache: 'no-store',
+      next: {
+        revalidate: 60,
+      }
     });
 
     if (!response.ok) {
