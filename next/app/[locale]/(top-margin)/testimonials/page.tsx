@@ -29,7 +29,6 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
   const testimonials = await fetchContentType("testimonials", {
     populate: ["project", "project.thumbnail"],
   });
-  console.log("Testimonials data:", testimonials);
   return (
     <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-4 px-4 md:px-8">
       <Breadcrumb
