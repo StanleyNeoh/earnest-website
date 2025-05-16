@@ -5,7 +5,6 @@ import { Heading } from "./elements/heading";
 import { Subheading } from "./elements/subheading";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 
 export const ParagraphStory = ({

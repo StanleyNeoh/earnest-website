@@ -95,13 +95,13 @@ export default function DesignAndBuildPage() {
       {/* Description */}
       <div className="text-gray-700 text-base mb-6 space-y-4">
         <p>
-          Whether you're creating a brand-new office, renovating an existing space, or transforming a commercial property — our end-to-end design and build solution makes the entire journey smooth, efficient, and aligned with your vision.
+          {"Whether you're creating a brand-new office, renovating an existing space, or transforming a commercial property — our end-to-end design and build solution makes the entire journey smooth, efficient, and aligned with your vision."}
         </p>
       </div>
 
       {/* Who it's for */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">Who it's for</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{"Who it's for"}</h2>
         <ul className="list-none space-y-1">
           {whoFor.map((item, i) => (
             <li key={i} className="flex items-center text-gray-700">

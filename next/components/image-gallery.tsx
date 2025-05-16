@@ -32,7 +32,7 @@ export const ImageGallery = ({
     alt: alternativeText || "featured project image",
     width: width,
     height: height,
-  })) || []), [images]);
+  })) || []), [images, isStrapiImage]);
 
   return (
     <>

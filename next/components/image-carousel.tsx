@@ -43,7 +43,7 @@ export const ImageCarousel = ({
     alt: alternativeText || "featured project image",
     width: width,
     height: height,
-  }))), [images]);
+  }))), [images, isStrapiImage]);
 
   const basis = numPerPage > 1 ? `basis-1/${numPerPage}` : "";
   return (

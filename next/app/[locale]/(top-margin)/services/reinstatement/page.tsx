@@ -62,13 +62,13 @@ export default function ReinstatementPage() {
       {/* Description */}
       <div className="text-gray-700 text-base mb-6 space-y-4">
         <p>
-          We make your office reinstatement process smooth and stress-free. Whether you're a landlord preparing a space for lease, or a business relocating or completing your tenancy, Earnest ensures a seamless transition.
+          {"We make your office reinstatement process smooth and stress-free. Whether you're a landlord preparing a space for lease, or a business relocating or completing your tenancy, Earnest ensures a seamless transition."}
         </p>
       </div>
 
       {/* Who it's for */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">Who it's for</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{"Who it's for"}</h2>
         <ul className="list-none space-y-1">
           {whoFor.map((item, i) => (
             <li key={i} className="flex items-center text-gray-700">

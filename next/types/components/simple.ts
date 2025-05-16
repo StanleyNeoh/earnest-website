@@ -1,9 +1,9 @@
 import React from "react";
 import { Image } from "../types";
-import { ButtonProps } from "./shared";
+import { ButtonProps, ParagraphProps } from "./shared";
 
 export interface ImageParagraphProps {
-  paragraphs: React.ReactNode;
+  paragraphs: ParagraphProps[] | React.ReactNode;
   images: Image[];
   direction: "img-on-left" | "img-on-right" | "img-on-top" | "img-on-bottom";
   display: "tile" | "carousel";

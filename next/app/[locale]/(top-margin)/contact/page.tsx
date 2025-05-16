@@ -1,21 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { toast, Toaster } from "react-hot-toast";
-import StarBackground from "@/components/decorations/star-background";
-import ShootingStars from "@/components/decorations/shooting-star";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { ParagraphStory } from "@/components/paragraph-story";
 import { Button } from "@/components/elements/button";
 import Image from "next/image";
 
 import aboutUs1 from "@/public/about-us/acl-2017/1.jpg";
 
-export default function ContactPage({
-  locale,
-}: {
-  locale: string;
-}) {
+export default function ContactPage({ params }: { params: { locale: string } }) {
+  const { locale } = params;
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -112,10 +106,10 @@ export default function ContactPage({
         <div className="mx-auto w-full max-w-md">
           <div>
             <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-charcoal">
-              Let's Bring Your Vision to Life
+              {"Let's Bring Your Vision to Life"}
             </h1>
             <p className="mt-4 text-charcoal text-sm max-w-sm">
-              Ready to start your next design project? Reach out to us — we'd love to hear from you
+              {"Ready to start your next design project? Reach out to us — we'd love to hear from you"}
             </p>
           </div>
 
