@@ -1,6 +1,5 @@
 "use client";
 import React, { useMemo } from "react";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { RowsPhotoAlbum } from "react-photo-album";
 import "react-photo-album/rows.css";
 import { Image } from "@/types/types";
@@ -13,20 +12,23 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { strapiImage } from "@/lib/strapi/strapiImage";
 
 export const ImageGallery = ({
   images,
   maxNumber,
+  isStrapiImage = false,
 }: {
   images?: Image[];
   maxNumber?: number;
+  isStrapiImage?: boolean;
 }) => {
   if (maxNumber !== undefined) {
     images = images?.slice(0, maxNumber);
   }
   const [index, setIndex] = React.useState(-1);
   const photos = useMemo(() => (images?.map(({ url, width, height, alternativeText }) => ({
-    src: strapiImage(url),
+    src: isStrapiImage ? strapiImage(url) : url,
     alt: alternativeText || "featured project image",
     width: width,
     height: height,

@@ -1,4 +1,4 @@
-import { ParagraphStoryProps } from "./components/simple";
+import { RichTextNode } from "./components/simple";
 
 export interface Article {
   title: string;
@@ -45,16 +45,16 @@ export interface Company {
 
 export interface Project {
   companies: Company[];
-  story: ParagraphStoryProps[];
   slug: string;
   name: string;
-  description: string;
   thumbnail: Image;
   seo?: Seo;
   category: string;
   testimonials?: Testimonial[];
   completion_date?: string;
-  featured?: ParagraphStoryProps;
+  description: RichTextNode[];
+  featured: RichTextNode[];
+  images: Image[];
 }
 
 export interface Testimonial {

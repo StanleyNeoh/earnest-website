@@ -7,6 +7,7 @@ import { Brands } from '@/app/[locale]/_components/brands';
 import { Testimonials } from '@/app/[locale]/_components/testimonials';
 import { FeaturedProjects } from '@/app/[locale]/_components/featured-projects';
 import { Company, Project, Testimonial } from '@/types/types';
+import util from 'util';
 
 export const metadata: Metadata = {
   title: "Earnest | Home",
@@ -27,32 +28,28 @@ export const metadata: Metadata = {
 export default async function HomePage({ params }: { params: { locale: string } }) {
   const companyStartDate = "2007-01-01";
   const [
-    companies, 
+    companies,
     testimonials,
     projects,
   ]: [
-    { data: Company[] }, 
-    { data: Testimonial[] },
-    { data: Project[] },
-  ] = await Promise.all([
-    fetchContentType("companies", { 
-      populate: [],
-      filters: {
-        selected: true
-      },
-    }),
-    fetchContentType("testimonials", {
-      populate: ['company', 'project', 'company.logo'], 
-    }),
-    fetchContentType("projects", {
-      populate: {},
-      filters: {
-        featured: {
-          $notNull: true,
-        }
-      },
-    }),
-  ]);
+      { data: Company[] },
+      { data: Testimonial[] },
+      { data: Project[] },
+    ] = await Promise.all([
+      fetchContentType("companies", {
+        populate: [],
+        filters: {
+          selected: true
+        },
+      }),
+      fetchContentType("testimonials", {
+        populate: ['company', 'project', 'company.logo'],
+      }),
+      fetchContentType("projects", {
+        populate: {},
+      }
+      ),
+    ]);
 
   return (
     <>
@@ -69,12 +66,12 @@ export default async function HomePage({ params }: { params: { locale: string } 
         testimonials={testimonials.data}
         locale={params.locale}
       />
-      <FeaturedProjects 
+      {/* <FeaturedProjects 
         heading="Featured Projects"
         sub_heading="Explore our portfolio of successful projects that showcase our expertise and creativity."
         projects={projects.data.map((project) => project.featured!)}
         locale={params.locale}
-      />
+      /> */}
     </>
   );
 }

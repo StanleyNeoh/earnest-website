@@ -55,7 +55,7 @@ const serviceSections = [
 export default async function ServicesPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   return (
-    <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-16 px-4 md:px-8">
+    <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-4 px-8">
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },

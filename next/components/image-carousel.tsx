@@ -1,11 +1,9 @@
 "use client";
 import React, { useMemo } from "react";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoscroll from "embla-carousel-auto-scroll";
 import Autoplay from "embla-carousel-autoplay";
-import { Image as StrapiImage } from "@/types/types";
-import { BlurImage } from "./blur-image";
+import { Image as ImageType } from "@/types/types";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -15,6 +13,9 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Image from "next/image";
+import { strapiImage } from "@/lib/strapi/strapiImage";
+import { cn } from "@/lib/utils";
 
 export const ImageCarousel = ({
   images,
@@ -22,12 +23,14 @@ export const ImageCarousel = ({
   showArrows = true,
   numPerPage = 1,
   className = "",
+  isStrapiImage = false,
 }: {
-  images: StrapiImage[];
+  images: ImageType[];
   auto?: "play" | "scroll" | "none";
   showArrows?: boolean;
   numPerPage?: number;
   className?: string;
+  isStrapiImage?: boolean;
 }) => {
   const plugin = auto === "play"
     ? [Autoplay({ delay: 3000, stopOnInteraction: false })]
@@ -36,7 +39,7 @@ export const ImageCarousel = ({
       : [];
   const [index, setIndex] = React.useState(-1);
   const photos = useMemo(() => (images.map(({ url, width, height, alternativeText }) => ({
-    src: strapiImage(url),
+    src: isStrapiImage ? strapiImage(url) : url,
     alt: alternativeText || "featured project image",
     width: width,
     height: height,
@@ -59,10 +62,12 @@ export const ImageCarousel = ({
               className={`flex items-center justify-center ${basis}`}
               onClick={() => setIndex(index)}
             >
-              <BlurImage
-                {...photo}
-                draggable={false}
-                className={className}
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                className={cn("object-cover w-full h-full", className)}
               />
             </CarouselItem>
           ))

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/elements/button";
 import { ImageParagraphProps } from "@/types/components/shared";
-import { ImageCarousel } from "@/components/image-carousel";
+import { ImageCarousel } from "./image-carousel";
 import { ImageGallery } from "./image-gallery";
 import { Heading } from "./elements/heading";
 import { cn } from "@/lib/utils";
@@ -16,32 +16,48 @@ export const ImageParagraph = ({
   locale,
   titleClassName,
   paragraphClassName,
+  isStrapiImage = false,
 }: ImageParagraphProps & {
   locale: string;
   titleClassName?: string;
   paragraphClassName?: string;
+  isStrapiImage?: boolean;
 }) => {
-  const flex_dir = direction === "img-on-left" 
-    ? "flex-col lg:flex-row" 
+  const flex_dir = direction === "img-on-left"
+    ? "flex-col lg:flex-row"
     : direction === "img-on-right"
-    ? "flex-col lg:flex-row-reverse"
-    : direction === "img-on-top"
-    ? "flex-col"
-    : "flex-col-reverse";
+      ? "flex-col lg:flex-row-reverse"
+      : direction === "img-on-top"
+        ? "flex-col"
+        : "flex-col-reverse";
   const paragraph_width = images?.length > 0 ? "w-full lg:w-1/2" : "w-full";
+
   return (
     <div className={`flex ${flex_dir} gap-16 items-center justify-between`}>
       {
         images && (
           <div className="w-full lg:w-1/2">
-            {display == "carousel" && <ImageCarousel images={images} auto="play" showArrows={false} />}
-            {display == "tile" && <ImageGallery images={images} />}
+            {
+              display == "carousel" &&
+              <ImageCarousel
+                images={images} auto="play"
+                showArrows={false}
+                isStrapiImage={isStrapiImage}
+              />
+            }
+            {
+              display == "tile" &&
+              <ImageGallery
+                images={images}
+                isStrapiImage={isStrapiImage}
+              />
+            }
           </div>
         )
       }
 
       {/* Paragraphs */}
-      <div className={cn("flex flex-col gap-4 text-center", paragraph_width)}>
+      <div className={cn("flex flex-col gap-8 text-center", paragraph_width)}>
         {
           (() => {
             if (Array.isArray(paragraphs)) {

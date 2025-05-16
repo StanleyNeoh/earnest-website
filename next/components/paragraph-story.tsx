@@ -1,11 +1,11 @@
-import { BlurImage } from "@/components/blur-image";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { ParagraphStoryProps } from "@/types/components/simple";
 import React from "react";
 import { ImageParagraph } from "./image-paragraph";
 import { Heading } from "./elements/heading";
 import { Subheading } from "./elements/subheading";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 
 export const ParagraphStory = ({
@@ -14,7 +14,8 @@ export const ParagraphStory = ({
   headerClassName, 
   headerLeftClassName, headerRightClassName,
   titleClassName, subtitleClassName,
-  imgParaTitleClassName, imgParaParagraphClassName
+  imgParaTitleClassName, imgParaParagraphClassName,
+  isStrapiImage = false,
 }: ParagraphStoryProps & {
   locale: string;
   containerClassName?: string;
@@ -25,19 +26,20 @@ export const ParagraphStory = ({
   subtitleClassName?: string;
   imgParaTitleClassName?: string;
   imgParaParagraphClassName?: string;
+  isStrapiImage?: boolean;
 }) => {
-  const headerJustify = badges ? "justify-between": "justify-center";
-  const titleJustify = badges ? "text-center lg:text-start": "text-center";
+  const headerJustify = badges.length > 0 ? "justify-between": "justify-center";
+  const titleJustify = badges.length > 0 ? "text-center lg:text-start": "text-center";
   return (
     <div className={cn("max-w-7xl flex flex-col bg-white gap-8", containerClassName)}>
       <div className={cn("flex flex-col-reverse lg:flex-row items-center gap-8", headerJustify, headerClassName)}>
         {title && (
           <div className={cn("flex flex-col flex-grow gap-4", headerLeftClassName)}>
-            <Heading size="md" className={cn("m-0 text-gray-800", titleJustify, titleClassName)}>
+            <Heading size="md" className={cn("m-0 text-gray-800 max-w-7xl", titleJustify, titleClassName)}>
               {title}
             </Heading>
             {subtitle && (
-              <Subheading className={cn("text-base md:text-lg text-gray-600 m-0", titleJustify, subtitleClassName)}>
+              <Subheading className={cn("text-base md:text-lg text-gray-600 m-0 max-w-7xl", titleJustify, subtitleClassName)}>
                 {subtitle}
               </Subheading>
             )}
@@ -46,12 +48,12 @@ export const ParagraphStory = ({
         {badges && (
           <div className={cn("flex flex-row gap-4", headerRightClassName)}>
             {badges.map((badge, index) => (
-              <BlurImage
+              <Image
                 key={index}
-                src={strapiImage(badge?.url)}
-                alt="Featured Project Logo"
-                width={200}
-                height={200}
+                src={badge.url}
+                alt={badge.alternativeText}
+                width={badge.width}
+                height={badge.height}
                 className="object-cover" />
             ))}
           </div>
@@ -71,6 +73,7 @@ export const ParagraphStory = ({
             locale={locale}
             titleClassName={imgParaTitleClassName}
             paragraphClassName={imgParaParagraphClassName}
+            isStrapiImage={isStrapiImage}
           />
         );
       })}

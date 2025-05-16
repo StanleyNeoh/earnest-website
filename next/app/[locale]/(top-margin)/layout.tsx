@@ -6,7 +6,7 @@ export default function TopMarginLayout({
   params: { locale: string }
 }) {
   return (
-    <div className="mt-[80px]">
+    <div className="mt-[88px] md:mt-[104px]">
       {children}
     </div>
   )

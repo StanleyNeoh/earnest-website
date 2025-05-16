@@ -2,8 +2,9 @@ import { Metadata } from "next";
 
 import { redirect } from "next/navigation";
 import { Container } from "@/components/container";
-import { SingleProject } from "@/components/projects/single-project";
+import { SingleProject } from "@/app/[locale]/(top-margin)/projects/_components/single-project";
 import { generateMetadataObject } from '@/lib/shared/metadata';
+import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
 import fetchContentType from "@/lib/strapi/fetchContentType";
 
@@ -38,6 +39,14 @@ export default async function SingleProjectPage({
 
   return (
     <Container className="space-y-8 bg-gradient-to-b from-white via-slate-100 to-white rounded-md shadow-sm p-8">
+      <Breadcrumb
+        crumbs={[
+          { name: "Home", href: "/" },
+          { name: "Projects", href: "/projects" },
+          { name: project?.name || "Project", href: `/projects/${params.slug}` },
+        ]}
+        className="mb-4"
+      />
       <SingleProject
         project={project}
         locale={params.locale}

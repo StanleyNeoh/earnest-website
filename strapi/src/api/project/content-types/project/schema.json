@@ -22,16 +22,6 @@
       "target": "api::company.company",
       "inversedBy": "projects"
     },
-    "story": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.paragraph-story",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"
@@ -55,9 +45,6 @@
         "audios"
       ]
     },
-    "description": {
-      "type": "richtext"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
@@ -79,10 +66,21 @@
       "target": "api::testimonial.testimonial",
       "mappedBy": "project"
     },
+    "description": {
+      "type": "blocks"
+    },
     "featured": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.paragraph-story"
+      "type": "blocks"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

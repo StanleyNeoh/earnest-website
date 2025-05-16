@@ -1,7 +1,7 @@
 import React from "react";
 import { ParagraphStoryProps } from "@/types/components/simple";
 import { Container } from "../../../components/container";
-import { ParagraphStory } from "../../../components/simple/paragraph-story";
+import { ParagraphStory } from "../../../components/paragraph-story";
 
 import aboutUs1 from '@/public/about-us/acl-2017/1.jpg';
 import aboutUs2 from '@/public/about-us/acl-2017/2.jpg';
