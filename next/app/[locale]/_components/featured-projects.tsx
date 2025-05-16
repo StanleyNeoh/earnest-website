@@ -81,7 +81,6 @@ const FeaturedProject = ({
                   variant={cta.variant}
                   as={cta.URL ? "a" : "button"}
                   href={cta.URL}
-                  target={cta.target}
                   className="min-w-[120px]"
                 >
                   {cta.text}

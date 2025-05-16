@@ -14,6 +14,10 @@ export function Navbar({ locale }: { locale: string }) {
       text: "Projects",
     },
     {
+      URL: `/${locale}/testimonials`,
+      text: "Testimonials",
+    },
+    {
       URL: `/${locale}/contact`,
       text: "Contact",
     },
