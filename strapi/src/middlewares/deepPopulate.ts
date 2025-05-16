@@ -78,6 +78,7 @@ const getDeepPopulate = (uid: UID.Schema, opts: Options = {}) => {
 
 export default (config, { strapi }: { strapi: Core.Strapi }) => {
   return async (ctx, next) => {
+    console.log('RECIEVED ctx.request.url', ctx.request.url);
     if (
       ctx.request.url.startsWith('/api/') 
       && ctx.request.method === 'GET'

@@ -55,7 +55,6 @@ export interface CardsSocialMediaCard extends Struct.ComponentSchema {
   };
   attributes: {
     Description: Schema.Attribute.String;
-    logos: Schema.Attribute.Relation<'oneToMany', 'api::logo.logo'>;
     span: Schema.Attribute.Enumeration<['one', 'two', 'three']>;
     Title: Schema.Attribute.String;
   };
@@ -233,7 +232,6 @@ export interface DynamicZoneRelatedArticles extends Struct.ComponentSchema {
     icon: 'bulletList';
   };
   attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     heading: Schema.Attribute.String;
     sub_heading: Schema.Attribute.String;
   };
@@ -277,7 +275,6 @@ export interface GlobalFooter extends Struct.ComponentSchema {
     copyright: Schema.Attribute.String;
     description: Schema.Attribute.String;
     internal_links: Schema.Attribute.Component<'shared.link', true>;
-    logo: Schema.Attribute.Relation<'oneToOne', 'api::logo.logo'>;
     social_media_links: Schema.Attribute.Component<'shared.link', true>;
   };
 }
@@ -290,7 +287,6 @@ export interface GlobalNavbar extends Struct.ComponentSchema {
   };
   attributes: {
     left_navbar_items: Schema.Attribute.Component<'shared.link', true>;
-    logo: Schema.Attribute.Relation<'oneToOne', 'api::logo.logo'>;
     right_navbar_items: Schema.Attribute.Component<'shared.link', true>;
   };
 }

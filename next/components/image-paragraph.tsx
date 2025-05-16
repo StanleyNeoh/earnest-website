@@ -42,26 +42,36 @@ export const ImageParagraph = ({
 
       {/* Paragraphs */}
       <div className={cn("flex flex-col gap-4 text-center", paragraph_width)}>
-        {paragraphs && paragraphs.map(({ title, text }, index) => {
-          // @TODO: Use markdown parser with custom react components for translation
-          const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
-          return (
-            <div key={index} className="flex flex-col gap-4">
-              {
-                title && (
-                  <Heading size="sm" className={cn("text-charcoal font-semibold", titleClassName)}>
-                    {title}
-                  </Heading>
-                )
-              }
-              {chunks.map((chunk, index) => (
-                <p key={index} className={cn("text-base md:text-lg text-charcoal", paragraphClassName)}>
-                  {chunk}
-                </p>
-              ))}
-            </div>
-          );
-        })}
+        {
+          (() => {
+            if (Array.isArray(paragraphs)) {
+              return (
+                paragraphs.map(({ title, text }, index) => {
+                  // @TODO: Use markdown parser with custom react components for translation
+                  const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
+                  return (
+                    <div key={index} className="flex flex-col gap-4">
+                      {
+                        title && (
+                          <Heading size="sm" className={cn("text-charcoal font-semibold", titleClassName)}>
+                            {title}
+                          </Heading>
+                        )
+                      }
+                      {chunks.map((chunk, index) => (
+                        <p key={index} className={cn("text-base md:text-lg text-charcoal", paragraphClassName)}>
+                          {chunk}
+                        </p>
+                      ))}
+                    </div>
+                  );
+                })
+              )
+            } else {
+              return paragraphs;
+            }
+          })()
+        }
         {
           CTAs?.length > 0 && (
             <div className="flex flex-row gap-2 mt-4 justify-center">

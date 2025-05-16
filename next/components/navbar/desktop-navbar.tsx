@@ -1,6 +1,6 @@
 import { NavbarItem } from "./navbar-item";
 import { LocaleSwitcher } from "../locale-switcher";
-import { Logo } from "../simple/logo";
+import { Logo } from "../logo";
 
 export const DesktopNavbar = ({
   navbarItems,

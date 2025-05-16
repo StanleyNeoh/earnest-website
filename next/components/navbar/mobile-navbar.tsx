@@ -1,13 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Link } from "next-view-transitions";
 import { useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
 import { Button } from "@/components/elements/button";
 import { LocaleSwitcher } from "../locale-switcher";
 import Image from "next/image";
-import { Logo } from "../simple/logo";
+import { Logo } from "../logo";
+import Link from "next/link";
 
 export const MobileNavbar = ({
   navbarItems,

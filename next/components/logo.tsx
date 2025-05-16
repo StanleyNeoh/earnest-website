@@ -1,34 +1,54 @@
 import React from "react";
 
-import { Link } from "next-view-transitions";
-import { BlurImage } from "./blur-image";
-
+import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
-import { Image } from "@/types/types";
+import Link from "next/link";
 
 export const Logo = ({
-  image,
+  logoUrl,
+  width = 150,
+  height = 150,
+  redirectUrl,
   locale,
-}: { 
-  image?: Image, 
-  locale?: string 
+  className,
+  isStrapiImage = false,
+}: {
+  logoUrl: string;
+  width?: number;
+  height?: number;
+  redirectUrl?: string;
+  locale?: string;
+  className?: string;
+  isStrapiImage?: boolean;
 }) => {
-  if (image) {
+  if (isStrapiImage) logoUrl = strapiImage(logoUrl);
+  if (redirectUrl) {
     return (
       <Link
-        href={`/${locale || 'en'}`}
-        className="flex space-x-2 items-center mr-4 relative z-20"
+        href={locale ? `/${locale}${redirectUrl}` : redirectUrl}
+        className={"flex space-x-2 items-center mr-4 relative z-20"}
       >
-        <BlurImage
-          src={strapiImage(image?.url)}
-          alt={image.alternativeText}
-          width={150}
-          height={150}
-          className="rounded-xl"
+        <Image
+          src={logoUrl}
+          alt="Logo Image"
+          width={width}
+          height={height}
+          className={className}
         />
       </Link>
     );
   }
-
-  return;
+  else {
+    return (
+      <div className="flex space-x-2 items-center mr-4 relative z-20">
+        <Image
+          src={logoUrl}
+          alt="Logo Image"
+          width={width}
+          height={height}
+          className={className}
+        />
+      </div>
+    );
+  }
 };

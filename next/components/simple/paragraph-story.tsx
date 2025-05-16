@@ -1,4 +1,4 @@
-import { ParagraphStoryProps } from "@/types/components/dynamic-zone";
+import { ParagraphStoryProps } from "@/types/components/simple";
 import React from "react";
 import { ImageParagraph } from "./image-paragraph";
 import { Heading } from "../elements/heading";

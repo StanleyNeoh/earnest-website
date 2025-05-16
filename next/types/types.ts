@@ -1,4 +1,4 @@
-import { ParagraphStoryProps } from "./components/dynamic-zone";
+import { ParagraphStoryProps } from "./components/simple";
 
 export interface Article {
   title: string;

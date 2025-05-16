@@ -1,8 +1,8 @@
 import React from "react";
 import { Project } from "@/types/types";
 import Image from "next/image";
-import { Link } from "next-view-transitions";
 import { strapiImage } from "@/lib/strapi/strapiImage";
+import Link from "next/link";
 
 export const ProjectItems = ({
   projects,
@@ -30,7 +30,7 @@ export const ProjectItems = ({
 
 const ProjectItem = ({ project, locale }: { project: Project, locale: string }) => {
   return (
-    <Link 
+    <Link
       href={`/${locale}/projects/${project.slug}` as never} 
       className="group relative block bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-4 border-4 border-gray-300 shadow-md hover:shadow-lg transition duration-200"
       prefetch={true}
