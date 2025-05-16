@@ -12,10 +12,15 @@ function renderText(node: RichTextNode) {
   if (node.code) el = <code className="bg-neutral-100 px-1 rounded">{el}</code>;
   return el;
 }
-
+// @TODO: Use blocks-react-renderer for this
 function RichText({
   node,
-  headingClassName,
+  heading1ClassName,
+  heading2ClassName,
+  heading3ClassName,
+  heading4ClassName,
+  heading5ClassName,
+  heading6ClassName,
   paragraphClassName,
   quoteClassName,
   codeClassName,
@@ -25,7 +30,12 @@ function RichText({
   linkClassName,
 }: {
   node: RichTextNode,
-  headingClassName?: string,
+  heading1ClassName?: string,
+  heading2ClassName?: string,
+  heading3ClassName?: string,
+  heading4ClassName?: string,
+  heading5ClassName?: string,
+  heading6ClassName?: string,
   paragraphClassName?: string,
   quoteClassName?: string,
   codeClassName?: string,
@@ -36,15 +46,28 @@ function RichText({
 }): React.ReactNode {
   switch (node.type) {
     case "heading": {
-      const HeadingTag = `h${node.level || 1}` as keyof JSX.IntrinsicElements;
+      const level = node.level || 1;
+      const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+      const levelClassName =
+        level === 1 ? heading1ClassName :
+        level === 2 ? heading2ClassName :
+        level === 3 ? heading3ClassName :
+        level === 4 ? heading4ClassName :
+        level === 5 ? heading5ClassName :
+        level === 6 ? heading6ClassName : undefined;
       return React.createElement(
         HeadingTag,
-        { className: cn("font-bold mt-6 mb-2 text-gray-900", headingClassName) },
+        { className: cn("font-bold mt-6 mb-2 text-gray-900", levelClassName) },
         node.children?.map((child, i) => (
           <RichText
             key={i}
             node={child}
-            headingClassName={headingClassName}
+            heading1ClassName={heading1ClassName}
+            heading2ClassName={heading2ClassName}
+            heading3ClassName={heading3ClassName}
+            heading4ClassName={heading4ClassName}
+            heading5ClassName={heading5ClassName}
+            heading6ClassName={heading6ClassName}
             paragraphClassName={paragraphClassName}
             quoteClassName={quoteClassName}
             codeClassName={codeClassName}
@@ -64,7 +87,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -83,7 +111,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -102,7 +135,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -122,7 +160,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -142,7 +185,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -184,7 +232,12 @@ function RichText({
             <RichText
               key={i}
               node={child}
-              headingClassName={headingClassName}
+              heading1ClassName={heading1ClassName}
+              heading2ClassName={heading2ClassName}
+              heading3ClassName={heading3ClassName}
+              heading4ClassName={heading4ClassName}
+              heading5ClassName={heading5ClassName}
+              heading6ClassName={heading6ClassName}
               paragraphClassName={paragraphClassName}
               quoteClassName={quoteClassName}
               codeClassName={codeClassName}
@@ -204,7 +257,12 @@ function RichText({
 
 export function RichTextRenderer({
   content,
-  headingClassName,
+  heading1ClassName,
+  heading2ClassName,
+  heading3ClassName,
+  heading4ClassName,
+  heading5ClassName,
+  heading6ClassName,
   paragraphClassName,
   quoteClassName,
   codeClassName,
@@ -215,7 +273,12 @@ export function RichTextRenderer({
   className,
 }: {
   content: RichTextNode[];
-  headingClassName?: string;
+  heading1ClassName?: string;
+  heading2ClassName?: string;
+  heading3ClassName?: string;
+  heading4ClassName?: string;
+  heading5ClassName?: string;
+  heading6ClassName?: string;
   paragraphClassName?: string;
   quoteClassName?: string;
   codeClassName?: string;
@@ -226,13 +289,17 @@ export function RichTextRenderer({
   className?: string;
 }) {
   return (
-    <div
-      className={className}>
+    <div className={className}>
       {content.map((node, i) => (
         <RichText
           key={i}
           node={node}
-          headingClassName={headingClassName}
+          heading1ClassName={heading1ClassName}
+          heading2ClassName={heading2ClassName}
+          heading3ClassName={heading3ClassName}
+          heading4ClassName={heading4ClassName}
+          heading5ClassName={heading5ClassName}
+          heading6ClassName={heading6ClassName}
           paragraphClassName={paragraphClassName}
           quoteClassName={quoteClassName}
           codeClassName={codeClassName}

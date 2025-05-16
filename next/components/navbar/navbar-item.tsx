@@ -24,7 +24,7 @@ export function NavbarItem({
     <Link
       href={href}
       className={cn(
-        "text-center justify-center text-2xl px-4 py-3 rounded-md  hover:bg-neutral-800 hover:text-white/80 text-charcoal hover:shadow-[0px_1px_0px_0px_var(--neutral-600)_inset] transition duration-200",
+        "text-center justify-center text-lg px-3 py-1 rounded-md  hover:bg-neutral-800 hover:text-white/80 text-charcoal hover:shadow-[0px_1px_0px_0px_var(--neutral-600)_inset] transition duration-200",
         (active || pathname?.includes(href)) && "bg-transparent font-bold",
         className
       )}

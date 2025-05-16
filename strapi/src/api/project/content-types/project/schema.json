@@ -69,18 +69,21 @@
     "description": {
       "type": "blocks"
     },
-    "featured": {
-      "type": "blocks"
-    },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "featured": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.featured-project"
     }
   }
 }

@@ -1,3 +1,4 @@
+import { ButtonProps } from "./components/shared";
 import { RichTextNode } from "./components/simple";
 
 export interface Article {
@@ -53,7 +54,13 @@ export interface Project {
   testimonials?: Testimonial[];
   completion_date?: string;
   description: RichTextNode[];
-  featured: RichTextNode[];
+  featured?: {
+    title: string;
+    badge: Image;
+    images: Image[];
+    description: RichTextNode[];
+    CTAs: ButtonProps[];
+  }
   images: Image[];
 }
 

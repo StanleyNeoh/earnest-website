@@ -66,12 +66,10 @@ export default async function HomePage({ params }: { params: { locale: string } 
         testimonials={testimonials.data}
         locale={params.locale}
       />
-      {/* <FeaturedProjects 
-        heading="Featured Projects"
-        sub_heading="Explore our portfolio of successful projects that showcase our expertise and creativity."
-        projects={projects.data.map((project) => project.featured!)}
+      <FeaturedProjects 
+        projects={projects.data}
         locale={params.locale}
-      /> */}
+      />
     </>
   );
 }

@@ -17,6 +17,24 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedFeaturedProject extends Struct.ComponentSchema {
+  collectionName: 'components_shared_featured_projects';
+  info: {
+    description: '';
+    displayName: 'Featured_Project';
+  };
+  attributes: {
+    badge: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    CTAs: Schema.Attribute.Component<'shared.button', true>;
+    description: Schema.Attribute.Blocks;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedImageParagraph extends Struct.ComponentSchema {
   collectionName: 'components_shared_image_paragraphs';
   info: {
@@ -111,6 +129,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.button': SharedButton;
+      'shared.featured-project': SharedFeaturedProject;
       'shared.image-paragraph': SharedImageParagraph;
       'shared.link': SharedLink;
       'shared.paragraph': SharedParagraph;

@@ -3,7 +3,6 @@ import { Project } from "@/types/types";
 import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
-import { RichTextRenderer } from "@/components/rich-text";
 
 export const ProjectItems = ({
   projects,

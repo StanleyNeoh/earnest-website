@@ -6,25 +6,11 @@ import { Heading } from "@/components/elements/heading";
 import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items'; 
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { generateMetadataObject } from '@/lib/shared/metadata';
-import util from "util";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-
-  const pageData = await fetchContentType("project-page", {
-    filters: {
-      locale: params.locale,
-    },
-    populate: "seo.metaImage",
-  }, true)
-
-  const seo = pageData?.seo;
-  const metadata = generateMetadataObject(seo);
-  return metadata;
+export const metadata: Metadata = {
+  title: "Earnest | Projects",
+  description: "Explore our diverse portfolio of projects, showcasing our expertise in design and build solutions for various industries.",
 }
 
 export default async function Projects({
