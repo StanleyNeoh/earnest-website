@@ -37,7 +37,7 @@ export const ProjectItems = ({
               limit: pageSize,
             },
           })
-          const _projects = [...projects, ...newProjects.data];
+          const _projects = [...projects, ...(newProjects?.data || [])];
           setProjects(_projects);
           setHasMoreProjects(_projects.length < newProjects.meta.pagination.total);
         } catch (error) {

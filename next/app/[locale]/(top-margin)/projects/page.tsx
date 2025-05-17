@@ -6,6 +6,7 @@ import { Heading } from "@/components/elements/heading";
 import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items'; 
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
+import { Project } from "@/types/types";
 
 export const metadata: Metadata = {
   title: "Earnest | Projects",
@@ -39,7 +40,7 @@ export default async function Projects({
         Our Projects
       </Heading>
       <ProjectItems 
-        initialProjects={initialProjects.data} 
+        initialProjects={initialProjects?.data || []} 
         locale={params.locale} 
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       />

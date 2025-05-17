@@ -30,11 +30,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
     companies,
     testimonials,
     projects,
-  ]: [
-      { data: Company[] },
-      { data: Testimonial[] },
-      { data: Project[] },
-    ] = await Promise.all([
+  ] = await Promise.all([
       fetchContentType("companies", {
         populate: [],
         filters: {
@@ -57,16 +53,16 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <Brands
         heading="Trusted by Major Brands"
         sub_heading="Proudly trusted by leading companies across industries."
-        companies={companies.data}
+        companies={companies?.data || []}
       />
       <Testimonials
         heading="What Our Clients Say"
         sub_heading="Hear from our satisfied users who have experienced the benefits of our service firsthand."
-        testimonials={testimonials.data}
+        testimonials={testimonials?.data || []}
         locale={params.locale}
       />
       <FeaturedProjects 
-        projects={projects.data}
+        projects={projects?.data || []}
         locale={params.locale}
       />
     </>

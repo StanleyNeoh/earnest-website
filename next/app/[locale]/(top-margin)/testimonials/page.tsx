@@ -4,6 +4,7 @@ import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 
 import { TestimonialItems } from "./testimonial-items";
+import { Testimonial } from "@/types/types";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -30,7 +31,6 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
     },
     locale: params.locale,
   });
-  console.log("initialTestimonials", initialTestimonials);
 
   return (
     <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-4 px-4 md:px-8">
@@ -43,7 +43,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
       />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Testimonials</h1>
       <TestimonialItems 
-        initialTestimonials={initialTestimonials.data}
+        initialTestimonials={initialTestimonials?.data || []}
         pageSize={3} 
         locale={params.locale}
       />

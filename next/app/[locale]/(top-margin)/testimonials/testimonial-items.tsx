@@ -40,7 +40,7 @@ export const TestimonialItems = ({
             },
             locale: locale,
           });
-          const _testimonials = [...testimonials, ...newTestimonials.data];
+          const _testimonials = [...testimonials, ...(newTestimonials?.data || [])];
           setTestimonials(_testimonials);
           setHasMoreTestimonials(_testimonials.length < newTestimonials.meta.pagination.total);
         } catch (error) {
