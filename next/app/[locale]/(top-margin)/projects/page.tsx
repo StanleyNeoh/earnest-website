@@ -19,7 +19,10 @@ export default async function Projects({
   params: { locale: string };
 }) {
   // Fetch the project-page and projects data
-  const projects = await fetchContentType('projects');
+  const projects = await fetchContentType('projects', {
+    populate: ['thumbnail'],
+  });
+
   return (
     <Container className="space-y-8 bg-gradient-to-b from-white to-slate-100 rounded-md shadow-sm py-4 px-8">
       <Breadcrumb

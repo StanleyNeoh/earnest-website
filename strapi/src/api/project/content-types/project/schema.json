@@ -67,7 +67,12 @@
       "mappedBy": "project"
     },
     "description": {
-      "type": "blocks"
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "images": {
       "type": "media",
@@ -83,7 +88,12 @@
     "featured": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.featured-project"
+      "component": "shared.featured-project",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

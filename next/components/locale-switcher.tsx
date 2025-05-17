@@ -28,7 +28,7 @@ export function LocaleSwitcher({
 
   return (
     <Link
-      href={generateLocalizedPath(currentLocale === "en" ? "cn" : "en")}
+      href={generateLocalizedPath(currentLocale === "en" ? "zh" : "en")}
       className={cn(
         "w-[5rem] text-center text-2xl px-4 py-3 rounded-md  hover:bg-neutral-800 hover:text-white/80 text-charcoal hover:shadow-[0px_1px_0px_0px_var(--neutral-600)_inset] transition duration-200 z-12",
         className
