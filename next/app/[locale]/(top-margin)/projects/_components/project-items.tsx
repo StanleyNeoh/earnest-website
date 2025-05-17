@@ -8,7 +8,7 @@ import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
 
 export const ProjectItems = ({
   initialProjects,
-  pageSize = 3,
+  pageSize = 9,
   locale,
   className,
 }: {

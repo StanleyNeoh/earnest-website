@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export const TestimonialItems = ({
   initialTestimonials,
-  pageSize = 2,
+  pageSize = 4,
   locale,
 }: {
   initialTestimonials: Testimonial[];

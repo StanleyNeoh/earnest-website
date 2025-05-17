@@ -27,7 +27,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
     populate: ["project", "project.thumbnail"],
     pagination: {
       page: 1,
-      pageSize: 2,
+      pageSize: 4,
     },
     locale: params.locale,
   });
