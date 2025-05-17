@@ -306,7 +306,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           </div>
           <div className="flex items-center gap-3">
             <MailIcon className="w-5 h-5" />
-            <a href="mailto:hello@earnest.com.sg" className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
+            <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-5 h-5">
