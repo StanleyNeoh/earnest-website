@@ -7,8 +7,6 @@ import Script from 'next/script';
 
 import "./globals.css";
 
-import { SlugProvider } from "./context/SlugContext";
-
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#06b6d4" },
@@ -45,9 +43,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body suppressHydrationWarning>
-        <SlugProvider>
-          {children}
-        </SlugProvider>
+        {children}
         <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL || '#'}>
           <div style={{
             position: 'fixed',

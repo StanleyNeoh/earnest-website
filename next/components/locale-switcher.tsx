@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSlugContext } from "@/app/context/SlugContext";
 import { cn } from "@/lib/utils";
 
 export function LocaleSwitcher({
@@ -13,9 +12,6 @@ export function LocaleSwitcher({
   currentLocale: string,
   className?: string,
 }) {
-  const { state } = useSlugContext();
-  const { localizedSlugs } = state;
-
   const pathname = usePathname(); // Current path
   const segments = pathname.split("/"); // Split path into segments
 
@@ -26,7 +22,7 @@ export function LocaleSwitcher({
     if (segments.length <= 2) {
       return `/${locale}`;
     }
-    segments[1] = localizedSlugs[locale]; // Replace slug if available
+    segments[1] = locale; // Replace slug if available
     return segments.join("/");
   };
 
