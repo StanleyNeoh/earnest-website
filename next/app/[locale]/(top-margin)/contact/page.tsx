@@ -7,6 +7,9 @@ import { Button } from "@/components/elements/button";
 import Image from "next/image";
 
 import aboutUs1 from "@/public/about-us/acl-2017/1.jpg";
+import { LinkedInIcon } from "@/components/icons/illustrations";
+import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -100,7 +103,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
   };
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-2 relative overflow-hidden mt-20">
+    <div className="w-full flex flex-col md:flex-row relative mt-20">
       <Toaster />
       <div className="flex relative items-center w-full justify-center px-6">
         <div className="mx-auto w-full max-w-md">
@@ -113,7 +116,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
             </p>
           </div>
 
-          <div className="py-10">
+          <div className="pt-10">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
@@ -273,14 +276,45 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           </div>
         </div>
       </div>
-      <div className="relative w-full z-20 hidden md:flex overflow-hidden">
+      <div className="relative w-full z-20 flex overflow-hidden p-8`">
+        {/* Background Image: only on md+ screens */}
         <Image
           src={aboutUs1.src}
           alt="Background Image"
           fill
-          className="object-cover w-full h-full"
+          className="absolute inset-0 z-0 object-cover hidden md:block"
           priority
         />
+        {/* Contact Details Card: always visible */}
+        <div className={cn(
+          "m-6 md:m-0 md:absolute md:top-8 md:left-8",
+          "bg-white/95 rounded-2xl shadow-2xl border border-gray-200 p-6 flex flex-col gap-4 md:max-w-xs w-full z-40"
+        )}>
+          <h2 className="text-lg font-semibold text-blue-800 mb-2">Contact Details</h2>
+          <div className="flex items-start gap-3">
+            <MapPin className="w-5 h-5 mt-1" />
+            <div>
+              <div className="font-medium text-gray-800">Earnest Office</div>
+              <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5">
+              <PhoneIcon />
+            </div>
+            <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <MailIcon className="w-5 h-5" />
+            <a href="mailto:hello@earnest.com.sg" className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5">
+              <LinkedInIcon />
+            </div>
+            <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
+          </div>
+        </div>
       </div>
     </div>
   );
