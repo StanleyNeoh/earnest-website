@@ -51,7 +51,7 @@ export const SingleProject = ({
         </div>
       )}
       {/* Gallery */}
-      {project.images?.length > 0 && (
+      {project?.images?.length && (
         <div className="max-w-7xl mx-auto">
           <ImageGallery 
             images={project.images}

@@ -1,26 +1,10 @@
 import { ButtonProps } from "./components/shared";
 import { RichTextNode } from "./components/simple";
 
-export interface Article {
-  title: string;
-  description: string;
-  slug: string;
-  content: string;
-  dynamic_zone: any[];
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  locale: string;
-  image: Image;
-  categories: {
-    name: string;
-  }[];
-}
-
 export interface Seo {
   metaTitle: string;
   metaDescription: string;
-  metaImage: Image;
+  metaImage?: Image;
   keywords: string;
   metaRobots: string;
   structuredData: string;
@@ -38,22 +22,22 @@ export interface Image {
 export interface Company {
   name: string;
   slug: string;
-  logo: Image;
+  logo?: Image;
   selected: boolean;
   projects?: Project[];
   testimonials?: Testimonial[];
 }
 
 export interface Project {
-  companies: Company[];
+  companies?: Company[];
   slug: string;
   name: string;
-  thumbnail: Image;
+  thumbnail?: Image;
   seo?: Seo;
   category: string;
   testimonials?: Testimonial[];
   completion_date?: string;
-  description: RichTextNode[];
+  description?: RichTextNode[];
   featured?: {
     title: string;
     badge: Image;
@@ -61,7 +45,7 @@ export interface Project {
     description: RichTextNode[];
     CTAs: ButtonProps[];
   }
-  images: Image[];
+  images?: Image[];
 }
 
 export interface Testimonial {

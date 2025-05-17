@@ -7,6 +7,7 @@ import { Brands } from '@/app/[locale]/_components/brands';
 import { Testimonials } from '@/app/[locale]/_components/testimonials';
 import { FeaturedProjects } from '@/app/[locale]/_components/featured-projects';
 import { Company, Project, Testimonial } from '@/types/types';
+import { features } from 'process';
 
 export const metadata: Metadata = {
   title: "Earnest | Home",
@@ -31,20 +32,28 @@ export default async function HomePage({ params }: { params: { locale: string } 
     testimonials,
     projects,
   ] = await Promise.all([
-      fetchContentType("companies", {
-        populate: [],
-        filters: {
-          selected: true
+    fetchContentType("companies", {
+      populate: [],
+      filters: {
+        selected: true
+      },
+    }),
+    fetchContentType("testimonials", {
+      populate: ['company', 'project', 'company.logo'],
+    }),
+    fetchContentType("projects", {
+      populate: {
+        featured: {
+          populate: "*",
+        }
+      },
+      filters: {
+        featured: {
+          $notNull: true,
         },
-      }),
-      fetchContentType("testimonials", {
-        populate: ['company', 'project', 'company.logo'],
-      }),
-      fetchContentType("projects", {
-        populate: {},
       }
-      ),
-    ]);
+    }),
+  ]);
 
   return (
     <>
@@ -61,7 +70,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
         testimonials={testimonials?.data || []}
         locale={params.locale}
       />
-      <FeaturedProjects 
+      <FeaturedProjects
         projects={projects?.data || []}
         locale={params.locale}
       />

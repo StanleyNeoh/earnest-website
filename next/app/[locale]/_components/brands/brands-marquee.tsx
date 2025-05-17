@@ -55,7 +55,7 @@ const BrandLevel = ({
               <BlurImage
                 key={index}
                 src={strapiImage(logo?.url)}
-                alt={logo?.alternativeText}
+                alt={logo?.alternativeText || "Company logo"}
                 width={100}
                 height={50}
                 draggable={false}
