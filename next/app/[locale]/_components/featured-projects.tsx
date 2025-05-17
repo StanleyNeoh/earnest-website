@@ -61,7 +61,7 @@ const FeaturedProject = ({
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2">
           <ImageCarousel 
-            images={images} 
+            images={images || []} 
             isStrapiImage={true} 
             auto="play"
             showArrows={false}
@@ -69,7 +69,7 @@ const FeaturedProject = ({
         </div>
         <div className="w-full md:w-1/2 flex flex-col h-full">
           <RichTextRenderer 
-            content={description}
+            content={description || []}
             heading1ClassName="text-2xl mb-8 text-center"
             paragraphClassName="text-center"
           />

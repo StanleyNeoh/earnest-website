@@ -20,41 +20,41 @@ export interface Image {
 }
 
 export interface Company {
-  name: string;
-  slug: string;
+  name?: string;
+  slug?: string;
   logo?: Image;
-  selected: boolean;
+  selected?: boolean;
   projects?: Project[];
   testimonials?: Testimonial[];
 }
 
 export interface Project {
   companies?: Company[];
-  slug: string;
-  name: string;
+  slug?: string;
+  name?: string;
   thumbnail?: Image;
   seo?: Seo;
-  category: string;
+  category?: string;
   testimonials?: Testimonial[];
   completion_date?: string;
   description?: RichTextNode[];
   featured?: {
-    title: string;
-    badge: Image;
-    images: Image[];
-    description: RichTextNode[];
-    CTAs: ButtonProps[];
+    title?: string;
+    badge?: Image;
+    images?: Image[];
+    description?: RichTextNode[];
+    CTAs?: ButtonProps[];
   }
   images?: Image[];
 }
 
 export interface Testimonial {
-  representative_name: string;
-  representative_role: string;
-  remarks: string;
+  representative_name?: string;
+  representative_role?: string;
+  remarks?: string;
   seo?: Seo;
-  featured: boolean;
-  slug: string;
+  featured?: boolean;
+  slug?: string;
   company?: Company;
   project?: Project;
 }

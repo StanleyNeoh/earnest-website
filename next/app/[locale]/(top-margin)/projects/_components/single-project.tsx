@@ -36,7 +36,7 @@ export const SingleProject = ({
           <div className="flex-shrink-0 w-full max-w-xs lg:max-w-md">
             <BlurImage
               src={strapiImage(project.thumbnail.url)}
-              alt={project.name}
+              alt={project.name || "Project Thumbnail"}
               width={600}
               height={400}
               className="rounded-xl object-cover shadow-lg w-full h-56 lg:h-72"
