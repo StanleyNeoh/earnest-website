@@ -5,7 +5,6 @@ import { Container } from "@/components/container";
 import { Heading } from "@/components/elements/heading";
 import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items'; 
 import fetchContentType from "@/lib/strapi/fetchContentType";
-import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
 export const metadata: Metadata = {
@@ -19,8 +18,12 @@ export default async function Projects({
   params: { locale: string };
 }) {
   // Fetch the project-page and projects data
-  const projects = await fetchContentType('projects', {
+  const initialProjects = await fetchContentType('projects', {
     populate: ['thumbnail'],
+    pagination: {
+      page: 1,
+      pageSize: 9,
+    },
   });
 
   return (
@@ -33,9 +36,13 @@ export default async function Projects({
         className="mb-4"
       />
       <Heading as="h1" className="text-3xl font-bold text-gray-800">
-        Our projects
+        Our Projects
       </Heading>
-      <ProjectItems projects={projects?.data} locale={params.locale} className="grid grid-cols-1 md:grid-cols-2 gap-6" />
+      <ProjectItems 
+        initialProjects={initialProjects.data} 
+        locale={params.locale} 
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      />
     </Container>
   );
 }
