@@ -112,7 +112,7 @@ export default function DesignConsultancyPage() {
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">How It Works</h2>
         <h3 className="mb-2 text-gray-700 font-semibold">Design Consultancy Process</h3>
-        <ol className="list-decimal space-y-3">
+        <ol className="list-none space-y-3">
           {processSteps.map((step, i) => (
             <li key={i}>
               <div className="flex flex-row items-center gap-2 mb-2">
