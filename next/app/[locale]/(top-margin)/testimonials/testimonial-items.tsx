@@ -56,7 +56,7 @@ export const TestimonialItems = ({
     return () => {
       observer.disconnect();
     };
-  }, [loadTriggerRef.current, loading, hasMoreTestimonials]);
+  }, [loading, hasMoreTestimonials, locale, pageSize, testimonials]);
 
   return (
     <div className="space-y-16">

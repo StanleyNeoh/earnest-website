@@ -51,7 +51,7 @@ export const ProjectItems = ({
     return () => {
       observer.disconnect();
     }
-  }, [loadTriggerRef.current, loading, hasMoreProjects])
+  }, [loading, hasMoreProjects, pageSize, projects]);
 
   return (
     <div className="relative">
