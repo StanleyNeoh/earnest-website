@@ -27,12 +27,17 @@ export const ProjectItems = ({
 };
 
 const ProjectItem = ({ project, locale }: { project: Project, locale: string }) => {
+  const category = project.category == 'office-interior' 
+    ? 'Office Interior' 
+    : project.category == 'industrial' 
+    ? 'Industrial'
+    : null;
   return (
     <Link
       href={`/${locale}/projects/${project.slug}` as never}
       className="group relative block rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
       prefetch={true}
-    >
+    > 
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         {project?.thumbnail && (
           <Image
@@ -57,6 +62,9 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
         <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
           {project.name}
         </h3>
+        {
+          category && <div className="text-sm text-gray-500">{category}</div>
+        }
       </div>
     </Link>
   );

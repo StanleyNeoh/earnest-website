@@ -17,6 +17,11 @@ export const SingleProject = ({
   locale: string,
   containerClassName?: string,
 }) => {
+  const category = project.category == 'office-interior' 
+    ? 'Office Interior' 
+    : project.category == 'industrial' 
+    ? 'Industrial'
+    : null;
   return (
     <div className={cn(containerClassName, "space-y-12")}> 
       {/* Header: Title left, Thumbnail right */}
@@ -25,6 +30,7 @@ export const SingleProject = ({
           <Heading className="text-3xl font-bold text-gray-800 mb-2 text-left">
             {project.name}
           </Heading>
+          {category && <p className="text-gray-600 text-lg">{category}</p>}
         </div>
         {project.thumbnail && (
           <div className="flex-shrink-0 w-full max-w-xs lg:max-w-md">
