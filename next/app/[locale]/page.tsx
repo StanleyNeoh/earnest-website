@@ -7,7 +7,6 @@ import { Brands } from '@/app/[locale]/_components/brands';
 import { Testimonials } from '@/app/[locale]/_components/testimonials';
 import { FeaturedProjects } from '@/app/[locale]/_components/featured-projects';
 import { Company, Project, Testimonial } from '@/types/types';
-import util from 'util';
 
 export const metadata: Metadata = {
   title: "Earnest | Home",

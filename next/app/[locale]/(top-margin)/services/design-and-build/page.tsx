@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const processSteps = [
   {
     title: "Space",
-    text: "We start by identifying your team’s spatial needs — including workstations, meeting rooms, and tech infrastructure. Use our Space Calculator or let us help you secure a new location through our partner agents.",
+    text: "We start by identifying your team’s spatial needs — including workstations, meeting rooms, and tech infrastructure.",
   },
   {
     title: "Survey",
