@@ -9,7 +9,7 @@ import Image from "next/image";
 import aboutUs1 from "@/public/about-us/acl-2017/1.jpg";
 import { LinkedInIcon } from "@/components/icons/illustrations";
 import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import MapboxMap from "@/components/mapbox-map";
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -105,7 +105,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
   return (
     <div className="w-full flex flex-col md:flex-row relative mt-20">
       <Toaster />
-      <div className="flex relative items-center w-full justify-center px-6">
+      <div className="relative flex items-center w-full justify-center px-6">
         <div className="mx-auto w-full max-w-md">
           <div>
             <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-charcoal">
@@ -276,43 +276,49 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           </div>
         </div>
       </div>
-      <div className="relative w-full z-20 flex overflow-hidden p-8`">
+      <div className="relative w-full">
         {/* Background Image: only on md+ screens */}
         <Image
           src={aboutUs1.src}
           alt="Background Image"
           fill
-          className="absolute inset-0 z-0 object-cover hidden md:block"
+          className="absolute inset-0 object-cover hidden md:block"
           priority
         />
-        {/* Contact Details Card: always visible */}
-        <div className={cn(
-          "m-6 md:m-0 md:absolute md:top-8 md:left-8",
-          "bg-white/95 rounded-2xl shadow-2xl border border-gray-200 p-6 flex flex-col gap-4 md:max-w-xs w-full z-40"
-        )}>
-          <h2 className="text-lg font-semibold text-blue-800 mb-2">Contact Details</h2>
-          <div className="flex items-start gap-3">
-            <MapPin className="w-5 h-5 mt-1" />
-            <div>
-              <div className="font-medium text-gray-800">Earnest Office</div>
-              <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
+
+        {/* Content */}
+        <div className="m-8 flex flex-col gap-6">
+          {/* Contact Details Card: always visible */}
+          <div className="bg-white/95 rounded-2xl shadow-2xl border border-gray-200 p-6 flex flex-col gap-4 w-full m-0 z-10">
+            <h2 className="text-lg font-semibold text-blue-800">Contact Details</h2>
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 mt-1" />
+              <div>
+                <div className="font-medium text-gray-800">Earnest Office</div>
+                <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <PhoneIcon />
+              </div>
+              <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <MailIcon className="w-5 h-5" />
+              <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <LinkedInIcon />
+              </div>
+              <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5">
-              <PhoneIcon />
-            </div>
-            <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <MailIcon className="w-5 h-5" />
-            <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5">
-              <LinkedInIcon />
-            </div>
-            <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
+
+          {/* Mapbox Map: only on md+ screens, next to the card */}
+          <div className="relative w-full h-80 z-10">
+            <MapboxMap className="rounded-2xl shadow-2xl border border-gray-200"/>
           </div>
         </div>
       </div>
