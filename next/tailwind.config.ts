@@ -47,6 +47,12 @@ const config: Config = {
           "100%": { transform: "rotate(360deg)" },
         },
       },
+      fontFamily: {
+        sans: [
+          "Avenir Next",
+          "sans-serif",
+        ],
+      },
     },
   },
   plugins: [

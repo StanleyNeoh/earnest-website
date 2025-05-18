@@ -31,12 +31,7 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   return (
-    <div
-      className={cn(
-        inter.className,
-        "bg-neutral-100 antialiased h-full w-full"
-      )}
-    >
+    <div className="bg-neutral-100 antialiased h-full w-full">
       <Navbar locale={locale} />
       <div className="relative overflow-hidden w-full">
         {children}
