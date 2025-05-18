@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { Container } from "@/components/container";
 import { Heading } from "@/components/elements/heading";
-import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items'; 
+import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items';
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { Project } from "@/types/types";
@@ -28,22 +28,24 @@ export default async function Projects({
   });
 
   return (
-    <Container className="space-y-8 bg-gradient-to-b from-white to-slate-100 rounded-md shadow-sm py-4 px-8">
-      <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Projects", href: "/projects" },
-        ]}
-        className="mb-4"
+    <>
+      <Container className="space-y-8 py-4 px-8">
+        <Breadcrumb
+          crumbs={[
+            { name: "Home", href: "/" },
+            { name: "Projects", href: "/projects" },
+          ]}
+          className="mb-4"
+        />
+        <Heading as="h1" className="text-3xl font-bold text-gray-800">
+          Our Projects
+        </Heading>
+      </Container>
+      <ProjectItems
+        initialProjects={initialProjects?.data || []}
+        locale={params.locale}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 px-8"
       />
-      <Heading as="h1" className="text-3xl font-bold text-gray-800">
-        Our Projects
-      </Heading>
-      <ProjectItems 
-        initialProjects={initialProjects?.data || []} 
-        locale={params.locale} 
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-      />
-    </Container>
+    </>
   );
 }

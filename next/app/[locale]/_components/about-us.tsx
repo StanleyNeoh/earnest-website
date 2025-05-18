@@ -53,7 +53,7 @@ export const AboutUs = ({
 
 
   return (
-    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 shadow-sm px-12 pt-12">
+    <Container className="bg-transparent pt-12">
       <ParagraphStory
         {...about_us}
         locale={locale}

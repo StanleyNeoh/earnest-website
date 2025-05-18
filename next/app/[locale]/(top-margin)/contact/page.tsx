@@ -10,6 +10,7 @@ import aboutUs1 from "@/public/about-us/acl-2017/1.jpg";
 import { LinkedInIcon } from "@/components/icons/illustrations";
 import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
 import MapboxMap from "@/components/mapbox-map";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -54,7 +55,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
     const companyName = formData.get("company_name") as string;
     const serviceInterest = formData.get("service_interest") as string;
 
-    if (!name || !email || !companyName || !serviceInterest) {
+    if (!name || !email || !companyName || !phone || !serviceInterest) {
       toast.error("Please fill in all required fields.");
       setIsSubmitting(false);
       return;
@@ -106,22 +107,22 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
     <div className="w-full flex flex-col md:flex-row relative mt-20">
       <Toaster />
       <div className="relative flex items-center w-full justify-center px-6">
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full md:px-12 py-8">
           <div>
-            <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-charcoal">
+            <h1 className="text-5xl font-bold">
               {"Let's Bring Your Vision to Life"}
             </h1>
-            <p className="mt-4 text-charcoal text-sm max-w-sm">
+            <p className="mt-4 text-2xl max-w-lg">
               {"Ready to start your next design project? Reach out to us — we'd love to hear from you"}
             </p>
           </div>
 
           <div className="pt-10">
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Name <span className="text-red-500">*</span>
                 </label>
@@ -139,7 +140,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -157,9 +158,9 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
-                  Phone
+                  Phone <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -175,7 +176,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="company_name"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Company Name <span className="text-red-500">*</span>
                 </label>
@@ -193,7 +194,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="service_interest"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Service Interest <span className="text-red-500">*</span>
                 </label>
@@ -217,7 +218,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Message
                 </label>
@@ -235,7 +236,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="attachments"
-                  className="block text-sm font-medium leading-6 text-neutral-800"
+                  className="block text-2xl font-medium leading-6 text-neutral-800"
                 >
                   Attachments
                 </label>
@@ -294,7 +295,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
             <div className="flex items-start gap-3">
               <MapPin className="w-5 h-5 mt-1" />
               <div>
-                <div className="font-medium text-gray-800">Earnest Office</div>
+                <div className="font-medium text-gray-800">Earnest Designer & Project Pte Ltd</div>
                 <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
               </div>
             </div>
@@ -303,6 +304,12 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
                 <PhoneIcon />
               </div>
               <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <IoLogoWhatsapp />
+              </div>
+              <a href={process.env.NEXT_PUBLIC_EARNEST_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
             </div>
             <div className="flex items-center gap-3">
               <MailIcon className="w-5 h-5" />

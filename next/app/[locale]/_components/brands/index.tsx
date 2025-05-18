@@ -16,7 +16,7 @@ export const Brands = ({
   companies: Company[]
 }) => {
   return (
-    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 pt-12">
+    <Container className="bg-transparent pt-12 max-w-max">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}
@@ -26,7 +26,7 @@ export const Brands = ({
         companies && (
           <BrandsMarquee
             companies={companies}
-            className="bg-white py-4"
+            className="bg-white py-4 max-w-max"
           />
         )
       }

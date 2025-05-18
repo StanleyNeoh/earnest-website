@@ -18,7 +18,7 @@ export const Testimonials = ({
   locale: string,
 }) => {
   return (
-    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 pt-12">
+    <Container className="bg-transparent pt-12 max-w-max">
       <Heading className="pt-4">{heading}</Heading>
       <Subheading>
         {sub_heading}

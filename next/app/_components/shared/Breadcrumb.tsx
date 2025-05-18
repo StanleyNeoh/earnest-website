@@ -12,7 +12,7 @@ export function Breadcrumb({
   className?: string;
 }) {
   return (
-    <nav className={cn("text-sm mb-6 text-gray-500", className)} aria-label="Breadcrumb">
+    <nav className={cn("text-xl mb-6 text-gray-500", className)} aria-label="Breadcrumb">
       <ol className="list-reset flex">
         {
           crumbs?.map((crumb, index) => {

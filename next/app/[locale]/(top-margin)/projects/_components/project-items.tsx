@@ -103,13 +103,10 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
         </div>
       </div>
       {/* Always show title below image for accessibility and mobile */}
-      <div className="text-center">
-        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
+      <div className="text-center py-4">
+        <h3 className="text-2xl text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
           {project.name}
         </h3>
-        {
-          category && <div className="text-sm text-gray-500">{category}</div>
-        }
       </div>
     </Link>
   );

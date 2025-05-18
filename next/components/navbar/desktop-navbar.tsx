@@ -16,8 +16,8 @@ export const DesktopNavbar = ({
 }) => {
   return (
     <div className="fixed top-0 inset-x-0 w-full z-10 bg-white">
-      <div className="max-w-5xl flex flex-row items-center justify-between mx-auto">
-        <div className="w-full py-4 flex flex-row gap-4 items-center">
+      <div className="max-w-7xl flex flex-row items-center justify-between mx-auto">
+        <div className="w-full py-8 flex flex-row gap-4 items-center">
           <Logo 
             logoUrl={logoUrl}
             width={100}
@@ -26,7 +26,7 @@ export const DesktopNavbar = ({
             locale={locale}
             className="ml-4"
           />
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-8">
             {navbarItems.map((item) => (
               <NavbarItem href={item.URL} key={item.text}>
                 {item.text}

@@ -42,7 +42,7 @@ export default function ReinstatementPage() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
         <div className="flex-1">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-            Service - Reinstatement
+            Reinstatement
           </h1>
           <h2 className="text-lg text-gray-600 mb-4">
             Fast, worry-free, and fully managed — so you can focus on your next chapter.
@@ -81,7 +81,11 @@ export default function ReinstatementPage() {
       {/* What we offer */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">What we offer</h2>
-        <p className="mb-2 text-gray-700">Everything handled — from start to finish.<br />We’ve completed hundreds of reinstatements for tenants and landlords. From site evaluation to final handover, every detail is managed by our experienced team.</p>
+        <p className="mb-2 text-gray-700">
+          Everything handled — from start to finish.<br />
+          Successfully completed reinstatement projects for landlords, building management and tenants.
+          From site evaluation to final handover, every detail is managed by our experienced team.
+        </p>
       </div>
 
       {/* Our Reinstatement Process */}

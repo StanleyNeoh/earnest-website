@@ -126,7 +126,7 @@ export default function DesignConsultancyPage() {
           ))}
         </ol>
       </div>
-      <div className="mb-8">
+      {/* <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Choosing Between Design Consultancy and Design &amp; Build</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 rounded-lg bg-white text-sm">
@@ -148,7 +148,7 @@ export default function DesignConsultancyPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
       <div className="flex justify-center mt-10">
         <Link href="/contact">
           <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow transition">

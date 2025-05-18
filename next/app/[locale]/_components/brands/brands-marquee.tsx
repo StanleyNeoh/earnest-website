@@ -47,6 +47,8 @@ const BrandLevel = ({
 
   return (
     <div className={cn("flex h-full relative", className)}>
+      <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-white to-transparent" />
+      <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-white to-transparent" />
       <Marquee speed={speed} direction={direction}>
         {
           level.map((company: Company, index: any) => {
@@ -59,7 +61,7 @@ const BrandLevel = ({
                 width={100}
                 height={50}
                 draggable={false}
-                className="mx-4"
+                className="mx-8"
               />
             );
           })

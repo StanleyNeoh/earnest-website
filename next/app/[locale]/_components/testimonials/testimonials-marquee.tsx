@@ -16,9 +16,9 @@ export const TestimonialsMarquee = ({
   const levelOne = testimonials.slice(0, 8);
   const levelTwo = testimonials.slice(8, 16);
   return (
-    <div className="max-w-7xl mx-auto">
-      <TestimonialLevel level={levelOne} speed={20} direction="left" locale={locale} />
-      <TestimonialLevel level={levelTwo} speed={20} direction="right" className="mt-8" locale={locale} />
+    <div>
+      <TestimonialLevel level={levelOne} speed={80} direction="left" locale={locale} />
+      <TestimonialLevel level={levelTwo} speed={80} direction="right" className="mt-8" locale={locale} />
     </div>
   );
 };

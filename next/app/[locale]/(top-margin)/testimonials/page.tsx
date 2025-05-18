@@ -33,7 +33,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
   });
 
   return (
-    <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-4 px-4 md:px-8">
+    <Container className="py-4 px-4 md:px-8">
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },

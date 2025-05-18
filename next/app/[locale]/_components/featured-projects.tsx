@@ -1,11 +1,9 @@
-import React from "react";
 import { Heading } from "../../../components/elements/heading";
 import { Subheading } from "../../../components/elements/subheading";
 import { Container } from "../../../components/container";
 import { Project } from "@/types/types";
 import { ImageCarousel } from "@/components/image-carousel";
 import { RichTextRenderer } from "@/components/rich-text";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
@@ -18,12 +16,12 @@ export const FeaturedProjects = ({
   locale: string;
 }) => {
   return (
-    <Container className="bg-gradient-to-b from-neutral-100 via-white to-neutral-100 rounded-md shaodow-sm py-10 space-y-5">
-      <Heading className="text-charcoal font-semibold">
-        Featured Projects
+    <Container className="bg-transparent py-10 space-y-5">
+      <Heading>
+        Our Recent Award-Winning Project
       </Heading>
-      <Subheading className="text-charcoal">
-        Explore our portfolio of successful projects that showcase our expertise and creativity.
+      <Subheading>
+        Explore the project that redefines the future of workplace interiors
       </Subheading>
       {
         projects.map((project, i) => (
@@ -58,7 +56,7 @@ const FeaturedProject = ({
         )}
       </div>
       {/* Body: Responsive flex-col on mobile, flex-row on md+ */}
-      <div className="flex flex-col md:flex-row gap-8 items-start">
+      <div className="flex flex-col md:flex-row gap-8 items-center">
         <div className="w-full md:w-1/2">
           <ImageCarousel 
             images={images || []} 

@@ -23,7 +23,7 @@ const processSteps = [
   },
   {
     title: "Design",
-    text: "Led by experienced architects, we co-create a workspace that reflects your company’s culture and aspirations. Expect smart layouts, refined aesthetics, and a thoughtful user experience.",
+    text: "Our experienced team will co-create a workspace that reflects your company’s culture and aspirations. Expect smart layouts, refined aesthetics, and a thoughtful user experience.",
   },
   {
     title: "Price",
@@ -31,7 +31,7 @@ const processSteps = [
   },
   {
     title: "Submission",
-    text: "If your design requires structural changes (e.g., doors or partitions), we’ll handle submissions to SCDF and BCA. Our in-house architect Esther ensures everything is compliant and approved.",
+    text: "If your design requires structural changes (e.g., doors or partitions), we’ll handle submissions to SCDF and BCA. Our professional engineer ensures everything is compliant and approved.",
   },
   {
     title: "Build",
@@ -52,7 +52,7 @@ const whoFor = [
 ];
 
 const whyChoose = [
-  "Innovation meets practicality — Beautiful, functional designs tailored to your brand",
+  "Innovation meets practicality — Aesthetic, functional designs tailored to your brand",
   "Cost transparency — Every detail itemised, with urgent estimates available",
   "Regulatory expertise — Full compliance with SCDF, BCA and other authorities",
   "Peace of mind — Reinstatement and moving services available",
@@ -114,7 +114,11 @@ export default function DesignAndBuildPage() {
       {/* Why choose */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">Why choose Design &amp; Build with Us?</h2>
-        <p className="mb-2 text-gray-700">Seamless execution from start to finish.<br />Our integrated team of designers, architects, and project managers handles everything — from initial concepts to construction. You’ll benefit from a single point of contact, faster timelines, and fewer surprises.</p>
+        <p className="mb-2 text-gray-700">
+          Seamless execution from start to finish.
+          <br />
+          Our integrated team of designers and project managers handles everything — from initial concepts to construction. You’ll benefit from a single point of contact, faster timelines, and fewer surprises.
+        </p>
         <ul className="list-disc pl-6 space-y-1">
           {whyChoose.map((item, i) => (
             <li key={i} className="text-blue-700">{item}</li>

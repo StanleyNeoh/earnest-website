@@ -27,27 +27,27 @@ export const metadata: Metadata = {
 
 const serviceSections = [
   {
+    href: "/services/pre-lease-services",
+    image: aboutUs3,
+    title: "Pre-Lease",
+    subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
+  },
+  {
     href: "/services/design-and-build",
     image: aboutUs1,
-    title: "Service - Design and Build",
+    title: "Design and Build",
     subtitle: "Office transformations that exceed expectations.",
   },
   {
     href: "/services/design-consultancy",
     image: aboutUs2,
-    title: "Services - Design Consultancy",
+    title: "Design Consultancy",
     subtitle: "Empowering you to make confident, inspired design decisions.",
-  },
-  {
-    href: "/services/pre-lease-services",
-    image: aboutUs3,
-    title: "Services - Pre-lease services",
-    subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
   },
   {
     href: "/services/reinstatement",
     image: aboutUs4,
-    title: "Service - Reinstatement",
+    title: "Reinstatement",
     subtitle: "Fast, worry-free, and fully managed — so you can focus on your next chapter.",
   },
 ];
@@ -55,7 +55,7 @@ const serviceSections = [
 export default async function ServicesPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   return (
-    <Container className="bg-gradient-to-b from-white via-neutral-100 to-white shadow-sm rounded-md py-4 px-8">
+    <Container className="py-4 px-8">
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },
