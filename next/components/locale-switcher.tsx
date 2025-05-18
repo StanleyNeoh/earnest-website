@@ -34,7 +34,7 @@ export function LocaleSwitcher({
         className
       )}
     >
-      {currentLocale === "en" ? "华语" : "EN"}
+      {currentLocale === "en" ? "中文" : "EN"}
     </Link>
   );
 }

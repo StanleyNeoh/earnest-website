@@ -2,9 +2,10 @@ import type { Viewport } from "next";
 import { Locale, i18n } from '@/i18n.config'
 import Link from 'next/link';
 import Image from 'next/image';
-import whatsappIcon from '@/public/whatsapp.svg';
 import Script from 'next/script';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
+import whatsappIcon from '@/public/whatsapp.svg';
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -63,6 +64,7 @@ export default function RootLayout({
             <Image src={whatsappIcon} alt="WhatsApp" width={24} height={24} />
           </div>
         </Link>
+        <SpeedInsights />
       </body>
     </html>
   );

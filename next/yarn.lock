@@ -1417,6 +1417,11 @@
   dependencies:
     "@use-gesture/core" "10.3.1"
 
+"@vercel/speed-insights@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.2.0.tgz#1656c3596d4ec02d93d301ca45944c1b9b245186"
+  integrity sha512-y9GVzrUJ2xmgtQlzFP2KhVRoCglwfRQgjyfY607aU0hh0Un6d0OUyrJkjuAlsV18qR4zfoFPs/BiIj9YDS6Wzw==
+
 accessor-fn@1:
   version "1.5.1"
   resolved "https://registry.npmjs.org/accessor-fn/-/accessor-fn-1.5.1.tgz"
