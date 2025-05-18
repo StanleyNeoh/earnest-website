@@ -40,7 +40,7 @@ export default async function SingleProjectPage({
   }
 
   return (
-    <Container className="space-y-8 bg-gradient-to-b from-white via-slate-100 to-white rounded-md shadow-sm p-8">
+    <Container className="space-y-8 p-8">
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },
