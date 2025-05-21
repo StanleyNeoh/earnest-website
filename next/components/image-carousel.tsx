@@ -22,14 +22,18 @@ export const ImageCarousel = ({
   auto = "none",
   showArrows = true,
   numPerPage = 1,
-  className = "",
+  carouselClassName,
+  contentClassName,
+  imageClassName,
   isStrapiImage = false,
 }: {
   images: ImageType[];
   auto?: "play" | "scroll" | "none";
   showArrows?: boolean;
   numPerPage?: number;
-  className?: string;
+  carouselClassName?: string;
+  contentClassName?: string;
+  imageClassName?: string;
   isStrapiImage?: boolean;
 }) => {
   const plugin = auto === "play"
@@ -53,13 +57,14 @@ export const ImageCarousel = ({
         loop: true,
       }}
       plugins={plugin}
+      className={carouselClassName}
     >
       <CarouselContent>
         {
           photos.map((photo, index) => (
             <CarouselItem
               key={index}
-              className={`flex items-center justify-center ${basis}`}
+              className={cn(`flex items-center justify-center`, basis, contentClassName)}
               onClick={() => setIndex(index)}
             >
               <Image
@@ -67,7 +72,7 @@ export const ImageCarousel = ({
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
-                className={cn("object-cover w-full h-full", className)}
+                className={cn("object-cover w-full h-full", imageClassName)}
               />
             </CarouselItem>
           ))

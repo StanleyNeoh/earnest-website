@@ -3,7 +3,7 @@ import React from "react";
 import { Heading } from "../../../components/elements/heading";
 import { Subheading } from "../../../components/elements/subheading";
 import { Container } from "../../../components/container";
-import backgroundImage from "@/public/office-space.png";
+import heroImage from "../../../public/hero.png";
 
 export const Hero = ({
   companyStartDate,
@@ -15,7 +15,7 @@ export const Hero = ({
       <div
         className="relative py-32 w-screen h-screen bg-cover bg-center"
         style={{
-          backgroundImage: `url(${backgroundImage.src})`,
+          backgroundImage: `url(${heroImage.src})`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-radial from-white to-transparent"></div>

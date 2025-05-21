@@ -62,6 +62,9 @@
       "relation": "oneToOne",
       "target": "api::project.project",
       "inversedBy": "testimonial"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

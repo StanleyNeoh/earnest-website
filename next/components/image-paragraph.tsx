@@ -57,7 +57,7 @@ export const ImageParagraph = ({
       }
 
       {/* Paragraphs */}
-      <div className={cn("flex flex-col gap-8 text-center", paragraph_width)}>
+      <div className={cn("flex flex-col gap-24 text-center", paragraph_width)}>
         {
           (() => {
             if (Array.isArray(paragraphs)) {

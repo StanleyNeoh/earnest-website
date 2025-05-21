@@ -46,6 +46,7 @@ export interface Project {
     CTAs?: ButtonProps[];
   }
   images?: Image[];
+  order?: number;
 }
 
 export interface Testimonial {
@@ -57,4 +58,5 @@ export interface Testimonial {
   slug?: string;
   company?: Company;
   project?: Project;
+  order?: number;
 }

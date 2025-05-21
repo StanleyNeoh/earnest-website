@@ -94,6 +94,9 @@
           "localized": true
         }
       }
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

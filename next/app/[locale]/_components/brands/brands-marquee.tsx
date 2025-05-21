@@ -14,22 +14,19 @@ export const BrandsMarquee = ({
   companies: Company[]
   className?: string;
 }) => {
-  if (companies.length < 8) {
-    return (
-      <div className={cn("max-w-7xl mx-auto", className)}>
-        <BrandLevel level={companies} speed={80} direction="left" />
-      </div>
-    );
-  } else {
-    const levelOne = companies.slice(0, companies.length / 2);
-    const levelTwo = companies.slice(companies.length / 2, companies.length);
-    return (
-      <div className={cn("max-w-7xl mx-auto", className)}>
-        <BrandLevel level={levelOne} speed={80} direction="left" />
-        <BrandLevel level={levelTwo} speed={80} direction="right" className="mt-2" />
-      </div>
-    );
-  }
+  return (
+    <div className={cn("max-w-7xl mx-auto", className)}>
+      <BrandLevel level={companies} speed={80} direction="left" />
+    </div>
+  );
+  // const levelOne = companies.slice(0, companies.length / 2);
+  // const levelTwo = companies.slice(companies.length / 2, companies.length);
+  // return (
+  //   <div className={cn("max-w-7xl mx-auto", className)}>
+  //     <BrandLevel level={levelOne} speed={80} direction="left" />
+  //     <BrandLevel level={levelTwo} speed={80} direction="right" className="mt-2" />
+  //   </div>
+  // );
 };
 
 const BrandLevel = ({

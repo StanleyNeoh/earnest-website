@@ -3,13 +3,8 @@ import { ParagraphStoryProps } from "@/types/components/simple";
 import { Container } from "../../../components/container";
 import { ParagraphStory } from "../../../components/paragraph-story";
 
-import aboutUs1 from '@/public/about-us/acl-2017/1.jpg';
-import aboutUs2 from '@/public/about-us/acl-2017/2.jpg';
-import aboutUs3 from '@/public/about-us/acl-2017/3.jpg';
-import aboutUs4 from '@/public/about-us/acl-2017/4.jpg';
-import aboutUs5 from '@/public/about-us/acl-2017/5.jpg';
-import aboutUs6 from '@/public/about-us/acl-2017/6.jpg';
-const aboutUsImages = [ aboutUs1, aboutUs2, aboutUs3, aboutUs4, aboutUs5, aboutUs6];
+import aboutUs from '@/public/about-us.jpeg';
+const aboutUsImages = [ aboutUs ];
 
 export const AboutUs = ({
   companyStartDate,
@@ -45,7 +40,7 @@ export const AboutUs = ({
         ],
         CTAs: [],
         direction: "img-on-left",
-        display: "carousel",
+        display: "tile",
       }
     ],
     badges: [],
@@ -57,7 +52,7 @@ export const AboutUs = ({
       <ParagraphStory
         {...about_us}
         locale={locale}
-        containerClassName="bg-transparent"
+        containerClassName="bg-transparent gap-12"
       />
     </Container>
   )

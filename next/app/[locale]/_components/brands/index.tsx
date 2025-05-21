@@ -26,7 +26,7 @@ export const Brands = ({
         companies && (
           <BrandsMarquee
             companies={companies}
-            className="bg-white py-4 max-w-max"
+            className="bg-white py-4"
           />
         )
       }

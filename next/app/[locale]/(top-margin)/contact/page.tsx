@@ -106,15 +106,12 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
   return (
     <div className="w-full flex flex-col md:flex-row relative mt-20">
       <Toaster />
-      <div className="relative flex items-center w-full justify-center px-6">
-        <div className="mx-auto w-full md:px-12 py-8">
+      <div className="relative flex items-center w-full justify-center px-6 mt-8 mx-4">
+        <div className="mx-auto w-full md:px-12 py-8 p-2 bg-white rounded-2xl shadow-2xl">
           <div>
-            <h1 className="text-5xl font-bold">
-              {"Let's Bring Your Vision to Life"}
+            <h1 className="text-3xl font-bold">
+              Get in Touch
             </h1>
-            <p className="mt-4 text-2xl max-w-lg">
-              {"Ready to start your next design project? Reach out to us — we'd love to hear from you"}
-            </p>
           </div>
 
           <div className="pt-10">
@@ -122,7 +119,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Name <span className="text-red-500">*</span>
                 </label>
@@ -140,7 +137,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -158,7 +155,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Phone <span className="text-red-500">*</span>
                 </label>
@@ -176,7 +173,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="company_name"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Company Name <span className="text-red-500">*</span>
                 </label>
@@ -194,7 +191,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="service_interest"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Service Interest <span className="text-red-500">*</span>
                 </label>
@@ -218,7 +215,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Message
                 </label>
@@ -236,7 +233,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <div>
                 <label
                   htmlFor="attachments"
-                  className="block text-2xl font-medium leading-6 text-neutral-800"
+                  className="block text-md font-medium leading-6 text-neutral-800"
                 >
                   Attachments
                 </label>
@@ -277,16 +274,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           </div>
         </div>
       </div>
-      <div className="relative w-full">
-        {/* Background Image: only on md+ screens */}
-        <Image
-          src={aboutUs1.src}
-          alt="Background Image"
-          fill
-          className="absolute inset-0 object-cover hidden md:block"
-          priority
-        />
-
+      <div className="relative w-full flex flex-col justify-between">
         {/* Content */}
         <div className="m-8 flex flex-col gap-6">
           {/* Contact Details Card: always visible */}
@@ -295,7 +283,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
             <div className="flex items-start gap-3">
               <MapPin className="w-5 h-5 mt-1" />
               <div>
-                <div className="font-medium text-gray-800">Earnest Designer & Project Pte Ltd</div>
+                <div className="font-medium text-gray-800">{process.env.NEXT_PUBLIC_EARNEST_NAME}</div>
                 <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
               </div>
             </div>
@@ -322,7 +310,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
             </div>
           </div>
-
+          
           {/* Mapbox Map: only on md+ screens, next to the card */}
           <div className="relative w-full h-80 z-10">
             <MapboxMap className="rounded-2xl shadow-2xl border border-gray-200"/>

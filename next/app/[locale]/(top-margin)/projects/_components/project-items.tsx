@@ -55,7 +55,7 @@ export const ProjectItems = ({
 
   return (
     <div className="relative">
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 ${className || ''}`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 px-6 max-w-[96rem] m-auto ${className || ''}`}>
         {projects.map((project) => (
           <ProjectItem
             key={"project-item" + project.slug}
@@ -77,10 +77,14 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
     : project.category == 'industrial'
       ? 'Industrial'
       : null;
+
+  // @TODO: Find a better way to get the first 100 characters of the description
+  const descSummary = project.description?.[0].children?.[0].text?.slice(0, 100);
+
   return (
     <Link
       href={`/${locale}/projects/${project.slug}` as never}
-      className="group relative block rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
+      className="group relative block rounded-[5rem] overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
       prefetch={true}
     >
       <div className="relative w-full aspect-[4/3] overflow-hidden">
@@ -96,15 +100,15 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
         {/* Slide-up overlay on hover */}
         <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-full transition-all duration-300">
           <div className="w-full p-6 text-center">
-            <h3 className="text-white text-xl font-bold tracking-tight drop-shadow-lg">
-              {project.name}
+            <h3 className="text-white text-base  tracking-tight drop-shadow-lg">
+              {descSummary ? descSummary + "..." : project.name}
             </h3>
           </div>
         </div>
       </div>
       {/* Always show title below image for accessibility and mobile */}
-      <div className="text-center py-4">
-        <h3 className="text-2xl text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
+      <div className="text-center py-2">
+        <h3 className="text-base font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
           {project.name}
         </h3>
       </div>

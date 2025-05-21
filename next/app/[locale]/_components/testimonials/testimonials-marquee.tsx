@@ -53,7 +53,7 @@ export const Quote = ({
   className?: string;
 }) => {
   return (
-    <h3 className={cn("text-base font-semibold text-charcoal py-2", className)}>
+    <h3 className={cn("text-base text-charcoal py-2", className)}>
       {`"${children}"`}
     </h3>
   );

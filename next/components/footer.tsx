@@ -11,18 +11,11 @@ const MENU = [
 export const Footer = async ({ locale }: { locale: string }) => {
   return (
     <div className="relative mt-8">
-      <div className="border-t border-neutral-900 px-8 pt-8 pb-32 relative bg-primary">
+      <div className="border-t border-neutral-900 px-8 pt-8 pb-16 relative bg-primary">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row justify-between gap-8 text-sm text-neutral-500">
           {/* Left: About, Credits and stack */}
           <div>
-            <div className="mb-4 max-w-3xl text-neutral-700">
-              <span className="font-semibold text-charcoal">Earnest</span> is a
-              leading design and build company specializing in creating inspiring
-              workspaces that enhance productivity and well-being. We deliver
-              transparent costings, on-time delivery, and beautiful, functional
-              office environments for businesses of all sizes.
-            </div>
-            <div className="mt-2">Designed and Developed by Stanley</div>
+            <div className="mt-2">Designed and Developed by Stanley Webdev</div>
             <div className="mt-2">
               built with{" "}
               <a className="text-charcoal underline" href="https://strapi.io">
@@ -48,7 +41,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
           </div>
           {/* Right: Menu and Contact */}
           <div className="flex flex-col md:items-end gap-4 min-w-[220px]">
-            <nav className="flex flex-col flex-wrap gap-4 items-start md:items-end">
+            <nav className="flex flex-row flex-wrap gap-4 items-start md:items-end">
               {MENU.map((item) => (
                 <a
                   key={item.href}
@@ -60,6 +53,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
               ))}
             </nav>
             <div className="flex flex-col gap-1 mt-2 text-neutral-600 text-xs md:items-end">
+              <span>{process.env.NEXT_PUBLIC_EARNEST_NAME}</span>
               <span>{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</span>
               <span>Tel: {process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
               <span>

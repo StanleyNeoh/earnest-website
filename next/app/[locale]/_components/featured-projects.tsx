@@ -16,7 +16,7 @@ export const FeaturedProjects = ({
   locale: string;
 }) => {
   return (
-    <Container className="bg-transparent py-10 space-y-5">
+    <Container className="bg-transparent py-10 space-y-2">
       <Heading>
         Our Recent Award-Winning Project
       </Heading>
@@ -56,13 +56,14 @@ const FeaturedProject = ({
         )}
       </div>
       {/* Body: Responsive flex-col on mobile, flex-row on md+ */}
-      <div className="flex flex-col md:flex-row gap-8 items-center">
-        <div className="w-full md:w-1/2">
+      <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="w-full md:w-1/2 h-full">
           <ImageCarousel 
             images={images || []} 
             isStrapiImage={true} 
             auto="play"
             showArrows={false}
+            imageClassName="h-[24rem] md:mt-8"
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col h-full">
