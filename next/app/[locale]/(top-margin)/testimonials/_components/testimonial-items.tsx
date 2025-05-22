@@ -27,6 +27,7 @@ export const TestimonialItems = ({
           start,
           limit: pageSize,
         },
+        sort: "order:desc",
         locale: locale,
       });
       return {

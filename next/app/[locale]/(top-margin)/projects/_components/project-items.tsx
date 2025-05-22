@@ -26,6 +26,8 @@ export const ProjectItems = ({
           start,
           limit: pageSize,
         },
+        sort: "order:desc",
+        locale,
       });
       return {
         data: newProjects?.data || [],

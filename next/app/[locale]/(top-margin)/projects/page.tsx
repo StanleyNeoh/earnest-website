@@ -6,7 +6,6 @@ import { Heading } from "@/components/elements/heading";
 import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items';
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
-import { Project } from "@/types/types";
 
 export const metadata: Metadata = {
   title: "Earnest | Projects",

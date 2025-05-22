@@ -3,8 +3,7 @@ import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 
-import { TestimonialItems } from "./testimonial-items";
-import { Testimonial } from "@/types/types";
+import { TestimonialItems } from "./_components/testimonial-items";
 
 export const metadata: Metadata = {
   title: "Testimonials",
