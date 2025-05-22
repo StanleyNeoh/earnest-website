@@ -49,9 +49,9 @@ const FeaturedProject = ({
           <Image
             src={strapiImage(badge.url)}
             alt={badge.alternativeText || "Project badge"}
-            width={200}
-            height={200}
-            className="object-cover"
+            width={badge.width}
+            height={badge.height}
+            className="object-cover w-32 h-auto"
           />
         )}
       </div>

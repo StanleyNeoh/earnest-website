@@ -55,10 +55,10 @@ const BrandLevel = ({
                 key={index}
                 src={strapiImage(logo?.url)}
                 alt={logo?.alternativeText || "Company logo"}
-                width={100}
-                height={50}
+                width={logo?.width}
+                height={logo?.height}
                 draggable={false}
-                className="mx-8"
+                className="w-32 h-auto mx-8"
               />
             );
           })

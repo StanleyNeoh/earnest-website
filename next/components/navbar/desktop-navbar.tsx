@@ -20,11 +20,11 @@ export const DesktopNavbar = ({
         <div className="w-full py-4 flex flex-row gap-4 items-center">
           <Logo 
             logoUrl={logoUrl}
-            width={100}
-            height={100}
+            width={400}
+            height={400}
             redirectUrl="/"
             locale={locale}
-            className="ml-4"
+            className="ml-4 w-32 h-auto"
           />
           <div className="flex items-center gap-8">
             {navbarItems.map((item) => (

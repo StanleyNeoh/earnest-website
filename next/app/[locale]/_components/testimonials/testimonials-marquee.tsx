@@ -114,10 +114,11 @@ const TestimonialLevel = ({
                   testimonial.company?.logo && (
                     <Logo
                       logoUrl={testimonial.company?.logo.url}
-                      width={100}
-                      height={100}
+                      width={testimonial.company?.logo.width}
+                      height={testimonial.company?.logo.height}
                       locale={locale}
                       isStrapiImage={true}
+                      className="w-32 h-auto"
                     />
                   )
                 }

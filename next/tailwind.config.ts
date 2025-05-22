@@ -50,6 +50,10 @@ const config: Config = {
       fontFamily: {
         sans: [
           "Avenir Next",
+          "Avenir",
+          "Segoe UI",
+          "Helvetica Neue",
+          "Arial",
           "sans-serif",
         ],
       },
