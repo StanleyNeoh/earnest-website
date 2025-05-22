@@ -23,12 +23,12 @@ export const Hero = ({
         <Container className="relative flex flex-col items-center justify-center h-full">
           <Heading
             as="h1"
-            className="text-3xl lg:text-5xl font-bold max-w-7xl mx-auto text-center text-gray-800 relative z-10 shadow-xl"
+            className="text-3xl lg:text-5xl font-bold max-w-7xl mx-auto text-center text-gray-800 relative z-10"
           >
             Designing and building beautiful, functional workspaces for over {companyAge} years
           </Heading>
           <Subheading
-            className="text-center text-xl lg:text-3xl text-gray-800 max-w-5xl mt-4 relative z-10 shadow-xl"
+            className="text-center text-xl lg:text-3xl text-gray-800 max-w-5xl mt-4 relative z-10"
           >
             with transparent costings and on-time delivery
           </Subheading>
