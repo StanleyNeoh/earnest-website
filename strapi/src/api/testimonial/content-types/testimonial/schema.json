@@ -64,7 +64,8 @@
       "inversedBy": "testimonial"
     },
     "order": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     }
   }
 }
