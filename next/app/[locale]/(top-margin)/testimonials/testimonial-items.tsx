@@ -1,6 +1,5 @@
 "use client";
 import { Testimonial } from "@/types/types";
-import { useEffect, useRef, useState } from "react";
 import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -9,6 +8,7 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import earnestLogo from "@/public/earnest-black-logo.svg";
 import { Button } from "@/components/elements/button";
 import Link from "next/link";
+import { useLoadManager } from "@/hooks/hooks";
 
 export const TestimonialItems = ({
   initialTestimonials,
@@ -19,44 +19,25 @@ export const TestimonialItems = ({
   pageSize?: number;
   locale: string;
 }) => {
-  const loadTriggerRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
-  const [hasMoreTestimonials, setHasMoreTestimonials] = useState(true);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      async (entries) => {
-        if (loading) return;
-        if (!hasMoreTestimonials || entries[0].intersectionRatio <= 0) return;
-
-        setLoading(true);
-        try {
-          const newTestimonials = await fetchContentType("testimonials", {
-            populate: ["project", "project.thumbnail"],
-            pagination: {
-              start: testimonials.length,
-              limit: pageSize,
-            },
-            locale: locale,
-          });
-          const _testimonials = [...testimonials, ...(newTestimonials?.data || [])];
-          setTestimonials(_testimonials);
-          setHasMoreTestimonials(_testimonials.length < newTestimonials.meta.pagination.total);
-        } catch (error) {
-          console.error("Error fetching more testimonials:", error);
-        }
-        setLoading(false);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (!loadTriggerRef.current) return;
-    observer.observe(loadTriggerRef.current!);
-    return () => {
-      observer.disconnect();
-    };
-  }, [loading, hasMoreTestimonials, locale, pageSize, testimonials]);
+  const { items: testimonials, loading, loadTriggerRef } = useLoadManager(
+    async (start: number) => {
+      const newTestimonials = await fetchContentType("testimonials", {
+        populate: ["project", "project.thumbnail"],
+        pagination: {
+          start,
+          limit: pageSize,
+        },
+        locale: locale,
+      });
+      return {
+        data: newTestimonials?.data || [],
+        total: newTestimonials?.meta.pagination.total || 0,
+      }
+    },
+    initialTestimonials,
+    "earnest_testimonials",
+    1000 * 60 * 15,
+  )
 
   return (
     <div className="space-y-16">

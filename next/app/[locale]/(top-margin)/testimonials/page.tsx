@@ -29,6 +29,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
       page: 1,
       pageSize: 4,
     },
+    sort: "order:desc",
     locale: params.locale,
   });
 

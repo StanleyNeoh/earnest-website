@@ -5,6 +5,7 @@ import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
 import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
+import { useLoadManager } from "../../../../../hooks/hooks";
 
 export const ProjectItems = ({
   initialProjects,
@@ -17,41 +18,24 @@ export const ProjectItems = ({
   className?: string;
   pageSize?: number;
 }) => {
-  const loadTriggerRef = React.useRef<HTMLDivElement>(null);
-  const [hasMoreProjects, setHasMoreProjects] = React.useState(true);
-  const [loading, setLoading] = React.useState(false);
-  const [projects, setProjects] = React.useState<Project[]>(initialProjects);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      async (entries) => {
-        if (loading) return;
-        if (!hasMoreProjects || entries[0].intersectionRatio <= 0) return
-
-        setLoading(true);
-        try {
-          const newProjects = await fetchContentType('projects', {
-            populate: ['thumbnail'],
-            pagination: {
-              start: projects.length,
-              limit: pageSize,
-            },
-          })
-          const _projects = [...projects, ...(newProjects?.data || [])];
-          setProjects(_projects);
-          setHasMoreProjects(_projects.length < newProjects.meta.pagination.total);
-        } catch (error) {
-          console.error("Error fetching more projects:", error);
-        }
-        setLoading(false);
-      }
-    );
-    if (!loadTriggerRef.current) return;
-    observer.observe(loadTriggerRef.current!);
-    return () => {
-      observer.disconnect();
-    }
-  }, [loading, hasMoreProjects, pageSize, projects]);
+  const { items: projects, loading, loadTriggerRef } = useLoadManager<Project>(
+    async (start: number) => {
+      const newProjects = await fetchContentType('projects', {
+        populate: ['thumbnail'],
+        pagination: {
+          start,
+          limit: pageSize,
+        },
+      });
+      return {
+        data: newProjects?.data || [],
+        total: newProjects?.meta.pagination.total || 0,
+      };
+    },
+    initialProjects,
+    'earnest_projects',
+    1000 * 60 * 15,
+  );
 
   return (
     <div className="relative">

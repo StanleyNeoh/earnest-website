@@ -25,6 +25,8 @@ export default async function Projects({
       page: 1,
       pageSize: 9,
     },
+    sort: "order:desc",
+    locale: params.locale,
   });
 
   return (

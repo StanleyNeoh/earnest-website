@@ -52,10 +52,7 @@ export default async function fetchContentType(
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
-      // cache: 'no-store',
-      next: {
-        revalidate: 120,
-      }
+      cache: 'no-store',
     });
 
     if (!response.ok) {
