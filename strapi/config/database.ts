@@ -56,7 +56,6 @@ export default ({ env }) => {
           env('DATABASE_FILENAME', '.tmp/data.db')
         ),
       },
-      acquireConnectionTimeout: 1000000,
       useNullAsDefault: true,
     },
   };
