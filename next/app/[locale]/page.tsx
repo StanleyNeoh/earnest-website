@@ -57,7 +57,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
 
   return (
     <>
-      <Hero companyStartDate={companyStartDate} />
+      <Hero />
       <AboutUs companyStartDate={companyStartDate} locale={params.locale} />
       <Brands
         heading="Trusted by Major Brands"
