@@ -324,17 +324,15 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           <div className="flex flex-row flex-wrap gap-8 justify-center justify-items-center">
             {logos.map((logo, idx) => {
               return (
-                <div className="relative w-40 h-20 flex items-center" key={idx}>
-                  <Image
-                    key={idx}
-                    src={logo.src}
-                    width={logo.width}
-                    height={logo.height}
-                    alt={`Client logo ${idx + 1}`}
-                    className="w-32 max-h-16 object-contain"
-                    loading="lazy"
-                  />
-                </div>
+                <Image
+                  key={idx}
+                  src={logo.src}
+                  width={logo.width}
+                  height={logo.height}
+                  alt={`Client logo ${idx + 1}`}
+                  className="w-24 max-h-12 object-contain"
+                  loading="lazy"
+                />
               )
             })}
           </div>
