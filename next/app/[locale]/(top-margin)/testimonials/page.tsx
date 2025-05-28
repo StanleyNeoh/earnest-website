@@ -23,10 +23,15 @@ export const metadata: Metadata = {
 
 export default async function TestimonialsPage({ params }: { params: { locale: string } }) {
   const initialTestimonials = await fetchContentType("testimonials", {
-    populate: ["project", "project.thumbnail"],
+    populate: ["project", "project.thumbnail", "company"],
     pagination: {
       page: 1,
       pageSize: 4,
+    },
+    filters: {
+      featured: {
+        $ne: true,
+      },
     },
     sort: "order:desc",
     locale: params.locale,

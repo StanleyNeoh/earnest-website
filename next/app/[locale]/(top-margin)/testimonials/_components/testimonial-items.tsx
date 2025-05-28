@@ -22,10 +22,15 @@ export const TestimonialItems = ({
   const { items: testimonials, loading, loadTriggerRef } = useLoadManager(
     async (start: number) => {
       const newTestimonials = await fetchContentType("testimonials", {
-        populate: ["project", "project.thumbnail"],
+        populate: ["project", "project.thumbnail", "company"],
         pagination: {
           start,
           limit: pageSize,
+        },
+        filters: {
+          featured: {
+            $ne: true,
+          },
         },
         sort: "order:desc",
         locale: locale,

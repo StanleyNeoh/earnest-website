@@ -40,6 +40,11 @@ export default async function HomePage({ params }: { params: { locale: string } 
     }),
     fetchContentType("testimonials", {
       populate: ['company', 'project', 'company.logo'],
+      filters: {
+        featured: {
+          $eq: true,
+        },
+      }
     }),
     fetchContentType("projects", {
       populate: {
