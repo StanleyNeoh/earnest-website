@@ -3,37 +3,13 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import reinstatementImg from "@/public/about-us/acl-2017/4.jpg";
-/*
-服务 - 还原装修服务
-快速、省心、全程托管 — 让您专注于开启新篇章
-我们致力于为客户提供高效、无忧的办公空间还原服务。无论您是房东准备重新招租，或是企业完成租期搬迁，我们都能确保过程顺畅、按时交付。
+import { Metadata } from "next";
 
----
-服务对象
-✔ 正在为办公空间重新招租的房东
- ✔ 即将归还场地的租户企业
- ✔ 正在搬迁至新办公空间的公司
+export const metadata: Metadata = {
+  title: "Service - Reinstatement | Earnest",
+  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
+};
 
----
-我们的服务优势
-全流程管理，一站式交付
-我们已成功为众多房东、楼宇管理方及租户执行还原工程。从现场勘查到最终交接，我们的专业团队为您把控每一个细节。
-
----
-服务流程
-还原装修三步走
-01 现场评估
- 我们将首先进行详细的现场勘查，并查阅楼宇管理方对还原工程的具体要求。根据项目范围，您将收到一份清晰明细的报价单。
-02 恢复原貌
- 我们的团队将高效执行拆除与恢复工作，确保符合租赁合约条款与行业规范，包括所需的政府审批流程。
-03 最终检查
- 在交接前，我们会进行全面的质量检查，确保一切还原标准达标，空间状态达到交付要求。
-
----
-CTA:  欢迎联系我们，获取免费咨询服务
-*/
-
-// --- Localization function ---
 function reinstatementLocalised(locale: string) {
   if (locale === "zh") {
     return {

@@ -3,6 +3,12 @@ import Image from "next/image";
 import designConsultancyImg from "@/public/about-us/acl-2017/2.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Service - Design Consultancy | Earnest",
+  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
+};
 
 function designConsultancyLocalised(locale: string) {
   if (locale === "zh") {

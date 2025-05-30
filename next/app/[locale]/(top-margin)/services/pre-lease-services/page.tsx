@@ -4,6 +4,12 @@ import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import preLeaseImg from "@/public/about-us/acl-2017/3.jpg";
 import { Locale } from "@/config";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Service - Pre-lease Services | Earnest",
+  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
+};
 
 const preLeaseLocalised = (locale: Locale) => {
   if (locale === "zh") {
