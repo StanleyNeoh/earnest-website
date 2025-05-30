@@ -6,8 +6,7 @@ import { AboutUs } from '@/app/[locale]/_components/about-us';
 import { Brands } from '@/app/[locale]/_components/brands';
 import { Testimonials } from '@/app/[locale]/_components/testimonials';
 import { FeaturedProjects } from '@/app/[locale]/_components/featured-projects';
-import { Company, Project, Testimonial } from '@/types/types';
-import { features } from 'process';
+import { Locale } from '@/config';
 
 export const metadata: Metadata = {
   title: "Earnest | Home",
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function HomePage({ params }: { params: { locale: string } }) {
+export default async function HomePage({ params }: { params: { locale: Locale } }) {
   const companyStartDate = "2007-01-01";
   const [
     companies,
@@ -64,13 +63,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
     <>
       <Hero />
       <AboutUs companyStartDate={companyStartDate} locale={params.locale} />
-      <Brands
-        heading="Trusted by Major Brands"
-        companies={companies?.data || []}
-      />
+      <Brands companies={companies?.data || []} locale={params.locale} />
       <Testimonials
-        heading="What Our Clients Say"
-        sub_heading="Hear from our satisfied users who have experienced the benefits of our service firsthand."
         testimonials={testimonials?.data || []}
         locale={params.locale}
       />

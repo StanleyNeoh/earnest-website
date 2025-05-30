@@ -25,35 +25,75 @@ export const metadata: Metadata = {
   },
 };
 
-const serviceSections = [
-  {
-    href: "/services/pre-lease-services",
-    image: aboutUs3,
-    title: "Pre-Lease",
-    subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
-  },
-  {
-    href: "/services/design-and-build",
-    image: aboutUs1,
-    title: "Design and Build",
-    subtitle: "Office transformations that exceed expectations.",
-  },
-  {
-    href: "/services/design-consultancy",
-    image: aboutUs2,
-    title: "Design Consultancy",
-    subtitle: "Empowering you to make confident, inspired design decisions.",
-  },
-  {
-    href: "/services/reinstatement",
-    image: aboutUs4,
-    title: "Reinstatement",
-    subtitle: "Fast, worry-free, and fully managed — so you can focus on your next chapter.",
-  },
-];
+const servicesLocalised = (locale: string) => {
+  if (locale === 'zh') {
+    return {
+      title: "我们的服务",
+      learnMore: "了解更多",
+      sections: [
+        {
+          href: "/services/pre-lease-services",
+          image: aboutUs3,
+          title: "租赁咨询",
+          subtitle: "租赁咨询服务：区域总部及甲级写字楼选址顾问服务",
+        },
+        {
+          href: "/services/design-and-build",
+          image: aboutUs1,
+          title: "设计与建造",
+          subtitle: "精工细作，打造卓越的办公空间",
+        },
+        {
+          href: "/services/design-consultancy",
+          image: aboutUs2,
+          title: "设计顾问",
+          subtitle: "赋能企业做出自信且富有灵感的设计决策。",
+        },
+        {
+          href: "/services/reinstatement",
+          image: aboutUs4,
+          title: "还原工程",
+          subtitle: "高效、省心、全程托管，让您专注迎接下一个篇章。",
+        },
+      ]
+    }
+  } else {
+    return {
+      title: "Our Services",
+      learnMore: "Learn more",
+      sections: [
+        {
+          href: "/services/pre-lease-services",
+          image: aboutUs3,
+          title: "Pre-Lease",
+          subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
+        },
+        {
+          href: "/services/design-and-build",
+          image: aboutUs1,
+          title: "Design and Build",
+          subtitle: "Office transformations that exceed expectations.",
+        },
+        {
+          href: "/services/design-consultancy",
+          image: aboutUs2,
+          title: "Design Consultancy",
+          subtitle: "Empowering you to make confident, inspired design decisions.",
+        },
+        {
+          href: "/services/reinstatement",
+          image: aboutUs4,
+          title: "Reinstatement",
+          subtitle: "Fast, worry-free, and fully managed — so you can focus on your next chapter.",
+        },
+      ]
+    }
+  }
+}
 
 export default async function ServicesPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
+  const { title, learnMore, sections } = servicesLocalised(locale);
   return (
     <Container className="py-4 px-8">
       <Breadcrumb
@@ -65,7 +105,7 @@ export default async function ServicesPage({ params }: { params: { locale: strin
       />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Our Services</h1>
       <div className="space-y-16">
-        {serviceSections.map((section, idx) => (
+        {sections.map((section, idx) => (
           <div
             key={section.href}
             className={`flex flex-col md:flex-row items-center gap-8 ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
@@ -85,7 +125,7 @@ export default async function ServicesPage({ params }: { params: { locale: strin
               <Link href={section.href} className="group">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">{section.title}</h2>
                 <p className="text-lg text-gray-600 mb-4">{section.subtitle}</p>
-                <span className="inline-block mt-2 text-blue-700 font-semibold group-hover:underline">Learn more &rarr;</span>
+                <span className="inline-block mt-2 text-blue-700 font-semibold group-hover:underline">{learnMore} &rarr;</span>
               </Link>
             </div>
           </div>

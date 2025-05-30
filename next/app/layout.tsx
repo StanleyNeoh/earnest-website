@@ -1,5 +1,5 @@
 import type { Viewport } from "next";
-import { Locale, i18n } from '@/i18n.config'
+import { Locale, locales } from '@/config'
 import Link from 'next/link';
 import Image from 'next/image';
 import Script from 'next/script';
@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ lang: locale }))
+  return locales.map(locale => ({ lang: locale }))
 }
 
 export default function RootLayout({

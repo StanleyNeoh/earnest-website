@@ -7,21 +7,37 @@ import { RichTextRenderer } from "@/components/rich-text";
 import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
+import { Locale } from "@/config";
 
-export const FeaturedProjects = ({ 
+const featuredProjectsLocalised = (locale: Locale) => {
+  if (locale === "zh") {
+    return {
+      title: "我们获奖的项目",
+      subtitle: "探索重新定义未来办公空间的杰出工程",
+    };
+  } else {
+    return {
+      title: "Our Recent Award-Winning Project",
+      subtitle: "Explore the project that redefines the future of workplace interiors",
+    };
+  }
+}
+
+export const FeaturedProjects = ({
   projects,
   locale,
 }: {
   projects: Project[];
-  locale: string;
+  locale: Locale;
 }) => {
+  const { title, subtitle } = featuredProjectsLocalised(locale);
   return (
     <Container className="bg-transparent py-10 space-y-2">
       <Heading>
-        Our Recent Award-Winning Project
+        {title}
       </Heading>
       <Subheading>
-        Explore the project that redefines the future of workplace interiors
+        {subtitle}
       </Subheading>
       {
         projects.map((project, i) => (
@@ -58,16 +74,16 @@ const FeaturedProject = ({
       {/* Body: Responsive flex-col on mobile, flex-row on md+ */}
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2 h-full">
-          <ImageCarousel 
-            images={images || []} 
-            isStrapiImage={true} 
+          <ImageCarousel
+            images={images || []}
+            isStrapiImage={true}
             auto="play"
             showArrows={false}
             imageClassName="h-[24rem] md:mt-8"
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col h-full">
-          <RichTextRenderer 
+          <RichTextRenderer
             content={description || []}
             heading1ClassName="text-2xl mb-8 text-center"
             paragraphClassName="text-center"

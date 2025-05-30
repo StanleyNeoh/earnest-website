@@ -4,77 +4,98 @@ import designConsultancyImg from "@/public/about-us/acl-2017/2.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
-const whoFor = [
-  "MNCs establishing a Regional HQ in Singapore",
-  "Projects with phased or complex design requirements",
-  "Large-scale or bespoke high-end fit-outs",
-  "Companies seeking clear separation between design and construction phases",
-  "Global firms requiring consistent brand representation across regions",
-];
+function designConsultancyLocalised(locale: string) {
+  if (locale === "zh") {
+    return {
+      title: "服务 - 设计顾问服务",
+      subtitle: "赋能每一个设计决策，助您自信前行，灵感不断",
+      description: [
+        "我们的设计顾问服务以“协作共创”为核心理念。我们与客户紧密合作，深入理解您的目标与愿景，打造真正体现企业品牌个性与文化的办公空间。",
+        "从最初构思到最终材料选择，我们全程陪伴您走过每一个阶段，确保项目始终保持清晰的方向、一致的设计语言与充满创意的表达。"
+      ],
+      whoForTitle: "服务对象",
+      whoFor: [
+        "在新加坡设立区域总部的跨国企业（MNCs）",
+        "设计需求分阶段、结构复杂的项目",
+        "大型或高端定制装修项目",
+        "需要将“设计”与“施工”明确分离的企业",
+        "希望在全球多个地区保持品牌一致性的国际客户"
+      ],
+      processTitle: "服务流程",
+      processSubtitle: "七步设计顾问流程",
+      processSteps: [
+        { title: "空间规划 - 明确需求", text: "我们将从了解贵团队的功能性需求开始，例如办公位、会议区、服务器间等。如尚未选定办公地点，我们也可推荐可靠的租赁顾问。" },
+        { title: "现场勘查 - 精准评估", text: "我们的设计师将亲临现场进行详细测量，并协助获取现有竣工图（As-Built Drawings）与楼宇装修规范。此阶段，我们也会为您规划完整的项目时间线。" },
+        { title: "概念设计 - 塑造全球品牌形象", text: "凭借为多个国际品牌服务的经验，我们将为您构思既符合品牌调性又兼具实用性与美感的办公空间概念。" },
+        { title: "招标准备 - 明确设计范围", text: "我们将提供详尽的招标图纸与说明文档，清晰定义设计规范，最大限度减少后期的设计变更与执行偏差。" },
+        { title: "招标评估 - 客观中立建议", text: "作为独立顾问，我们将协助您进行公平、公正的投标评估，并提供全面的分析报告，支持您做出明智选择。" },
+        { title: "项目管理 - 全程协作监管", text: "在施工阶段，我们与承包商密切配合，确保项目高效推进、严守工期、按计划完工，严格把控施工品质。" },
+        { title: "项目交付 - 启程新旅程", text: "当施工与品质验收完成后，您的新办公室将整装待发，迎接团队迈向新阶段。" }
+      ],
+      CTA: "欢迎联系我们，免费获取项目咨询"
+    };
+  } else {
+    return {
+      title: "Services - Design Consultancy",
+      subtitle: "Empowering you to make confident, inspired design decisions.",
+      description: [
+        "At Earnest, our design consultancy service is rooted in close collaboration. We work hand-in-hand with you to define your objectives, understand your aspirations, and create a space that reflects your company’s vision with authenticity and finesse.",
+        "From initial ideation to final material selection, we guide you through every step—ensuring clarity, creativity, and consistency throughout your project."
+      ],
+      whoForTitle: "Who is this service for?",
+      whoFor: [
+        "MNCs establishing a Regional HQ in Singapore",
+        "Projects with phased or complex design requirements",
+        "Large-scale or bespoke high-end fit-outs",
+        "Companies seeking clear separation between design and construction phases",
+        "Global firms requiring consistent brand representation across regions"
+      ],
+      processTitle: "How It Works",
+      processSubtitle: "Design Consultancy Process",
+      processSteps: [
+        { title: "SPACE – Understanding Your Requirements", text: "We begin by identifying team-specific needs—such as workstations, meeting areas, or server rooms. We can connect you with our trusted leasing agents." },
+        { title: "SURVEY – Site Assessment", text: "An Earnest designer conducts an on-site survey, capturing detailed measurements. We also assist in acquiring As-Built Drawings and building fit-out guidelines. You’ll receive a clear project timeline at this stage." },
+        { title: "DESIGN – Crafting Your Global Image", text: "Drawing from our experience designing for international brands, we create office concepts that balance functionality, aesthetics, and your brand’s unique DNA." },
+        { title: "TENDER – Defining the Scope", text: "Our detailed tender drawings and documentation outline all design specifications—minimizing variation orders and ensuring smoother execution post-award." },
+        { title: "AWARD – Unbiased Tender Evaluation", text: "As your independent consultant, we provide fair assessments and a comprehensive evaluation report—supporting your decision-making process with objectivity." },
+        { title: "MANAGE – Project Oversight", text: "Throughout the build, we collaborate with your appointed contractor to ensure smooth delivery, strict timelines, and professional execution." },
+        { title: "MOVE – Welcome to Your New Office", text: "With construction and QA complete, it's time to move in. Your new workspace is ready to support your team's next chapter." }
+      ],
+      CTA: "Contact us for a free consultation"
+    };
+  }
+}
 
-const processSteps = [
-  {
-    title: "SPACE – Understanding Your Requirements",
-    text: "We begin by identifying team-specific needs—such as workstations, meeting areas, or server rooms. We can connect you with our trusted leasing agents.",
-  },
-  {
-    title: "SURVEY – Site Assessment",
-    text: "An Earnest designer conducts an on-site survey, capturing detailed measurements. We also assist in acquiring As-Built Drawings and building fit-out guidelines. You’ll receive a clear project timeline at this stage.",
-  },
-  {
-    title: "DESIGN – Crafting Your Global Image",
-    text: "Drawing from our experience designing for international brands, we create office concepts that balance functionality, aesthetics, and your brand’s unique DNA.",
-  },
-  {
-    title: "TENDER – Defining the Scope",
-    text: "Our detailed tender drawings and documentation outline all design specifications—minimizing variation orders and ensuring smoother execution post-award.",
-  },
-  {
-    title: "AWARD – Unbiased Tender Evaluation",
-    text: "As your independent consultant, we provide fair assessments and a comprehensive evaluation report—supporting your decision-making process with objectivity.",
-  },
-  {
-    title: "MANAGE – Project Oversight",
-    text: "Throughout the build, we collaborate with your appointed contractor to ensure smooth delivery, strict timelines, and professional execution.",
-  },
-  {
-    title: "MOVE – Welcome to Your New Office",
-    text: "With construction and QA complete, it's time to move in. Your new workspace is ready to support your team's next chapter.",
-  },
-];
-
-const comparisonRows = [
-  ["Criteria", "Design Consultancy", "Design & Build"],
-  ["Project Type", "Phased or complex projects requiring detailed planning", "Fast-track projects where time is a key factor"],
-  ["Project Scale", "Best suited for large-scale or bespoke projects (above 30,000 sq. ft.)", "Ideal for small to medium-sized projects (under 30,000 sq. ft.)"],
-  ["Design Customisation", "Offers highly tailored and intricate design solutions", "Offers practical designs focused on efficiency and speed"],
-  ["Project Structure", "Separates design and construction phases, enabling independent expertise", "Combines both under a single point of responsibility (one-stop solution)"],
-  ["Procurement Flexibility", "Greater flexibility in selecting construction partners", "Less flexibility—design and build handled by the same provider"],
-  ["Budget Management", "May have variable costs depending on tender results", "Greater budget certainty and cost transparency upfront"],
-  ["Collaboration Model", "Ideal for clients preferring traditional project delivery and detailed oversight", "Suited for clients who want streamlined communication and faster execution"],
-  ["Value Engineering", "More emphasis on bespoke quality and design intent", "Strong focus on cost efficiency and practicality through ongoing collaboration"],
-];
-
-export default function DesignConsultancyPage() {
+export default function DesignConsultancyPage({ params }: { params: { locale: string } }) {
+  const { locale } = params;
+  const {
+    title,
+    subtitle,
+    description,
+    whoForTitle,
+    whoFor,
+    processTitle,
+    processSubtitle,
+    processSteps,
+    CTA,
+  } = designConsultancyLocalised(locale);
   return (
     <Container className="py-16 px-4 md:px-8">
-      {/* Breadcrumb */}
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Design Consultancy", href: "/services/design-consultancy" },
+          { name: title, href: "/services/design-consultancy" },
         ]}
         className="mb-4"
       />
-      {/* Title and Image */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
         <div className="flex-1">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-            Services - Design Consultancy
+            {title}
           </h1>
           <h2 className="text-lg text-gray-600 mb-4">
-            Empowering you to make confident, inspired design decisions.
+            {subtitle}
           </h2>
         </div>
         <div className="flex-shrink-0">
@@ -88,30 +109,25 @@ export default function DesignConsultancyPage() {
         </div>
       </div>
       <div className="text-gray-700 text-base mb-6 space-y-4">
-        <p>
-          At Earnest, our design consultancy service is rooted in close collaboration. We work hand-in-hand with you to define your objectives, understand your aspirations, and create a space that reflects your company’s vision with authenticity and finesse.
-        </p>
-        <p>
-          From initial ideation to final material selection, we guide you through every step—ensuring clarity, creativity, and consistency throughout your project.
-        </p>
+        {description.map((text: string, i: number) => (
+          <p key={i}>{text}</p>
+        ))}
       </div>
-      {/* Who is this service for? */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">Who is this service for?</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{whoForTitle}</h2>
         <ul className="list-none space-y-1">
-          {whoFor.map((item, i) => (
+          {whoFor.map((item: string, i: number) => (
             <li key={i} className="flex items-center text-gray-700">
               <span className="text-green-600 mr-2">✔</span> {item}
             </li>
           ))}
         </ul>
       </div>
-      {/* How It Works */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">How It Works</h2>
-        <h3 className="mb-2 text-gray-700 font-semibold">Design Consultancy Process</h3>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">{processTitle}</h2>
+        <h3 className="mb-2 text-gray-700 font-semibold">{processSubtitle}</h3>
         <ol className="list-none space-y-3">
-          {processSteps.map((step, i) => (
+          {processSteps.map((step: { title: string; text: string }, i: number) => (
             <li key={i}>
               <div className="flex flex-row items-center gap-2 mb-2">
                 <span className="inline w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-2">
@@ -124,33 +140,10 @@ export default function DesignConsultancyPage() {
           ))}
         </ol>
       </div>
-      {/* <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Choosing Between Design Consultancy and Design &amp; Build</h2>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 rounded-lg bg-white text-sm">
-            <thead>
-              <tr>
-                {comparisonRows[0].map((cell, i) => (
-                  <th key={i} className="px-4 py-2 border-b font-semibold text-gray-700 bg-gray-100">{cell}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonRows.slice(1).map((row, rIdx) => (
-                <tr key={rIdx} className="even:bg-gray-50">
-                  {row.map((cell, cIdx) => (
-                    <td key={cIdx} className="px-4 py-2 border-b text-gray-700 align-top">{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div> */}
       <div className="flex justify-center mt-10">
         <Link href="/contact">
           <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow transition">
-            Contact us for a free consultation
+            {CTA}
           </button>
         </Link>
       </div>
