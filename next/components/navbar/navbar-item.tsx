@@ -22,7 +22,6 @@ export function NavbarItem({
   const shref = href.split("/").slice(2).join("/");
   const spathname = pathname.split("/").slice(2).join("/");
   const isActive = active || shref === spathname || shref !== "" && spathname.includes(shref);
-  console.log("isActive", isActive, "shref", shref, "spathname", spathname);
 
   return (
     <Link

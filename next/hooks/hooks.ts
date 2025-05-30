@@ -28,7 +28,6 @@ export function useLoadManager<T>(
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
-        console.log("Cached data:", parsed.data);
         if (
           parsed.timestamp 
           && Date.now() - parsed.timestamp < cache_ttl
