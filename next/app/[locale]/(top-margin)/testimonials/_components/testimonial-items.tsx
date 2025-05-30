@@ -1,14 +1,15 @@
 "use client";
 import { Testimonial } from "@/types/types";
 import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
-import Image from "next/image";
+import { useLoadManager } from "@/hooks/hooks";
+import { Locale } from "@/config";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Button } from "@/components/elements/button";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 
 import earnestLogo from "@/public/earnest-black-logo.svg";
-import { Button } from "@/components/elements/button";
 import Link from "next/link";
-import { useLoadManager } from "@/hooks/hooks";
 
 export const TestimonialItems = ({
   initialTestimonials,
@@ -17,7 +18,7 @@ export const TestimonialItems = ({
 }: {
   initialTestimonials: Testimonial[];
   pageSize?: number;
-  locale: string;
+  locale: Locale;
 }) => {
   const { items: testimonials, loading, loadTriggerRef } = useLoadManager(
     async (start: number) => {
@@ -53,7 +54,9 @@ export const TestimonialItems = ({
             <TestimonialItem
               key={testimonial.id}
               testimonial={testimonial}
-              direction={idx % 2 === 0 ? "left" : "right"} />
+              direction={idx % 2 === 0 ? "left" : "right"} 
+              locale={locale}
+            />
           );
         })
       }
@@ -70,9 +73,11 @@ export const TestimonialItems = ({
 const TestimonialItem = ({
   testimonial,
   direction,
+  locale,
 }: {
   testimonial: Testimonial;
   direction: "left" | "right";
+  locale: Locale
 }) => {
   const dirClass = direction === "left" ? "md:flex-row" : "md:flex-row-reverse";
   const project = testimonial.project;
@@ -101,7 +106,7 @@ const TestimonialItem = ({
         {project?.slug && (
           <Button
             as={Link}
-            href={`/projects/${project.slug}`}
+            href={`/${locale}/projects/${project.slug}`}
             variant="primary"
             className="mt-2"
           >

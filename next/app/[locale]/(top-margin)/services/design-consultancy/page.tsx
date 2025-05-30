@@ -147,7 +147,7 @@ export default function DesignConsultancyPage({ params }: { params: { locale: st
         </ol>
       </div>
       <div className="flex justify-center mt-10">
-        <Link href="/contact">
+        <Link href={`/${locale}/contact`}>
           <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow transition">
             {CTA}
           </button>

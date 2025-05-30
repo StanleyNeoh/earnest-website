@@ -5,13 +5,14 @@ import Marquee from "react-fast-marquee";
 import { Testimonial } from "@/types/types";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { Locale } from "@/config";
 
 export const TestimonialsMarquee = ({
   testimonials,
   locale,
 }: {
   testimonials: Testimonial[]
-  locale: string;
+  locale: Locale;
 }) => {
   const levelOne = testimonials.slice(0, 8);
   const levelTwo = testimonials.slice(8, 16);
@@ -86,7 +87,7 @@ const TestimonialLevel = ({
   speed: number;
   direction: "left" | "right";
   className?: string;
-  locale: string;
+  locale: Locale;
 }) => {
   return <div className={cn("flex h-full relative", className)}>
     <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-white to-transparent" />
@@ -96,7 +97,7 @@ const TestimonialLevel = ({
         level.map((testimonial: Testimonial, index: any) => {
           return (
             <Card
-              href={`/projects/${testimonial.project?.slug || ""}`}
+              href={`/${locale}/projects/${testimonial.project?.slug || ""}`}
               key={`testimonial-${index}`}
               className="max-w-xl mx-4"
             >

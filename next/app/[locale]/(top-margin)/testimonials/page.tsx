@@ -4,6 +4,7 @@ import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 
 import { TestimonialItems } from "./_components/testimonial-items";
+import { Locale } from "@/config";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -21,12 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-/**
-客户感言
- */
-
-// --- Generic localization function for testimonials page ---
-function testimonialsLocalised(locale: string) {
+function testimonialsLocalised(locale: Locale) {
   if (locale === "zh") {
     return {
       header: "客户感言",
@@ -38,7 +34,7 @@ function testimonialsLocalised(locale: string) {
   }
 }
 
-export default async function TestimonialsPage({ params }: { params: { locale: string } }) {
+export default async function TestimonialsPage({ params }: { params: { locale: Locale } }) {
   const { header } = testimonialsLocalised(params.locale);
 
   const initialTestimonials = await fetchContentType("testimonials", {
