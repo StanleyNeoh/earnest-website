@@ -1,37 +1,40 @@
+import { Locale } from "@/config";
 import { DesktopNavbar } from "./desktop-navbar";
 import { MobileNavbar } from "./mobile-navbar";
 
+const navbarLocalized = (locale: Locale) => {
+  if (locale === "zh") {
+    return {
+      menu: [
+        { text: "主页", URL: `/${locale}/` },
+        { text: "服务", URL: `/${locale}/services` },
+        { text: "项目", URL: `/${locale}/projects` },
+        { text: "客户感言", URL: `/${locale}/testimonials` },
+        { text: "联系", URL: `/${locale}/contact` },
+      ]
+    };
+  } else {
+    return {
+      menu: [
+        { text: "Home", URL: `/${locale}/` },
+        { text: "Services", URL: `/${locale}/services` },
+        { text: "Projects", URL: `/${locale}/projects` },
+        { text: "Testimonials", URL: `/${locale}/testimonials` },
+        { text: "Contact", URL: `/${locale}/contact` },
+      ]
+    };
+  }
+}
 
-export function Navbar({ locale }: { locale: string }) {
-  const navbarItems = [
-    {
-      URL: `/${locale}`,
-      text: "Home",
-    },
-    {
-      URL: `/${locale}/services`,
-      text: "Services",
-    },
-    {
-      URL: `/${locale}/projects`,
-      text: "Projects",
-    },
-    {
-      URL: `/${locale}/testimonials`,
-      text: "Testimonials",
-    },
-    {
-      URL: `/${locale}/contact`,
-      text: "Contact",
-    },
-  ];
+export function Navbar({ locale }: { locale: Locale }) {
+  const { menu } = navbarLocalized(locale);
   return (
     <nav className="max-w-7xl fixed mx-auto inset-x-0 z-50 w-full">
       <div className="hidden lg:block w-full">
-        <DesktopNavbar locale={locale} navbarItems={navbarItems} />
+        <DesktopNavbar locale={locale} navbarItems={menu} />
       </div>
       <div className="flex h-full w-full items-center lg:hidden">
-        <MobileNavbar locale={locale} navbarItems={navbarItems} />
+        <MobileNavbar locale={locale} navbarItems={menu} />
       </div>
     </nav>
   );

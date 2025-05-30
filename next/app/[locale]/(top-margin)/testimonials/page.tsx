@@ -21,7 +21,26 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+客户感言
+ */
+
+// --- Generic localization function for testimonials page ---
+function testimonialsLocalised(locale: string) {
+  if (locale === "zh") {
+    return {
+      header: "客户感言",
+    };
+  } else {
+    return {
+      header: "Testimonials",
+    };
+  }
+}
+
 export default async function TestimonialsPage({ params }: { params: { locale: string } }) {
+  const { header } = testimonialsLocalised(params.locale);
+
   const initialTestimonials = await fetchContentType("testimonials", {
     populate: ["project", "project.thumbnail", "company"],
     pagination: {
@@ -42,14 +61,16 @@ export default async function TestimonialsPage({ params }: { params: { locale: s
       <Breadcrumb
         crumbs={[
           { name: "Home", href: "/" },
-          { name: "Testimonials", href: "/testimonials" },
+          { name: header, href: "/testimonials" },
         ]}
         className="mb-4"
       />
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Testimonials</h1>
-      <TestimonialItems 
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">
+        {header}
+      </h1>
+      <TestimonialItems
         initialTestimonials={initialTestimonials?.data || []}
-        pageSize={3} 
+        pageSize={3}
         locale={params.locale}
       />
     </Container>

@@ -7,6 +7,7 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { cn } from '@/lib/utils';
+import { Locale } from '@/config';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function LocaleLayout({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }) {
   return (
     <div className="bg-neutral-100 antialiased h-full w-full">

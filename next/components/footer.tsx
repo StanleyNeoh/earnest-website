@@ -1,14 +1,32 @@
+import { Locale } from "@/config";
 import React from "react";
 
-const MENU = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Projects", href: "/projects" },
-  { name: "Testimonials", href: "/testimonials" },
-  { name: "Contact", href: "/contact" },
-];
+const footerLocalized = (locale: Locale) => {
+  if (locale === "zh") {
+    return {
+      menu: [
+        { name: "主页", href: `/${locale}/` },
+        { name: "服务", href: `/${locale}/services` },
+        { name: "项目", href: `/${locale}/projects` },
+        { name: "客户感言", href: `/${locale}/testimonials` },
+        { name: "联系", href: `/${locale}/contact` },
+      ]
+    };
+  } else {
+    return {
+      menu: [
+        { name: "Home", href: `/${locale}/` },
+        { name: "Services", href: `/${locale}/services` },
+        { name: "Projects", href: `/${locale}/projects` },
+        { name: "Testimonials", href: `/${locale}/testimonials` },
+        { name: "Contact", href: `/${locale}/contact` },
+      ]
+    };
+  }
+}
 
-export const Footer = async ({ locale }: { locale: string }) => {
+export const Footer = async ({ locale }: { locale: Locale }) => {
+  const { menu } = footerLocalized(locale);
   return (
     <div className="relative mt-8">
       <div className="border-t border-neutral-900 px-8 pt-8 pb-16 relative bg-primary">
@@ -28,7 +46,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
           {/* Right: Menu and Contact */}
           <div className="flex flex-col md:items-end gap-4 min-w-[220px]">
             <nav className="flex flex-row flex-wrap gap-4 items-start md:items-end">
-              {MENU.map((item) => (
+              {menu.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
