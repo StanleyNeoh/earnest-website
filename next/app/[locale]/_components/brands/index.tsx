@@ -8,19 +8,14 @@ import { Container } from "@/components/container";
 
 export const Brands = ({
   heading,
-  sub_heading,
   companies,
 }: {
   heading: string,
-  sub_heading: string,
   companies: Company[]
 }) => {
   return (
     <Container className="bg-transparent pt-12 max-w-max">
-      <Heading className="pt-4">{heading}</Heading>
-      <Subheading>
-        {sub_heading}
-      </Subheading>
+      <Heading className="p-4">{heading}</Heading>
 
       {
         companies && (

@@ -66,7 +66,6 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <AboutUs companyStartDate={companyStartDate} locale={params.locale} />
       <Brands
         heading="Trusted by Major Brands"
-        sub_heading="Proudly trusted by leading companies across industries."
         companies={companies?.data || []}
       />
       <Testimonials

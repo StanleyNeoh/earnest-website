@@ -10,20 +10,6 @@ import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
 import MapboxMap from "@/components/mapbox-map";
 import { IoLogoWhatsapp } from "react-icons/io";
 
-import biosensorLogo from "@/public/contact-brands/biosensors.png";
-import carlsbergLogo from "@/public/contact-brands/carlsberg-singapore.png";
-import chinaCommunicationsLogo from "@/public/contact-brands/china-communications-cropped.svg";
-import dominosLogo from "@/public/contact-brands/dominos-pizza-cropped.svg";
-import garminLogo from "@/public/contact-brands/garmin.svg";
-import jurongPortLogo from "@/public/contact-brands/jurong-port.png";
-import krisshopLogo from "@/public/contact-brands/krisshop.svg";
-import sfExpressLogo from "@/public/contact-brands/sf-express.svg";
-import sisLogo from "@/public/contact-brands/sis.png";
-import sunstarLogo from "@/public/contact-brands/sunstar-cropped.png";
-import Image from "next/image";
-
-const logos = [biosensorLogo, carlsbergLogo, chinaCommunicationsLogo, dominosLogo, garminLogo, jurongPortLogo, krisshopLogo, sfExpressLogo, sisLogo, sunstarLogo];
-
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   const router = useRouter();
@@ -315,26 +301,6 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
               <LinkedInIcon />
             </div>
             <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
-          </div>
-        </div>
-
-        {/* Client Logos: always visible */}
-        <div className="bg-white/95 p-6 flex flex-col gap-4 w-full z-10 md:rounded-2xl md:shadow-2xl md:border md:border-gray-200">
-          <h2 className="text-lg font-semibold text-blue-800 mb-2">Trusted by major brands</h2>
-          <div className="flex flex-row flex-wrap gap-8 justify-center justify-items-center">
-            {logos.map((logo, idx) => {
-              return (
-                <Image
-                  key={idx}
-                  src={logo.src}
-                  width={logo.width}
-                  height={logo.height}
-                  alt={`Client logo ${idx + 1}`}
-                  className="w-24 max-h-12 object-contain"
-                  loading="lazy"
-                />
-              )
-            })}
           </div>
         </div>
 

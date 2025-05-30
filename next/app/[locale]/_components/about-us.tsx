@@ -37,6 +37,10 @@ export const AboutUs = ({
             title: "Our Values",
             text: "Transparent communication, practical solutions, and quality craftsmanship are the values we live by.",
           },
+          {
+            title: "Our Mission",
+            text: "With determination, integrity, and passion, we build workspaces that are both functional and inspiring.",
+          },
         ],
         CTAs: [],
         direction: "img-on-left",

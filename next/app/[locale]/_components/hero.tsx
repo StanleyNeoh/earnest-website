@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Heading } from "../../../components/elements/heading";
-import { Subheading } from "../../../components/elements/subheading";
 import { Container } from "../../../components/container";
-import heroImage from "../../../public/hero.png";
+import heroImage from "../../../public/hero.jpg";
+import whiteEarnestLogo from "../../../public/earnest-white-logo.svg";
+import { Logo } from "@/components/logo";
+import Image from "next/image";
 
 export const Hero = () => {
   return (
@@ -13,15 +14,21 @@ export const Hero = () => {
           backgroundImage: `url(${heroImage.src})`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-radial from-white to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent"></div>
-        <Container className="relative flex flex-col items-center justify-center h-full">
-          <Heading
-            as="h1"
-            className="text-3xl lg:text-5xl font-extrabold max-w-7xl mx-auto text-center text-gray-800 relative z-10"
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-700/80 to-black/90"/>
+        <Container className="relative flex flex-col-reverse lg:flex-row items-center lg:items-start justify-center lg:justify-between gap-16 h-full">
+          <h1
+            className="text-4xl lg:text-7xl lg:mt-32 font-extrabold text-center lg:text-start text-white relative z-10"
           >
-            Crafting workspaces that inspire and sustain, with transparent pricing and timely delivery
-          </Heading>
+            Get Inspiring, <br />
+            Collaborative Workspaces
+          </h1>
+          <Image
+            src={whiteEarnestLogo.src}
+            width={whiteEarnestLogo.width}
+            height={whiteEarnestLogo.height}
+            alt="Earnest Logo"
+            className="h-24 w-auto object-contain z-10"
+          />
         </Container>
       </div>
   );

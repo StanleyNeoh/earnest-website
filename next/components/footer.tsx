@@ -14,29 +14,15 @@ export const Footer = async ({ locale }: { locale: string }) => {
       <div className="border-t border-neutral-900 px-8 pt-8 pb-16 relative bg-primary">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row justify-between gap-8 text-sm text-neutral-500">
           {/* Left: About, Credits and stack */}
-          <div>
+          <div className="flex flex-col gap-4 md:items-start gap-4 text-neutral-600">
             <div className="mt-2">Designed and Developed by Stanley Webdev</div>
-            <div className="mt-2">
-              built with{" "}
-              <a className="text-charcoal underline" href="https://strapi.io">
-                Strapi
-              </a>
-              ,{" "}
-              <a className="text-charcoal underline" href="https://nextjs.org">
-                Next.js
-              </a>
-              ,{" "}
-              <a className="text-charcoal underline" href="https://tailwindcss.com">
-                Tailwind CSS
-              </a>
-              ,{" "}
-              <a className="text-charcoal underline" href="https://framer.com/motion">
-                Motion Animation Lib
-              </a>
-              , and{" "}
-              <a className="text-charcoal underline" href="https://ui.aceternity.com">
-                Aceternity UI
-              </a>
+            <div>
+              <div className="flex items-center">
+                <span>&copy; 2025 Earnest Designer &amp; Project Pte Ltd</span>
+              </div>
+              <div className="flex items-center">
+                <span>All rights reserved</span>
+              </div>
             </div>
           </div>
           {/* Right: Menu and Contact */}
@@ -63,17 +49,6 @@ export const Footer = async ({ locale }: { locale: string }) => {
                   className="underline text-blue-700"
                 >
                   {process.env.NEXT_PUBLIC_EARNEST_EMAIL}
-                </a>
-              </span>
-              <span>
-                LinkedIn:{" "}
-                <a
-                  href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline text-blue-700"
-                >
-                  {process.env.NEXT_PUBLIC_EARNEST_LINKEDIN}
                 </a>
               </span>
             </div>

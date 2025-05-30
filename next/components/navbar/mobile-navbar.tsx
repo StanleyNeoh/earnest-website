@@ -8,10 +8,10 @@ import { LocaleSwitcher } from "../locale-switcher";
 import Image from "next/image";
 import { Logo } from "../logo";
 import Link from "next/link";
+import blackEarnestLogo from "@/public/earnest-black-logo.svg";
 
 export const MobileNavbar = ({
   navbarItems,
-  logoUrl,
   locale,
 }: {
   navbarItems: {
@@ -19,7 +19,6 @@ export const MobileNavbar = ({
     text: string;
   }[];
   locale: string
-  logoUrl: string;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -32,14 +31,6 @@ export const MobileNavbar = ({
               "p-4 flex justify-between bg-neutral-100 items-center w-full",
             )}
           >
-            <Logo 
-              logoUrl={logoUrl}
-              width={100}
-              height={100}
-              redirectUrl="/"
-              locale={locale}
-              className="ml-4"
-            />
             <IoIosMenu
               className="text-charcoal h-12 w-12"
               onClick={() => setOpen(!open)}
@@ -53,7 +44,7 @@ export const MobileNavbar = ({
           <div className="fixed inset-0 bg-neutral-100/70 z-50 flex flex-col items-start justify-start space-y-10 pt-5  text-xl text-zinc-600  transition duration-200 hover:text-zinc-800">
             <div className="flex items-center justify-between w-full px-5">
               <Logo
-                logoUrl={logoUrl}
+                logoUrl={blackEarnestLogo.src}
                 width={150}
                 height={150}
                 redirectUrl="/"

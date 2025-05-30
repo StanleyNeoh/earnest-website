@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import designConsultancyImg from "@/public/about-us/acl-2017/2.jpg";
-import { Heading } from "@/components/elements/heading";
-import { Subheading } from "@/components/elements/subheading";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
@@ -17,7 +15,7 @@ const whoFor = [
 const processSteps = [
   {
     title: "SPACE – Understanding Your Requirements",
-    text: "We begin by identifying team-specific needs—such as workstations, meeting areas, or server rooms. Use our Space Calculator for detailed planning. Need help securing an office space? We can connect you with our trusted leasing agents.",
+    text: "We begin by identifying team-specific needs—such as workstations, meeting areas, or server rooms. We can connect you with our trusted leasing agents.",
   },
   {
     title: "SURVEY – Site Assessment",
