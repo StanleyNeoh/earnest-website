@@ -8,6 +8,8 @@ import aboutUs3 from '@/public/about-us/acl-2017/3.jpg';
 import aboutUs4 from '@/public/about-us/acl-2017/4.jpg';
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
+import { breadcrumbLocalized } from "./constants";
+import { Locale } from "@/config";
 
 export const metadata: Metadata = {
   title: "Our Services",
@@ -91,19 +93,16 @@ const servicesLocalised = (locale: string) => {
   }
 }
 
-export default async function ServicesPage({ params }: { params: { locale: string } }) {
+export default async function ServicesPage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const { title, learnMore, sections } = servicesLocalised(locale);
   return (
     <Container className="py-4 px-8">
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: `/${locale}/services` },
-        ]}
+        crumbs={breadcrumbLocalized(locale)}
         className="mb-4"
       />
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Our Services</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">{title}</h1>
       <div className="space-y-16">
         {sections.map((section, idx) => (
           <div

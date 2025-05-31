@@ -6,6 +6,8 @@ import { Container } from "@/components/container";
 import designBuildImg from "@/public/about-us/acl-2017/1.jpg";
 import { cn } from "@/lib/utils";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
+import { breadcrumbLocalized } from "../constants";
+import { Locale } from "@/config";
 
 export const metadata: Metadata = {
   title: "Service - Design and Build | Earnest",
@@ -87,7 +89,7 @@ function designAndBuildLocalised(locale: string) {
   }
 }
 
-export default function DesignAndBuildPage({ params }: { params: { locale: string } }) {
+export default function DesignAndBuildPage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const {
     title,
@@ -106,11 +108,10 @@ export default function DesignAndBuildPage({ params }: { params: { locale: strin
     <Container className="mx-auto py-16 px-4 md:px-8">
       {/* Breadcrumb */}
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: title, href: "/services/design-and-build" },
-        ]}
+        crumbs={breadcrumbLocalized(locale, {
+          name: title,
+          href: `/${locale}/services/design-and-build`,
+        })}
         className="mb-4"
       />
 

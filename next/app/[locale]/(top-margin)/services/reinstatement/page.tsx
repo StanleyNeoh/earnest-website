@@ -4,6 +4,8 @@ import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import reinstatementImg from "@/public/about-us/acl-2017/4.jpg";
 import { Metadata } from "next";
+import { breadcrumbLocalized } from "../constants";
+import { Locale } from "@/config";
 
 export const metadata: Metadata = {
   title: "Service - Reinstatement | Earnest",
@@ -80,7 +82,7 @@ function reinstatementLocalised(locale: string) {
   }
 }
 
-export default function ReinstatementPage({ params }: { params: { locale: string } }) {
+export default function ReinstatementPage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const {
     title,
@@ -99,11 +101,10 @@ export default function ReinstatementPage({ params }: { params: { locale: string
     <Container className="mx-auto py-16 px-4 md:px-8">
       {/* Breadcrumb */}
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: title, href: "/services/reinstatement" },
-        ]}
+        crumbs={breadcrumbLocalized(locale, {
+          name: title,
+          href: `/${locale}/services/reinstatement`,
+        })}
         className="mb-4"
       />
 

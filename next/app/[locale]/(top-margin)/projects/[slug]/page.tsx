@@ -7,6 +7,8 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
 import fetchContentType from "@/lib/strapi/fetchContentType";
+import { breadcrumbLocalized } from "../constants";
+import { Locale } from "@/config";
 
 export async function generateMetadata({
   params,
@@ -27,8 +29,9 @@ export async function generateMetadata({
 export default async function SingleProjectPage({
   params,
 }: {
-  params: { slug: string, locale: string };
+  params: { slug: string, locale: Locale };
 }) {
+  const { slug, locale } = params;
   const project = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: ["thumbnail", "images"],
@@ -42,11 +45,10 @@ export default async function SingleProjectPage({
   return (
     <Container className="space-y-8 p-8">
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Projects", href: "/projects" },
-          { name: project?.name || "Project", href: `/projects/${params.slug}` },
-        ]}
+        crumbs={breadcrumbLocalized(locale, {
+          name: project?.name || "Project",
+          href: `/${locale}/projects/${slug}`,
+        })}
         className="mb-4"
       />
       <SingleProject

@@ -42,7 +42,7 @@ export const TestimonialItems = ({
       }
     },
     initialTestimonials,
-    "earnest_testimonials",
+    "earnest_testimonials_" + locale,
     1000 * 60 * 15,
   )
 

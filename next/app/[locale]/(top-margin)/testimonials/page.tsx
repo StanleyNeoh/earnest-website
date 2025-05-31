@@ -5,6 +5,7 @@ import fetchContentType from "@/lib/strapi/fetchContentType";
 
 import { TestimonialItems } from "./_components/testimonial-items";
 import { Locale } from "@/config";
+import { breadcrumbLocalized } from "./constants";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -49,16 +50,12 @@ export default async function TestimonialsPage({ params }: { params: { locale: L
       },
     },
     sort: "order:desc",
-    locale: params.locale,
   });
 
   return (
     <Container className="py-4 px-4 md:px-8">
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: header, href: "/testimonials" },
-        ]}
+        crumbs={breadcrumbLocalized(params.locale)}
         className="mb-4"
       />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">

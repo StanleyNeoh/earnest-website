@@ -4,6 +4,8 @@ import designConsultancyImg from "@/public/about-us/acl-2017/2.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { Metadata } from "next";
+import { Locale } from "@/config";
+import { breadcrumbLocalized } from "../constants";
 
 export const metadata: Metadata = {
   title: "Service - Design Consultancy | Earnest",
@@ -72,7 +74,7 @@ function designConsultancyLocalised(locale: string) {
   }
 }
 
-export default function DesignConsultancyPage({ params }: { params: { locale: string } }) {
+export default function DesignConsultancyPage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const {
     title,
@@ -88,11 +90,10 @@ export default function DesignConsultancyPage({ params }: { params: { locale: st
   return (
     <Container className="py-16 px-4 md:px-8">
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: title, href: "/services/design-consultancy" },
-        ]}
+        crumbs={breadcrumbLocalized(locale, {
+          name: title,
+          href: `/${locale}/services/design-consultancy`,
+        })}
         className="mb-4"
       />
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">

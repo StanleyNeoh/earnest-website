@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import preLeaseImg from "@/public/about-us/acl-2017/3.jpg";
 import { Locale } from "@/config";
 import { Metadata } from "next";
+import { breadcrumbLocalized } from "../constants";
 
 export const metadata: Metadata = {
   title: "Service - Pre-lease Services | Earnest",
@@ -90,11 +91,10 @@ export default function PreLeaseServicesPage({
     <Container className="mx-auto py-16 px-4 md:px-8">
       {/* Breadcrumb */}
       <Breadcrumb
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: title, href: "/services/pre-lease-services" },
-        ]}
+        crumbs={breadcrumbLocalized(locale, {
+          name: title,
+          href: `/${locale}/services/pre-lease-services`,
+        })}
         className="mb-4"
       />
       {/* Title and Image */}

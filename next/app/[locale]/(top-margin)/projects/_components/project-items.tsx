@@ -35,7 +35,7 @@ export const ProjectItems = ({
       };
     },
     initialProjects,
-    'earnest_projects',
+    'earnest_projects_' + locale,
     1000 * 60 * 15,
   );
 
