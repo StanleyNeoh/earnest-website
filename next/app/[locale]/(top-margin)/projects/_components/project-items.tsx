@@ -27,7 +27,6 @@ export const ProjectItems = ({
           limit: pageSize,
         },
         sort: "order:desc",
-        locale,
       });
       return {
         data: newProjects?.data || [],
@@ -35,7 +34,7 @@ export const ProjectItems = ({
       };
     },
     initialProjects,
-    'earnest_projects_' + locale,
+    'earnest_projects',
     1000 * 60 * 15,
   );
 

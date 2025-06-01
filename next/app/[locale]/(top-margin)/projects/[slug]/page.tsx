@@ -35,7 +35,6 @@ export default async function SingleProjectPage({
   const project = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: ["thumbnail", "images"],
-    locale: params.locale,
   }, true);
 
   if (!project) {

@@ -34,7 +34,6 @@ export const TestimonialItems = ({
           },
         },
         sort: "order:desc",
-        locale: locale,
       });
       return {
         data: newTestimonials?.data || [],
@@ -42,7 +41,7 @@ export const TestimonialItems = ({
       }
     },
     initialTestimonials,
-    "earnest_testimonials_" + locale,
+    "earnest_testimonials",
     1000 * 60 * 15,
   )
 
