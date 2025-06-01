@@ -5,9 +5,10 @@ import Autoscroll from "embla-carousel-auto-scroll";
 import Autoplay from "embla-carousel-autoplay";
 import { Image as ImageType } from "@/types/types";
 
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import dynamic from "next/dynamic";
 
+const Lightbox = dynamic(() => import("yet-another-react-lightbox"), { ssr: false });
+import "yet-another-react-lightbox/styles.css";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
