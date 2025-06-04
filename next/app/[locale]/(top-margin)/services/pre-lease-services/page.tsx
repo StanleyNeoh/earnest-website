@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
-import preLeaseImg from "@/public/about-us/acl-2017/3.jpg";
+import preLeaseImg from "@/public/services/pre-lease.jpg";
 import { Locale } from "@/config";
 import { Metadata } from "next";
 import { breadcrumbLocalized } from "../constants";

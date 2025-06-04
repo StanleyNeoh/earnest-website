@@ -58,7 +58,7 @@ const BrandLevel = ({
                 width={logo?.width}
                 height={logo?.height}
                 draggable={false}
-                className="w-32 h-auto mx-8"
+                className="w-20 h-auto mx-8"
               />
             );
           })

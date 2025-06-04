@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import designConsultancyImg from "@/public/about-us/acl-2017/2.jpg";
+import designConsultancyImg from "@/public/services/design-consultancy.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { Metadata } from "next";

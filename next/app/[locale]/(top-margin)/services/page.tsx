@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import aboutUs1 from '@/public/about-us/acl-2017/1.jpg';
-import aboutUs2 from '@/public/about-us/acl-2017/2.jpg';
-import aboutUs3 from '@/public/about-us/acl-2017/3.jpg';
-import aboutUs4 from '@/public/about-us/acl-2017/4.jpg';
+import designAndBuildImg from '@/public/services/design-and-build.jpg';
+import designConsultancyImg from '@/public/services/design-consultancy.jpg';
+import preLeaseImg from '@/public/services/pre-lease.jpg';
+import reinstatementImg from '@/public/services/reinstatement.jpg';
+
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "./constants";
@@ -35,25 +36,25 @@ const servicesLocalised = (locale: string) => {
       sections: [
         {
           href: `/${locale}/services/pre-lease-services`,
-          image: aboutUs3,
+          image: preLeaseImg,
           title: "租赁咨询",
           subtitle: "租赁咨询服务：区域总部及甲级写字楼选址顾问服务",
         },
         {
           href: `/${locale}/services/design-and-build`,
-          image: aboutUs1,
+          image: designAndBuildImg,
           title: "设计与建造",
           subtitle: "精工细作，打造卓越的办公空间",
         },
         {
           href: `/${locale}/services/design-consultancy`,
-          image: aboutUs2,
+          image: designConsultancyImg,
           title: "设计顾问",
           subtitle: "赋能企业做出自信且富有灵感的设计决策。",
         },
         {
           href: `/${locale}/services/reinstatement`,
-          image: aboutUs4,
+          image: reinstatementImg,
           title: "还原工程",
           subtitle: "高效、省心、全程托管，让您专注迎接下一个篇章。",
         },
@@ -66,25 +67,25 @@ const servicesLocalised = (locale: string) => {
       sections: [
         {
           href: `/${locale}/services/pre-lease-services`,
-          image: aboutUs3,
+          image: preLeaseImg,
           title: "Pre-Lease",
           subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
         },
         {
           href: `/${locale}/services/design-and-build`,
-          image: aboutUs1,
+          image: designAndBuildImg,
           title: "Design and Build",
           subtitle: "Office transformations that exceed expectations.",
         },
         {
           href: `/${locale}/services/design-consultancy`,
-          image: aboutUs2,
+          image: designConsultancyImg,
           title: "Design Consultancy",
           subtitle: "Empowering you to make confident, inspired design decisions.",
         },
         {
           href: `/${locale}/services/reinstatement`,
-          image: aboutUs4,
+          image: reinstatementImg,
           title: "Reinstatement",
           subtitle: "Fast, worry-free, and fully managed — so you can focus on your next chapter.",
         },

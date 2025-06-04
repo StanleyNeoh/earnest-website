@@ -96,7 +96,7 @@ const TestimonialItem = ({
       <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center md:items-start text-center md:text-left">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">{company?.name}</h2>
         <p className="text-lg text-gray-600 mb-4">{`"${testimonial.remarks}"`}</p>
-        <div className="text-base text-gray-500 mb-4">
+        <div className="text-sm text-gray-400 mb-4">
           <span className="font-semibold">{testimonial.representative_name}</span>
           {testimonial.representative_role && (
             <span className="ml-2">/ {testimonial.representative_role}</span>

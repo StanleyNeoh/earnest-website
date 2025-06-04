@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Subheading } from "@/components/elements/subheading";
 import { Container } from "@/components/container";
-import designBuildImg from "@/public/about-us/acl-2017/1.jpg";
-import { cn } from "@/lib/utils";
+import designBuildImg from "@/public/services/design-and-build.jpg";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
