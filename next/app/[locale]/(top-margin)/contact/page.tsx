@@ -10,6 +10,8 @@ import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
 import MapboxMap from "@/components/mapbox-map";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Locale } from "@/config";
+import { Container } from "@/components/container";
+import { cn } from "@/lib/utils";
 
 function contactLocalised(locale: string) {
   if (locale === "zh") {
@@ -223,158 +225,200 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 m-20 gap-8 md:mx-8">
-      <Toaster />
-      <div className="flex flex-col w-full justify-center bg-white px-6 py-4 md:rounded-2xl md:shadow-2xl">
-        <div>
-          <h1 className="text-3xl font-bold text-center md:text-start">
-            {header}
-          </h1>
-        </div>
-        <div className="pt-10">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {fields.map((field, idx) => {
-              if (field.type === "select") {
-                return (
-                  <div key={field.name}>
-                    <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
-                      {field.label} {field.required && <span className="text-red-500">*</span>}
-                    </label>
-                    <div className="mt-2">
-                      <select
-                        id={field.name}
-                        name={field.name}
-                        className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        defaultValue=""
-                        required={field.required}
-                      >
-                        <option value="" disabled hidden>
-                          --
-                        </option>
-                        {Array.isArray(field.options) && field.options.map((option: string, i: number) => (
-                          <option key={i} value={option}>{option}</option>
-                        ))}
-                      </select>
+    <Container>
+      <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-8">
+        <Toaster />
+        <div className="flex flex-col w-full justify-center gap-6">
+          {/* Form card */}
+          <div className="flex flex-col gap-8 bg-white p-6 md:rounded-2xl md:shadow-2xl">
+            <h1 className="text-3xl font-bold text-center md:text-start">
+              {header}
+            </h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {fields.map((field, idx) => {
+                if (field.type === "select") {
+                  return (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id={field.name}
+                          name={field.name}
+                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                          defaultValue=""
+                          required={field.required}
+                        >
+                          <option value="" disabled hidden>
+                            --
+                          </option>
+                          {Array.isArray(field.options) && field.options.map((option: string, i: number) => (
+                            <option key={i} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                );
-              } else if (field.type === "textarea") {
-                return (
-                  <div key={field.name}>
-                    <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
-                      {field.label}
-                    </label>
-                    <div className="mt-2">
-                      <textarea
-                        id={field.name}
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        rows={4}
-                        required={field.required}
-                      />
+                  );
+                } else if (field.type === "textarea") {
+                  return (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
+                        {field.label}
+                      </label>
+                      <div className="mt-2">
+                        <textarea
+                          id={field.name}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                          rows={4}
+                          required={field.required}
+                        />
+                      </div>
                     </div>
-                  </div>
-                );
-              } else if (field.type === "file") {
-                return (
-                  <div key={field.name}>
-                    <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
-                      {field.label}
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id={field.name}
-                        name={field.name}
-                        type="file"
-                        multiple
-                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                        placeholder={field.placeholder}
-                        required={field.required}
-                      />
+                  );
+                } else if (field.type === "file") {
+                  return (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
+                        {field.label}
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          id={field.name}
+                          name={field.name}
+                          type="file"
+                          multiple
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                          placeholder={field.placeholder}
+                          required={field.required}
+                        />
+                      </div>
                     </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={field.name}>
-                    <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
-                      {field.label} {field.required && <span className="text-red-500">*</span>}
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id={field.name}
-                        name={field.name}
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
-                        required={field.required}
-                      />
+                  );
+                } else {
+                  return (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-md font-medium leading-6 text-neutral-800">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          id={field.name}
+                          name={field.name}
+                          type={field.type}
+                          placeholder={field.placeholder}
+                          className="block w-full bg-neutral-100 px-4 rounded-md border-0 py-1.5 shadow-aceternity text-neutral-800 placeholder:text-gray-500 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6"
+                          required={field.required}
+                        />
+                      </div>
                     </div>
-                  </div>
-                );
-              }
-            })}
-            <div>
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                onChange={handleCaptchaChange}
-                onExpired={handleCaptchaExpired}
-              />
-              <div className="text-sm text-gray-600 mt-2">{captcha}</div>
-            </div>
-            <Button
-              className={`w-full mt-6 ${!verified ? "opacity-50 cursor-not-allowed" : ""}`}
-              variant="muted"
-              type="submit"
-              disabled={isSubmitting || !verified}
-            >
-              {submit}
-            </Button>
-          </form>
-        </div>
-      </div>
-      <div className="flex flex-col w-full justify-start gap-6">
-        {/* Contact Details Card: always visible */}
-        <div className="bg-white/95 p-6 flex flex-col gap-4 w-full z-10 md:rounded-2xl md:shadow-2xl md:border md:border-gray-200 ">
-          <h2 className="text-lg font-semibold text-blue-800">{contactDetails}</h2>
-          <div className="flex items-center gap-3">
-            <MapPin className="w-5 h-5" />
-            <div>
-              <div className="font-medium text-gray-800">{process.env.NEXT_PUBLIC_EARNEST_NAME}</div>
-              <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5">
-              <PhoneIcon />
-            </div>
-            <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5">
-              <IoLogoWhatsapp />
-            </div>
-            <a href={process.env.NEXT_PUBLIC_EARNEST_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <MailIcon className="w-5 h-5" />
-            <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5">
-              <LinkedInIcon />
-            </div>
-            <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
+                  );
+                }
+              })}
+              <div>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                  onChange={handleCaptchaChange}
+                  onExpired={handleCaptchaExpired}
+                />
+                <div className="text-sm text-gray-600 mt-2">{captcha}</div>
+              </div>
+              <Button
+                className={`w-full mt-6 ${!verified ? "opacity-50 cursor-not-allowed" : ""}`}
+                variant="muted"
+                type="submit"
+                disabled={isSubmitting || !verified}
+              >
+                {submit}
+              </Button>
+            </form>
           </div>
         </div>
+        <div className="flex flex-col w-full justify-start gap-6">
+          {/* Call out card: always visible */}
+          <CalloutCard locale={locale} />
 
-        {/* Mapbox Map: only on md+ screens, next to the card */}
-        <div className="relative w-full h-80 z-10">
-          <MapboxMap className="md:rounded-2xl md:shadow-2xl md:border md:border-gray-200" />
+          {/* Contact Details Card: always visible */}
+          <div className="bg-white/95 p-6 flex flex-col gap-4 w-full z-10 md:rounded-2xl md:shadow-2xl md:border md:border-gray-200 ">
+            <h2 className="text-lg font-semibold text-blue-800">{contactDetails}</h2>
+            <div className="flex items-center gap-3">
+              <MapPin className="w-5 h-5" />
+              <div>
+                <div className="font-medium text-gray-800">{process.env.NEXT_PUBLIC_EARNEST_NAME}</div>
+                <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <PhoneIcon />
+              </div>
+              <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <IoLogoWhatsapp />
+              </div>
+              <a href={process.env.NEXT_PUBLIC_EARNEST_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
+            </div>
+            <div className="flex items-center gap-3">
+              <MailIcon className="w-5 h-5" />
+              <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5">
+                <LinkedInIcon />
+              </div>
+              <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
+            </div>
+          </div>
+
+          <div className="relative w-full h-80 z-10">
+            <MapboxMap className="md:rounded-2xl md:shadow-2xl md:border md:border-gray-200" />
+          </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
+
+function CalloutCard({
+  locale,
+  className,
+}: {
+  locale: Locale,
+  className?: string;
+}) {
+  const {
+    title,
+    body,
+  } = locale == "zh"
+    ? {
+      title: "准备好将您的办公空间焕然一新了吗?",
+      body: [
+        "从设计到施工，我们为您的办公室打造功能实用, 启发灵感、并量身定制的办公环境",
+        "立即联系我们，开始规划您的理想办公空间！"
+      ]
+    } : {
+      title: "Ready to transform your workspace into something exceptional?",
+      body: [
+        "From design to build, we make office interiors functional, inspiring, and tailored to your team.",
+        "Contact us and start planning your ideal workspace today!"
+      ]
+    }
+
+  return (
+    <div className={cn("flex flex-col gap-2 bg-white p-6 rounded-lg shadow-md", className)}>
+      <h2 className="text-xl font-semibold text-blue-800">{title}</h2>
+      {
+        body.map((txt) => (
+          <p className="text-gray-600">
+            {txt}
+          </p>
+        ))
+      }
+    </div>
+  );
+}

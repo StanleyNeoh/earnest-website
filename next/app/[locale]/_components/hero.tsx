@@ -4,11 +4,12 @@ import { Container } from "../../../components/container";
 import heroImage from "../../../public/hero.jpg";
 import whiteEarnestLogo from "../../../public/earnest-white-logo.svg";
 import Image from "next/image";
+import { Locale } from "@/config";
 
 export const Hero = ({
   locale,
 }: {
-  locale: string;
+  locale: Locale;
 }) => {
   const heroText = locale === "zh" 
     ? ["获取灵感, ", <br />, "协作工作空间"] 
