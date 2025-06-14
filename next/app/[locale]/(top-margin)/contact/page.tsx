@@ -417,8 +417,8 @@ function CalloutCard({
     <div className={cn("flex flex-col gap-2 bg-white p-6 rounded-lg shadow-md", className)}>
       <h2 className="text-xl font-semibold text-blue-800">{title}</h2>
       {
-        body.map((txt) => (
-          <p className="text-gray-600">
+        body.map((txt, idx) => (
+          <p className="text-gray-600" key={idx}>
             {txt}
           </p>
         ))
