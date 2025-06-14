@@ -375,8 +375,12 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
             </div>
           </div>
 
-          <div className="relative w-full h-80 z-10">
-            <MapboxMap className="md:rounded-2xl md:shadow-2xl md:border md:border-gray-200" />
+          <div className="relative w-full h-80 z-10 md:rounded-2xl md:shadow-2xl md:border md:border-gray-200">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7718465545345!2d103.86120360650675!3d1.312304869972665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19cbed8eda81%3A0xe1641f16f511acb4!2sEarnest%20Designer%20%26%20Project!5e0!3m2!1sen!2ssg!4v1749911845937!5m2!1sen!2ssg" 
+              loading="lazy" 
+              className="w-full h-full md:rounded-2xl md:shadow-2xl md:border md:border-gray-200"
+            />
           </div>
         </div>
       </div>
