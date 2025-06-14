@@ -3,10 +3,16 @@ import React from "react";
 import { Container } from "../../../components/container";
 import heroImage from "../../../public/hero.jpg";
 import whiteEarnestLogo from "../../../public/earnest-white-logo.svg";
-import { Logo } from "@/components/logo";
 import Image from "next/image";
 
-export const Hero = () => {
+export const Hero = ({
+  locale,
+}: {
+  locale: string;
+}) => {
+  const heroText = locale === "zh" 
+    ? ["获取灵感, ", <br />, "协作工作空间"] 
+    : ["Get Inspiring, ", <br />, "Collaborative Workspaces"];
   return (
     <div
       className="relative py-32 w-screen h-screen bg-cover bg-center"
@@ -20,8 +26,7 @@ export const Hero = () => {
           className="text-4xl lg:text-7xl lg:mt-32 text-center lg:text-start text-white relative z-10"
           style={{ fontFamily: "'Open Sans', sans-serif" }}
         >
-          Get Inspiring, <br />
-          Collaborative Workspaces
+          {heroText}
         </h1>
         <Image
           src={whiteEarnestLogo.src}
