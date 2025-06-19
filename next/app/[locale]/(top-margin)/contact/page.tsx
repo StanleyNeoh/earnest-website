@@ -7,7 +7,6 @@ import { Button } from "@/components/elements/button";
 
 import { LinkedInIcon } from "@/components/icons/illustrations";
 import { MailIcon, MapPin, PhoneIcon } from "lucide-react";
-import MapboxMap from "@/components/mapbox-map";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Locale } from "@/config";
 import { Container } from "@/components/container";
