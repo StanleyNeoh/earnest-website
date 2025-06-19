@@ -9,7 +9,7 @@ import { useLoadManager } from "../../../../../hooks/hooks";
 
 export const ProjectItems = ({
   initialProjects,
-  pageSize = 9,
+  pageSize = 18,
   locale,
   className,
 }: {
@@ -49,7 +49,20 @@ export const ProjectItems = ({
           />
         ))}
       </div>
-      <div className="w-full flex justify-center mt-8" ref={loadTriggerRef}>
+      {/* Load trigger for infinite scroll */}
+      <div
+        ref={loadTriggerRef}
+        style={{ 
+          position: 'absolute', 
+          bottom: '20rem', 
+          width: '100%', 
+          height: '20px', 
+          // backgroundColor: 'black', 
+          zIndex: 10 
+        }}
+        aria-hidden="true"
+      />
+      <div className="w-full flex justify-center mt-8">
         {loading && <div className="loader">Loading...</div>}
       </div>
     </div>

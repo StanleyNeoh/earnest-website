@@ -36,7 +36,7 @@ export default async function Projects({
     populate: ['thumbnail'],
     pagination: {
       page: 1,
-      pageSize: 9,
+      pageSize: 18,
     },
     sort: "order:desc",
   }, { requestor: "ProjectsPage" });
