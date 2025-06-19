@@ -437,7 +437,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    category: Schema.Attribute.Enumeration<['office-interior', 'industrial']>;
+    category: Schema.Attribute.String;
     company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
     completion_date: Schema.Attribute.Date;
     createdAt: Schema.Attribute.DateTime;

@@ -53,13 +53,6 @@
     "completion_date": {
       "type": "date"
     },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "office-interior",
-        "industrial"
-      ]
-    },
     "testimonial": {
       "type": "relation",
       "relation": "oneToOne",
@@ -98,6 +91,9 @@
     "order": {
       "type": "integer",
       "default": 0
+    },
+    "category": {
+      "type": "string"
     }
   }
 }
