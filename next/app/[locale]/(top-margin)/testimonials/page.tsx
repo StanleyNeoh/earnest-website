@@ -50,7 +50,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: L
       },
     },
     sort: "order:desc",
-  });
+  }, { requestor: "TestimonialsPage" });
 
   return (
     <Container className="py-4 px-4 md:px-8">

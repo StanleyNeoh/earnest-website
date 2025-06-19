@@ -19,7 +19,10 @@ export async function generateMetadata({
   const pageData = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: "seo.metaImage",
-  }, true)
+  }, { 
+    spreadData: true,
+    requestor: "SingleProjectPageMetadata",
+  })
 
   const seo = pageData?.seo;
   const metadata = generateMetadataObject(seo);
@@ -35,7 +38,10 @@ export default async function SingleProjectPage({
   const project = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: ["thumbnail", "images"],
-  }, true);
+  }, {
+    spreadData: true,
+    requestor: "SingleProjectPage",
+  });
 
   if (!project) {
     redirect("/projects");

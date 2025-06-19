@@ -36,7 +36,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       filters: {
         selected: true
       },
-    }),
+    }, { requestor: "/[locale]/page.tsx" }),
     fetchContentType("testimonials", {
       populate: ['company', 'project', 'company.logo'],
       filters: {
@@ -44,7 +44,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
           $eq: true,
         },
       }
-    }),
+    }, { requestor: "/[locale]/page.tsx" }),
     fetchContentType("projects", {
       populate: {
         featured: {
@@ -56,7 +56,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
           $notNull: true,
         },
       }
-    }),
+    }, { requestor: "HomePage" }),
   ]);
 
   return (

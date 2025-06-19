@@ -30,29 +30,31 @@ export function spreadStrapiData(data: StrapiResponse): StrapiData | null {
 export default async function fetchContentType(
   contentType: string,
   params: Record<string, unknown> = {},
-  spreadData?: boolean,
+  options: {
+    cache?: 'no-store' | 'default' | 'force-cache' | 'only-if-cached',
+    spreadData?: boolean,
+    requestor?: string,
+  } = {
+    cache: 'no-store',
+    spreadData: false,
+  }
 ): Promise<any> {
-  const { isEnabled } = await draftMode()
+  const { cache, spreadData, requestor } = options;
+  const startTime = Date.now();
 
   try {
-
-    const queryParams = { ...params };
-
-    if (isEnabled) {
-      queryParams.status = "draft";
-    }
 
     // Construct the full URL for the API request
     const url = new URL(`api/${contentType}`, process.env.NEXT_PUBLIC_API_URL);
 
     // Perform the fetch request with the provided query parameters
-    const response = await fetch(`${url.href}?${qs.stringify(queryParams)}`, {
+    const response = await fetch(`${url.href}?${qs.stringify(params)}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
-      cache: 'no-store',
+      cache,
     });
 
     if (!response.ok) {
@@ -64,5 +66,8 @@ export default async function fetchContentType(
   } catch (error) {
     // Log any errors that occur during the fetch process
     console.error('FetchContentTypeError', error);
+  } finally {
+    const endTime = Date.now();
+    console.log(`[fetchContentType][${requestor || 'unknown'}] Time taken for ${contentType}:`, (endTime - startTime), 'ms');
   }
 }

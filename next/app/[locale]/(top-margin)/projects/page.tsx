@@ -39,7 +39,7 @@ export default async function Projects({
       pageSize: 9,
     },
     sort: "order:desc",
-  });
+  }, { requestor: "ProjectsPage" });
 
   return (
     <>
