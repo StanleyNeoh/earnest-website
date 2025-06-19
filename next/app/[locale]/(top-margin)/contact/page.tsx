@@ -347,31 +347,31 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5" />
               <div>
-                <div className="font-medium text-gray-800">{process.env.NEXT_PUBLIC_EARNEST_NAME}</div>
-                <div className="text-gray-600 text-sm">{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</div>
+                <div className="font-medium text-gray-800">Earnest Designer & Project Pte Ltd </div>
+                <div className="text-gray-600 text-sm">2 Kallang Ave #08-06/07 CT Hub Singapore 339407</div>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-5 h-5">
                 <PhoneIcon />
               </div>
-              <span className="text-gray-700 text-sm">{process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+              <span className="text-gray-700 text-sm">+65 6445 1683</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-5 h-5">
                 <IoLogoWhatsapp />
               </div>
-              <a href={process.env.NEXT_PUBLIC_EARNEST_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
+              <a href="https://wa.me/+6593373197" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
             </div>
             <div className="flex items-center gap-3">
               <MailIcon className="w-5 h-5" />
-              <a href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`} className="text-blue-700 underline text-sm">{process.env.NEXT_PUBLIC_EARNEST_EMAIL}</a>
+              <a href="mailto:sales@earnest.sg" className="text-blue-700 underline text-sm">sales@earnest.sg</a>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-5 h-5">
                 <LinkedInIcon />
               </div>
-              <a href={process.env.NEXT_PUBLIC_EARNEST_LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
+              <a href="https://www.linkedin.com/company/earnestdesigner/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">LinkedIn</a>
             </div>
           </div>
 

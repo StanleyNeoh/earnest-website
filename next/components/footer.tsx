@@ -57,16 +57,16 @@ export const Footer = async ({ locale }: { locale: Locale }) => {
               ))}
             </nav>
             <div className="flex flex-col gap-1 mt-2 text-neutral-600 text-xs md:items-end">
-              <span>{process.env.NEXT_PUBLIC_EARNEST_NAME}</span>
-              <span>{process.env.NEXT_PUBLIC_EARNEST_ADDRESS}</span>
-              <span>Tel: {process.env.NEXT_PUBLIC_EARNEST_PHONE}</span>
+              <span>Earnest Designer & Project</span>
+              <span>2 Kallang Ave #08-06/07 CT Hub Singapore 339407</span>
+              <span>+65 6445 1683</span>
               <span>
                 Email:{" "}
                 <a
-                  href={`mailto:${process.env.NEXT_PUBLIC_EARNEST_EMAIL}`}
+                  href="mailto:sales@earnest.sg"
                   className="underline text-blue-700"
                 >
-                  {process.env.NEXT_PUBLIC_EARNEST_EMAIL}
+                  sales@earnest.sg
                 </a>
               </span>
             </div>
