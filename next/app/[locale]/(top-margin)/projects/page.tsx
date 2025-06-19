@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { Container } from "@/components/container";
 import { Heading } from "@/components/elements/heading";
-import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/_components/project-items';
+import { ProjectItems } from '@/app/[locale]/(top-margin)/projects/[category]/_components/project-items';
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "./constants";

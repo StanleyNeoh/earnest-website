@@ -5,7 +5,7 @@ import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
 import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
-import { useLoadManager } from "../../../../../hooks/hooks";
+import { useLoadManager } from "../../../../../../hooks/hooks";
 
 export const ProjectItems = ({
   initialProjects,
@@ -81,7 +81,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
 
   return (
     <Link
-      href={`/${locale}/projects/${project.slug}` as never}
+      href={`/${locale}/projects/${project.category || 'others'}/${project.slug}` as never}
       className="group relative block rounded-[5rem] overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
       prefetch={false}
     >

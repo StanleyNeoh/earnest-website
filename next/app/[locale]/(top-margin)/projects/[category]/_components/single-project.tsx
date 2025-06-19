@@ -2,8 +2,8 @@
 import React from "react";
 import { Project } from "@/types/types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
-import { Heading } from "../../../../../components/elements/heading";
-import { BlurImage } from "../../../../../components/blur-image";
+import { Heading } from "../../../../../../components/elements/heading";
+import { BlurImage } from "../../../../../../components/blur-image";
 import { cn } from "@/lib/utils";
 import { RichTextRenderer } from "@/components/rich-text";
 import { ImageGallery } from "@/components/image-gallery";
