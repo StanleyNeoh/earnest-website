@@ -70,7 +70,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
     <Link
       href={`/${locale}/projects/${project.slug}` as never}
       className="group relative block rounded-[5rem] overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
-      prefetch={true}
+      prefetch={false}
     >
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         {project?.thumbnail && (
