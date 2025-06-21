@@ -105,7 +105,7 @@ const TestimonialItem = ({
         {project?.slug && (
           <Button
             as={Link}
-            href={`/${locale}/projects/${project.slug}`}
+            href={`/${locale}/projects/${project.category || "other"}/${project.slug}`}
             variant="primary"
             className="mt-2"
           >
