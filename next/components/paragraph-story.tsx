@@ -1,10 +1,9 @@
 import { ParagraphStoryProps } from "@/types/components/simple";
-import React from "react";
 import { ImageParagraph } from "./image-paragraph";
 import { Heading } from "./elements/heading";
 import { Subheading } from "./elements/subheading";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { SafeImage } from "./safe-image";
 
 
 export const ParagraphStory = ({
@@ -47,7 +46,7 @@ export const ParagraphStory = ({
         {badges && (
           <div className={cn("flex flex-row gap-4", headerRightClassName)}>
             {badges.map((badge, index) => (
-              <Image
+              <SafeImage
                 key={index}
                 src={badge.url}
                 alt={badge.alternativeText}

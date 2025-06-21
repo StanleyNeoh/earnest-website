@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Container } from "@/components/container";
@@ -6,6 +5,7 @@ import designBuildImg from "@/public/services/design-and-build.jpg";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
+import { SafeImage } from "@/components/safe-image";
 
 export const metadata: Metadata = {
   title: "Service - Design and Build | Earnest",
@@ -124,7 +124,7 @@ export default function DesignAndBuildPage({ params }: { params: { locale: Local
           </h2>
         </div>
         <div className="flex-shrink-0">
-          <Image
+          <SafeImage
             src={designBuildImg}
             alt="Design and Build Service"
             width={220}

@@ -1,8 +1,7 @@
-import React from "react";
 
-import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
+import { SafeImage } from "./safe-image";
 
 export const Logo = ({
   logoUrl,
@@ -28,7 +27,7 @@ export const Logo = ({
         href={locale ? `/${locale}${redirectUrl}` : redirectUrl}
         className={"flex space-x-2 items-center mr-4 relative z-20"}
       >
-        <Image
+        <SafeImage
           src={logoUrl}
           alt="Logo Image"
           width={width}
@@ -41,7 +40,7 @@ export const Logo = ({
   else {
     return (
       <div className="flex space-x-2 items-center mr-4 relative z-20">
-        <Image
+        <SafeImage
           src={logoUrl}
           alt="Logo Image"
           width={width}

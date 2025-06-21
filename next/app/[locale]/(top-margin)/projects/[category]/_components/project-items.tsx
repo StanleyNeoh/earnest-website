@@ -1,11 +1,10 @@
 "use client"
-import React, { useEffect } from "react";
 import { Project } from "@/types/types";
-import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
 import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
 import { useLoadManager } from "../../../../../../hooks/hooks";
+import { SafeImage } from "@/components/safe-image";
 
 export const ProjectItems = ({
   initialProjects,
@@ -87,7 +86,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
     >
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         {project?.thumbnail && (
-          <Image
+          <SafeImage
             priority={true}
             src={strapiImage(project?.thumbnail.url)}
             alt={project.name + " image"}

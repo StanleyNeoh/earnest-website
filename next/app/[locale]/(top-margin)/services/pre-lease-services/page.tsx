@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import preLeaseImg from "@/public/services/pre-lease.jpg";
 import { Locale } from "@/config";
 import { Metadata } from "next";
 import { breadcrumbLocalized } from "../constants";
+import { SafeImage } from "@/components/safe-image";
 
 export const metadata: Metadata = {
   title: "Service - Pre-lease Services | Earnest",
@@ -108,7 +108,7 @@ export default function PreLeaseServicesPage({
           </h2>
         </div>
         <div className="flex-shrink-0">
-          <Image
+          <SafeImage
             src={preLeaseImg}
             alt="Pre-Lease Services"
             width={220}

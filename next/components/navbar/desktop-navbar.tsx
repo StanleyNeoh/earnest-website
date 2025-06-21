@@ -1,9 +1,9 @@
 import { LocaleSwitcher } from "../locale-switcher";
-import Image from "next/image";
 
 import earnestBlackLogo from "@/public/earnest-black-logo.svg";
 import Link from "next/link";
 import { NavbarItem } from "./navbar-item";
+import { SafeImage } from "../safe-image";
 
 export const DesktopNavbar = ({
   navbarItems,
@@ -23,7 +23,7 @@ export const DesktopNavbar = ({
             href={`/${locale}/`}
             className="duration-200 hover:scale-105"
           >
-            <Image
+            <SafeImage
               src={earnestBlackLogo.src}
               alt="Logo"
               width={120}

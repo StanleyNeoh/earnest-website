@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
@@ -6,6 +5,7 @@ import reinstatementImg from "@/public/services/reinstatement.jpg";
 import { Metadata } from "next";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
+import { SafeImage } from "@/components/safe-image";
 
 export const metadata: Metadata = {
   title: "Service - Reinstatement | Earnest",
@@ -119,7 +119,7 @@ export default function ReinstatementPage({ params }: { params: { locale: Locale
           </h2>
         </div>
         <div className="flex-shrink-0">
-          <Image
+          <SafeImage
             src={reinstatementImg}
             alt="Reinstatement Service"
             width={220}

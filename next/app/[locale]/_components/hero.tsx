@@ -3,8 +3,8 @@ import React from "react";
 import { Container } from "../../../components/container";
 import heroImage from "../../../public/hero.jpg";
 import whiteEarnestLogo from "../../../public/earnest-white-logo.svg";
-import Image from "next/image";
 import { Locale } from "@/config";
+import { SafeImage } from "@/components/safe-image";
 
 export const Hero = ({
   locale,
@@ -29,7 +29,7 @@ export const Hero = ({
         >
           {React.Children.toArray(heroText)}
         </h1>
-        <Image
+        <SafeImage
           src={whiteEarnestLogo.src}
           width={whiteEarnestLogo.width}
           height={whiteEarnestLogo.height}

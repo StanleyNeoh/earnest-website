@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   motion,
   useTransform,
@@ -9,6 +8,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { strapiImage } from "@/lib/strapi/strapiImage";
+import { SafeImage } from "../safe-image";
 
 export const AnimatedTooltip = ({
   items,
@@ -79,7 +79,7 @@ export const AnimatedTooltip = ({
               </motion.div>
             )}
           </AnimatePresence>
-          <Image
+          <SafeImage
             onMouseMove={handleMouseMove}
             height={100}
             width={100}

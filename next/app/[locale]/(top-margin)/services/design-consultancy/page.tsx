@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import designConsultancyImg from "@/public/services/design-consultancy.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { Metadata } from "next";
 import { Locale } from "@/config";
 import { breadcrumbLocalized } from "../constants";
+import { SafeImage } from "@/components/safe-image";
 
 export const metadata: Metadata = {
   title: "Service - Design Consultancy | Earnest",
@@ -106,7 +106,7 @@ export default function DesignConsultancyPage({ params }: { params: { locale: Lo
           </h2>
         </div>
         <div className="flex-shrink-0">
-          <Image
+          <SafeImage
             src={designConsultancyImg}
             alt="Design Consultancy Service"
             width={220}

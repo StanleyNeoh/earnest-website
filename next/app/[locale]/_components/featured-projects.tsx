@@ -4,10 +4,10 @@ import { Container } from "../../../components/container";
 import { Project } from "@/types/types";
 import { ImageCarousel } from "@/components/image-carousel";
 import { RichTextRenderer } from "@/components/rich-text";
-import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
 import { Locale } from "@/config";
+import { SafeImage } from "@/components/safe-image";
 
 const featuredProjectsLocalised = (locale: Locale) => {
   if (locale === "zh") {
@@ -62,7 +62,7 @@ const FeaturedProject = ({
       <div className={hasBadge ? "flex items-center justify-between mb-6" : "flex justify-center mb-6"}>
         <h2 className={hasBadge ? "text-3xl font-bold text-gray-800" : "text-3xl font-bold text-gray-800 text-center w-full"}>{title}</h2>
         {hasBadge && (
-          <Image
+          <SafeImage
             src={strapiImage(badge.url)}
             alt={badge.alternativeText || "Project badge"}
             width={badge.width}

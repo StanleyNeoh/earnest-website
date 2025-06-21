@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import designAndBuildImg from '@/public/services/design-and-build.jpg';
@@ -11,6 +10,7 @@ import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "./constants";
 import { Locale } from "@/config";
+import { SafeImage } from "@/components/safe-image";
 
 export const metadata: Metadata = {
   title: "Our Services",
@@ -112,7 +112,7 @@ export default async function ServicesPage({ params }: { params: { locale: Local
           >
             <div className="flex-shrink-0 w-full md:w-1/2">
               <Link href={section.href}>
-                <Image
+                <SafeImage
                   priority={true}
                   src={section.image}
                   alt={section.title}

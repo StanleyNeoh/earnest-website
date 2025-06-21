@@ -6,17 +6,17 @@ import Autoplay from "embla-carousel-autoplay";
 import { Image as ImageType } from "@/types/types";
 
 import dynamic from "next/dynamic";
-
-const Lightbox = dynamic(() => import("yet-another-react-lightbox"), { ssr: false });
 import "yet-another-react-lightbox/styles.css";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import Image from "next/image";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import { cn } from "@/lib/utils";
+import { SafeImage } from "./safe-image";
+
+const Lightbox = dynamic(() => import("yet-another-react-lightbox"), { ssr: false });
 
 export const ImageCarousel = ({
   images,
@@ -68,7 +68,7 @@ export const ImageCarousel = ({
               className={cn(`flex items-center justify-center`, basis, contentClassName)}
               onClick={() => setIndex(index)}
             >
-              <Image
+              <SafeImage
                 src={photo.src}
                 alt={photo.alt}
                 width={photo.width}

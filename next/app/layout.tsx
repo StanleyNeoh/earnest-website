@@ -1,12 +1,12 @@
 import type { Viewport } from "next";
 import { Locale, locales } from '@/config'
 import Link from 'next/link';
-import Image from 'next/image';
 import Script from 'next/script';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import whatsappIcon from '@/public/whatsapp.svg';
 import "./globals.css";
+import { SafeImage } from "@/components/safe-image";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -68,7 +68,7 @@ export default function RootLayout({
             cursor: 'pointer',
             zIndex: 1000
           }}>
-            <Image src={whatsappIcon} alt="WhatsApp" width={24} height={24} />
+            <SafeImage src={whatsappIcon} alt="WhatsApp" width={24} height={24} />
           </div>
         </Link>
         <SpeedInsights />
