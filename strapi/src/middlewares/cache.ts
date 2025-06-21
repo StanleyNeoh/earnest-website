@@ -23,6 +23,7 @@ class LRUCache<T> {
     private indMap: Map<string, number>;
     private cache: Array<LRUCacheItem<T>>;
     private head: number;
+    private tail: number;
     private freeInds: number[];
 
     constructor(maxSize: number) {
@@ -30,6 +31,7 @@ class LRUCache<T> {
         this.cache = Array(maxSize).fill(null).map(() => null);
         this.indMap = new Map<string, number>();
         this.head = -1;
+        this.tail = -1;
     }
 
     get(key: string): T | null {
@@ -44,7 +46,9 @@ class LRUCache<T> {
             if (item.next >= 0) {
                 this.cache[item.next].prev = item.prev;
             }
-
+            if (this.tail === index) {
+                this.tail = item.prev;
+            }
             item.next = this.head;
             this.cache[this.head].prev = index;
             this.head = index;
@@ -60,9 +64,11 @@ class LRUCache<T> {
         index?: number;
     } = {}): void {
         if (key === undefined && index === undefined) {
+            this.freeInds = [...Array(this.cache.length).keys()];
             this.cache.fill(null);
             this.indMap.clear();
             this.head = -1;
+            this.tail = -1;
             return;
         } else if (index === undefined) {
             index = this.indMap.get(key);
@@ -79,6 +85,9 @@ class LRUCache<T> {
         if (this.head === index) {
             this.head = item.next;
         }
+        if (this.tail === index) {
+            this.tail = item.prev;
+        }
         this.cache[index] = null;
         this.indMap.delete(item.key);
         this.freeInds.push(index);
@@ -87,7 +96,7 @@ class LRUCache<T> {
 
     set(key: string, value: T): void {
         if (!this.freeInds) {
-            this.delete({ index: this.head });
+            this.delete({ index: this.tail });
         } 
         const index = this.freeInds.pop();
         if (index === undefined) {
@@ -96,6 +105,9 @@ class LRUCache<T> {
         this.indMap.set(key, index);
         if (this.head >= 0) {
             this.cache[this.head].prev = index;
+        }
+        if (this.tail < 0) {
+            this.tail = index;
         }
         this.cache[index] = new LRUCacheItem<T>(key, value);
         this.cache[index].next = this.head;
