@@ -12,7 +12,7 @@ export const Hero = ({
   locale: Locale;
 }) => {
   const heroText = locale === "zh" 
-    ? ["获取灵感, ", <br key="br" />, "协作工作空间"] 
+    ? ["启发灵感, ", <br key="br" />, "协作工作空间"] 
     : ["Get Inspiring, ", <br key="br" />, "Collaborative Workspaces"];
   return (
     <div
