@@ -88,6 +88,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         {project?.thumbnail && (
           <Image
+            priority={true}
             src={strapiImage(project?.thumbnail.url)}
             alt={project.name + " image"}
             fill

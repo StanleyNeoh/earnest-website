@@ -113,6 +113,7 @@ export default async function ServicesPage({ params }: { params: { locale: Local
             <div className="flex-shrink-0 w-full md:w-1/2">
               <Link href={section.href}>
                 <Image
+                  priority={true}
                   src={section.image}
                   alt={section.title}
                   width={500}

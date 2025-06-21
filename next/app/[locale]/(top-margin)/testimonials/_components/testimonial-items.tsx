@@ -86,6 +86,7 @@ const TestimonialItem = ({
     <div className={cn("flex flex-col items-center gap-8", dirClass)}>
       <div className="flex-shrink-0 w-full md:w-1/2">
         <Image
+          priority={true}
           src={thumbnail?.url ? strapiImage(thumbnail.url) : earnestLogo.src}
           alt={project?.name || "Project thumbnail"}
           width={500}
