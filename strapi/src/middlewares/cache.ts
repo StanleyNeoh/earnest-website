@@ -1,40 +1,58 @@
 import { Core } from "@strapi/strapi";
-import { assert } from "console";
-
-interface CacheData {
-    data: any;
-    timestamp: number;
-}
-
 class LRUCacheItem<T> {
     key: string;
     data: T;
     prev: number;
     next: number;
+    timestamp: number;
     constructor(key: string, data: T) {
         this.key = key;
         this.data = data;
         this.prev = -1;
         this.next = -1;
+        this.timestamp = Date.now();
+    }
+
+    touch() {
+        this.timestamp = Date.now();
+    }
+
+    checkExpired(ttl: number): boolean {
+        return Date.now() - this.timestamp > ttl * 1000;
     }
 }
 
 class LRUCache<T> {
-    private indMap: Map<string, number>;
-    private cache: Array<LRUCacheItem<T>>;
-    private head: number;
-    private tail: number;
-    private freeInds: number[];
+    ttl: number;
+    indMap: Map<string, number>;
+    cache: Array<LRUCacheItem<T>>;
+    head: number;
+    tail: number;
+    freeInds: number[];
 
-    constructor(maxSize: number) {
+    constructor(maxSize: number, ttl: number) {
         this.freeInds = [...Array(maxSize).keys()];
         this.cache = Array(maxSize).fill(null).map(() => null);
         this.indMap = new Map<string, number>();
         this.head = -1;
         this.tail = -1;
+        this.ttl = ttl;
+    }
+
+    prune() {
+        while (this.tail !== -1) {
+            const item = this.cache[this.tail];
+            if (!item.checkExpired(this.ttl)) {
+                break; // Stop pruning if we find a non-expired item
+            }
+            this.delete({ index: this.tail });
+            console.log(`Pruned expired item with key: ${item?.key}`);
+        }
     }
 
     get(key: string): T | null {
+        this.prune();
+
         const index = this.indMap.get(key);
         if (index === undefined) return null;
 
@@ -53,6 +71,7 @@ class LRUCache<T> {
             this.cache[this.head].prev = index;
             this.head = index;
         }
+        item.touch();
         return item.data;
     }
 
@@ -95,7 +114,9 @@ class LRUCache<T> {
     }
 
     set(key: string, value: T): void {
-        if (!this.freeInds) {
+        this.prune();
+
+        if (this.freeInds.length === 0) {
             this.delete({ index: this.tail });
         } 
         const index = this.freeInds.pop();
@@ -117,10 +138,10 @@ class LRUCache<T> {
 
 export default (config, { strapi }: { strapi: Core.Strapi }) => {
     const { 
-        cacheTtl = 300,
+        cacheTtl = 3600,
         cacheSize = 1000,
     } = config || {};
-    const cache = new LRUCache<CacheData>(cacheSize);
+    const cache = new LRUCache<any>(cacheSize, cacheTtl);
 
     return async (ctx, next) => {
         if (
@@ -128,26 +149,18 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
             && ctx.request.method === 'GET'
         ) {
             strapi.log.info('Using custom Cache Middleware...');
-            const cacheItem = cache.get(ctx.request.url);
-            if (cacheItem !== null) {
-                const { data, timestamp } = cacheItem;
-                if (Date.now() - timestamp < cacheTtl * 1000) {
-                    ctx.body = data;
-                    ctx.response.status = 200;
-                    strapi.log.info(`Returning cached response for ${ctx.request.url}`);
-                    return;
-                } else {
-                    strapi.log.info(`Cache expired for ${ctx.request.url}`);
-                    cache.delete(ctx.request.url);
-                }
-            } else {
-                strapi.log.info(`Cache miss for ${ctx.request.url}`);
+            const data = cache.get(ctx.request.url);
+            if (data !== null) {
+                ctx.body = data;
+                ctx.response.status = 200;
+                strapi.log.info(`Returning cached response for ${ctx.request.url}`);
+                return;
             }
-
+            strapi.log.info(`Cache miss for ${ctx.request.url}`);
             await next();
             if (ctx.response.status === 200 && ctx.body) {
                 strapi.log.info(`Caching response for ${ctx.request.url}`);
-                cache.set(ctx.request.url, { data: ctx.body, timestamp: Date.now() });
+                cache.set(ctx.request.url, ctx.body);
             }
         } else {
             await next();
