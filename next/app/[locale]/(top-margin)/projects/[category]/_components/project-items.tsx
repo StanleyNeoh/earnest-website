@@ -15,7 +15,7 @@ export const ProjectItems = ({
   initialProjects: Project[];
   locale: string;
   className?: string;
-  pageSize?: number;
+  pageSize: number;
 }) => {
   const { items: projects, loading, loadTriggerRef } = useLoadManager<Project>(
     async (start: number) => {

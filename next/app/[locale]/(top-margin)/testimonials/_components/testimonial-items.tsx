@@ -13,11 +13,11 @@ import { SafeImage } from "@/components/safe-image";
 
 export const TestimonialItems = ({
   initialTestimonials,
-  pageSize = 4,
+  pageSize,
   locale,
 }: {
   initialTestimonials: Testimonial[];
-  pageSize?: number;
+  pageSize: number;
   locale: Locale;
 }) => {
   const { items: testimonials, loading, loadTriggerRef } = useLoadManager(

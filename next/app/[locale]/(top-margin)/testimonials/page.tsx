@@ -38,11 +38,12 @@ function testimonialsLocalised(locale: Locale) {
 export default async function TestimonialsPage({ params }: { params: { locale: Locale } }) {
   const { header } = testimonialsLocalised(params.locale);
 
+  const pageSize = 100
   const initialTestimonials = await fetchContentType("testimonials", {
     populate: ["project", "project.thumbnail", "company"],
     pagination: {
       page: 1,
-      pageSize: 4,
+      pageSize,
     },
     filters: {
       featured: {
@@ -63,7 +64,7 @@ export default async function TestimonialsPage({ params }: { params: { locale: L
       </h1>
       <TestimonialItems
         initialTestimonials={initialTestimonials?.data || []}
-        pageSize={3}
+        pageSize={pageSize}
         locale={params.locale}
       />
     </Container>
