@@ -8,7 +8,7 @@ import { SafeImage } from "@/components/safe-image";
 
 export const ProjectItems = ({
   initialProjects,
-  pageSize = 18,
+  pageSize,
   locale,
   className,
 }: {
@@ -53,7 +53,7 @@ export const ProjectItems = ({
         ref={loadTriggerRef}
         style={{ 
           position: 'absolute', 
-          bottom: '20rem', 
+          bottom: '80rem', 
           width: '100%', 
           height: '20px', 
           // backgroundColor: 'black', 

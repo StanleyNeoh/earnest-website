@@ -31,12 +31,13 @@ export default async function Projects({
 }: {
   params: { locale: Locale };
 }) {
+  const pageSize = 100;
   const { title } = projectsLocalised(params.locale);
   const initialProjects = await fetchContentType('projects', {
     populate: ['thumbnail'],
     pagination: {
       page: 1,
-      pageSize: 18,
+      pageSize,
     },
     sort: "order:desc",
   }, { requestor: "ProjectsPage" });
@@ -53,6 +54,7 @@ export default async function Projects({
         </Heading>
       </Container>
       <ProjectItems
+        pageSize={pageSize}
         initialProjects={initialProjects?.data || []}
         locale={params.locale}
       />
