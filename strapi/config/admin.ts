@@ -15,7 +15,7 @@ export default ({ env }) => ({
     promoteEE: env.bool("FLAG_PROMOTE_EE", true),
   },
   preview: {
-    enabled: true,
+    enabled: false,
     config: {
       allowedOrigins: [env("CLIENT_URL")],
       async handler(uid, { documentId, locale, status }) {
