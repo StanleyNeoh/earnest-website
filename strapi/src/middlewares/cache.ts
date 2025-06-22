@@ -23,7 +23,6 @@ class LRUCacheItem<T> {
 }
 
 class LRUCache<T> {
-    ttl: number;
     indMap: Map<string, number>;
     cache: Array<LRUCacheItem<T>>;
     head: number;
@@ -36,23 +35,9 @@ class LRUCache<T> {
         this.indMap = new Map<string, number>();
         this.head = -1;
         this.tail = -1;
-        this.ttl = ttl;
-    }
-
-    prune() {
-        while (this.tail !== -1) {
-            const item = this.cache[this.tail];
-            if (!item.checkExpired(this.ttl)) {
-                break; // Stop pruning if we find a non-expired item
-            }
-            this.delete({ index: this.tail });
-            console.log(`Pruned expired item with key: ${item?.key}`);
-        }
     }
 
     get(key: string): T | null {
-        this.prune();
-
         const index = this.indMap.get(key);
         if (index === undefined) return null;
 
@@ -71,7 +56,6 @@ class LRUCache<T> {
             this.cache[this.head].prev = index;
             this.head = index;
         }
-        item.touch();
         return item.data;
     }
 
@@ -114,8 +98,6 @@ class LRUCache<T> {
     }
 
     set(key: string, value: T): void {
-        this.prune();
-
         if (this.freeInds.length === 0) {
             this.delete({ index: this.tail });
         } 
@@ -144,6 +126,13 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
     const cache = new LRUCache<any>(cacheSize, cacheTtl);
 
     return async (ctx, next) => {
+        if (ctx.request.url.startsWith('/api/cache_clear') && ctx.request.method === 'GET') {
+            strapi.log.info('Cache clear request received, clearing cache...');
+            cache.delete();
+            ctx.body = { message: 'Cache cleared successfully' };
+            ctx.response.status = 200;
+            return;
+        }
         if (
             ctx.request.url.startsWith('/api/') 
             && ctx.request.method === 'GET'
