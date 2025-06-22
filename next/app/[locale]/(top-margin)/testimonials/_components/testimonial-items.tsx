@@ -1,6 +1,6 @@
 "use client";
 import { Testimonial } from "@/types/types";
-import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
+import fetchContentType from "@/lib/strapi/fetchContentType";
 import { useLoadManager } from "@/hooks/hooks";
 import { Locale } from "@/config";
 import { cn } from "@/lib/utils";

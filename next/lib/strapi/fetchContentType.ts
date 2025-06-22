@@ -1,4 +1,3 @@
-import { draftMode } from "next/headers";
 import qs from "qs";
 /**
  * Fetches data for a specified Strapi content type.
@@ -48,6 +47,7 @@ export default async function fetchContentType(
     const url = new URL(`api/${contentType}`, process.env.NEXT_PUBLIC_API_URL);
 
     // Perform the fetch request with the provided query parameters
+    console.log('URL:', `${url.href}?${qs.stringify(params)}`);
     const response = await fetch(`${url.href}?${qs.stringify(params)}`, {
       method: 'GET',
       headers: {

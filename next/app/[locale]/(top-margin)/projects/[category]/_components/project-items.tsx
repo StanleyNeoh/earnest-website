@@ -2,7 +2,7 @@
 import { Project } from "@/types/types";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
-import fetchContentType from "@/lib/strapi/fetchContentTypeClient";
+import fetchContentType from "@/lib/strapi/fetchContentType";
 import { useLoadManager } from "../../../../../../hooks/hooks";
 import { SafeImage } from "@/components/safe-image";
 
