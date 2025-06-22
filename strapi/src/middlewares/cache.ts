@@ -126,7 +126,7 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
     const cache = new LRUCache<any>(cacheSize, cacheTtl);
 
     return async (ctx, next) => {
-        if (ctx.request.url.startsWith('/api/cache_clear') && ctx.request.method === 'GET') {
+        if (ctx.request.url.startsWith('/api/clear_cache') && ctx.request.method === 'GET') {
             strapi.log.info('Cache clear request received, clearing cache...');
             cache.delete();
             ctx.body = { message: 'Cache cleared successfully' };
