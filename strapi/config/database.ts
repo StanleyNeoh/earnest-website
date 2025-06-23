@@ -46,6 +46,7 @@ export default ({ env }) => {
         },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
+      pool: { min: 0, },
     },
     sqlite: {
       connection: {
