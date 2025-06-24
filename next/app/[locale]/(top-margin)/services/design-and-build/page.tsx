@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { Container } from "@/components/container";
-import designBuildImg from "@/public/services/design-and-build.jpg";
+import designBuildImg from "@/public/services/earnest-office-renovation-services-design-and-build.jpg";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
