@@ -130,7 +130,7 @@ export const StrapiImageGallery = ({
       width,
       height,
     };
-  }) || []), [images]);
+  }) || []), [images, size]);
 
   const fullPhotos = useMemo(() => (
     images?.map((img) => {

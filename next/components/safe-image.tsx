@@ -39,7 +39,7 @@ export function StrapiImage({
   return (
     <SafeImage
       src={url}
-      alt={strapiImg?.alternativeText || name}
+      alt={strapiImg?.alternativeText || name || ""}
       width={width}
       height={height}
       {...props}

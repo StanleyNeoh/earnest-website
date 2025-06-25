@@ -59,7 +59,7 @@ export const StrapiImageCarousel = ({
         height,
       };
     }) || []
-  ), [images]);
+  ), [images, strapiImgSize]);
 
   const basis = numPerPage > 1 ? `basis-1/${numPerPage}` : "";
   return (
