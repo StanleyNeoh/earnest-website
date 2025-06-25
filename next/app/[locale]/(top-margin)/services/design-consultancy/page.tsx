@@ -2,15 +2,9 @@ import Link from "next/link";
 import designConsultancyImg from "@/public/services/earnest-office-renovation-services-consultancy.jpg";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
-import { Metadata } from "next";
 import { Locale } from "@/config";
 import { breadcrumbLocalized } from "../constants";
 import { SafeImage } from "@/components/safe-image";
-
-export const metadata: Metadata = {
-  title: "Service - Design Consultancy | Earnest",
-  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
-};
 
 function designConsultancyLocalised(locale: string) {
   if (locale === "zh") {

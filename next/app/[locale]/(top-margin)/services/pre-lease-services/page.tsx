@@ -3,14 +3,8 @@ import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import preLeaseImg from "@/public/services/earnest-office-renovation-services-pre-lease.jpg";
 import { Locale } from "@/config";
-import { Metadata } from "next";
 import { breadcrumbLocalized } from "../constants";
 import { SafeImage } from "@/components/safe-image";
-
-export const metadata: Metadata = {
-  title: "Service - Pre-lease Services | Earnest",
-  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
-};
 
 const preLeaseLocalised = (locale: Locale) => {
   if (locale === "zh") {

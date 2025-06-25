@@ -8,22 +8,6 @@ import { Testimonials } from '@/app/[locale]/_components/testimonials';
 import { FeaturedProjects } from '@/app/[locale]/_components/featured-projects';
 import { Locale } from '@/config';
 
-export const metadata: Metadata = {
-  title: "Earnest | Home",
-  description: "Earnest is a leading design and build company specializing in creating inspiring workspaces that enhance productivity and well-being.",
-  openGraph: {
-    title: "Earnest | Home",
-    description: "Earnest is a leading design and build company specializing in creating inspiring workspaces that enhance productivity and well-being.",
-    url: "/",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Earnest | Home",
-    description: "Earnest is a leading design and build company specializing in creating inspiring workspaces that enhance productivity and well-being.",
-  },
-};
-
 export default async function HomePage({ params }: { params: { locale: Locale } }) {
   const companyStartDate = "2007-01-01";
   const [

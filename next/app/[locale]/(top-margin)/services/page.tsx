@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Link from "next/link";
 
 import designAndBuildImg from '@/public/services/earnest-office-renovation-services-design-and-build.jpg';
@@ -11,22 +10,6 @@ import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "./constants";
 import { Locale } from "@/config";
 import { SafeImage } from "@/components/safe-image";
-
-export const metadata: Metadata = {
-  title: "Our Services",
-  description: "Discover the range of services offered by Earnest, including workspace design, build, and project management for businesses of all sizes.",
-  openGraph: {
-    title: "Our Services | Earnest",
-    description: "Discover the range of services offered by Earnest, including workspace design, build, and project management for businesses of all sizes.",
-    url: "/services",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Our Services | Earnest",
-    description: "Discover the range of services offered by Earnest, including workspace design, build, and project management for businesses of all sizes.",
-  },
-};
 
 const servicesLocalised = (locale: string) => {
   if (locale === 'zh') {

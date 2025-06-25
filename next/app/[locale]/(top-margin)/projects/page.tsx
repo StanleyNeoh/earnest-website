@@ -9,10 +9,8 @@ import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "./constants";
 import { Locale } from "@/config";
 
-export const metadata: Metadata = {
-  title: "Earnest | Projects",
-  description: "Explore our diverse portfolio of projects, showcasing our expertise in design and build solutions for various industries.",
-}
+import seoJson from "@/seo.json";
+export const metadata: Metadata = seoJson.main.projects
 
 const projectsLocalised = (locale: Locale) => {
   if (locale === "zh") {

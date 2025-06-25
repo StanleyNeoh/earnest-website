@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { generateMetadataObject } from '@/lib/shared/metadata';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
-import { cn } from '@/lib/utils';
 import { Locale } from '@/config';
+import seoJson from '@/seo.json'
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,14 +13,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-export const metadata = {
-  title: "Earnest",
-  description: "Earnest is a leading design and build company specializing in creating inspiring workspaces that enhance productivity and well-being.",
-  openGraph: {
-    title: "Earnest",
-    description: "Earnest is a leading design and build company specializing in creating inspiring workspaces that enhance productivity and well-being.",
-  },
-}
+export const metadata = seoJson.main[''];
 
 export default function LocaleLayout({
   children,

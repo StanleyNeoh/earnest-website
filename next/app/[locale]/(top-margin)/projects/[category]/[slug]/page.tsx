@@ -3,29 +3,32 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/container";
 import { SingleProject } from "@/app/[locale]/(top-margin)/projects/[category]/_components/single-project";
-import { generateMetadataObject } from '@/lib/shared/metadata';
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { breadcrumbLocalized } from "../../constants";
 import { Locale } from "@/config";
 
-export async function generateMetadata({
+import seoJson from "@/seo.json";
+export function generateMetadata({
   params,
 }: {
   params: { locale: string, category:string, slug: string };
-}): Promise<Metadata> {
-  const pageData = await fetchContentType("projects", {
-    filters: { slug: params.slug },
-    populate: "seo.metaImage",
-  }, { 
-    spreadData: true,
-    requestor: "SingleProjectPageMetadata",
-  })
-
-  const seo = pageData?.seo;
-  const metadata = generateMetadataObject(seo);
-  return metadata;
+}): Metadata {
+  const { slug } = params;
+  const {
+    title,
+    description,
+  } = slug in seoJson.projects
+      ? (seoJson.projects as Record<string, typeof seoJson.projects[keyof typeof seoJson.projects]>)[slug]
+      : {
+          title: "Earnest Project",
+          description: "Explore our projects",
+        };
+  return {
+    title: title, 
+    description: description,
+  };
 }
 
 export default async function SingleProjectPage({
@@ -57,7 +60,6 @@ export default async function SingleProjectPage({
       />
       <SingleProject
         project={project}
-        locale={params.locale}
         containerClassName="bg-transparent lg:mx-5"
       />
     </Container>

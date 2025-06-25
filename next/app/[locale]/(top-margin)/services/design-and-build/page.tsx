@@ -1,16 +1,10 @@
 import Link from "next/link";
-import { Metadata } from "next";
 import { Container } from "@/components/container";
 import designBuildImg from "@/public/services/earnest-office-renovation-services-design-and-build.jpg";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
 import { SafeImage } from "@/components/safe-image";
-
-export const metadata: Metadata = {
-  title: "Service - Design and Build | Earnest",
-  description: "End-to-end office design and build solutions for companies seeking seamless, innovative, and cost-transparent workspace transformations.",
-};
 
 function designAndBuildLocalised(locale: string) {
   if (locale === "zh") {

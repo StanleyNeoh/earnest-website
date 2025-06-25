@@ -7,21 +7,8 @@ import { TestimonialItems } from "./_components/testimonial-items";
 import { Locale } from "@/config";
 import { breadcrumbLocalized } from "./constants";
 
-export const metadata: Metadata = {
-  title: "Testimonials",
-  description: "Hear from our clients about their experience with Earnest.",
-  openGraph: {
-    title: "Testimonials | Earnest",
-    description: "Hear from our clients about their experience with Earnest.",
-    url: "/testimonials",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Testimonials | Earnest",
-    description: "Hear from our clients about their experience with Earnest.",
-  },
-};
+import seoJson from "@/seo.json";
+export const metadata: Metadata = seoJson.main.testimonials;
 
 function testimonialsLocalised(locale: Locale) {
   if (locale === "zh") {

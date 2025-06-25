@@ -3,7 +3,7 @@ import { Project } from "@/types/types";
 import Link from "next/link";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { useLoadManager } from "../../../../../../hooks/hooks";
-import { SafeImage, StrapiImage } from "@/components/safe-image";
+import { StrapiImage } from "@/components/safe-image";
 
 export const ProjectItems = ({
   initialProjects,
