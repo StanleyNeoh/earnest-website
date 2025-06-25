@@ -14,9 +14,7 @@ export interface ParagraphProps {
 
 export interface ImageParagraphProps {
   paragraphs: ParagraphProps[] | React.ReactNode;
-  images: Image[];
-  direction: "img-on-left" | "img-on-right" | "img-on-top" | "img-on-bottom";
-  CTAs: ButtonProps[];
+  image: Image;
 }
 
 export interface FormProps {

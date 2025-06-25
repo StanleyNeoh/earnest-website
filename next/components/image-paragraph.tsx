@@ -7,10 +7,8 @@ import { cn } from "@/lib/utils";
 import { SafeImage } from "./safe-image";
 
 export const ImageParagraph = ({
-  images = [],
   paragraphs,
-  direction,
-  CTAs,
+  image,
   locale,
   titleClassName,
   paragraphClassName,
@@ -19,26 +17,16 @@ export const ImageParagraph = ({
   titleClassName?: string;
   paragraphClassName?: string;
 }) => {
-  const flex_dir = direction === "img-on-left"
-    ? "flex-col lg:flex-row"
-    : direction === "img-on-right"
-      ? "flex-col lg:flex-row-reverse"
-      : direction === "img-on-top"
-        ? "flex-col"
-        : "flex-col-reverse";
-  const paragraph_width = images?.length > 0 ? "w-full lg:w-1/2" : "w-full";
-
-  // Temporary refactor, only simgle image is supported for now
   return (
-    <div className={`flex ${flex_dir} gap-16 items-center justify-between`}>
+    <div className={`flex flex-col lg:flex-row gap-16 items-center justify-between`}>
       {
-        images && (
+        image && (
           <div className="w-full lg:w-1/2">
             <SafeImage 
-              src={images[0].url || ""}
-              alt={images[0].alternativeText || ""}
-              width={images[0].width || 0}
-              height={images[0].height || 0}
+              src={image.url || ""}
+              alt={image.alternativeText || ""}
+              width={image.width || 0}
+              height={image.height || 0}
               className="object-cover w-full h-auto"
             />
           </div>
@@ -46,7 +34,7 @@ export const ImageParagraph = ({
       }
 
       {/* Paragraphs */}
-      <div className={cn("flex flex-col gap-12 text-center", paragraph_width)}>
+      <div className="flex flex-col gap-12 text-center w-full lg:w-1/2">
         {
           (() => {
             if (Array.isArray(paragraphs)) {
@@ -76,26 +64,6 @@ export const ImageParagraph = ({
               return paragraphs;
             }
           })()
-        }
-        {
-          CTAs?.length > 0 && (
-            <div className="flex flex-row gap-2 mt-4 justify-center">
-              {CTAs.map((cta, i) => {
-                cta.URL = cta.URL?.trimStart().startsWith("/") ? `/${locale}${cta.URL}` : cta.URL;
-                return (
-                  <Button
-                    className="md:py-2 md:px-4 md:text-lg lg:py-4 lg:px-8 lg:text-xl"
-                    key={i}
-                    as={Link}
-                    href={cta.URL}
-                    {...(cta.variant && { variant: cta.variant })}
-                  >
-                    {cta.text}
-                  </Button>
-                );
-              })}
-            </div>
-          )
         }
       </div>
     </div>

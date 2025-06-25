@@ -9,20 +9,6 @@ export interface ImageParagraphProps {
   CTAs: ButtonProps[];
 }
 
-export interface ParagraphStoryProps {
-    title?: string;
-    subtitle?: string;
-    sections: ImageParagraphProps[];
-    badges: Image[];
-}
-
-export interface ParagraphStoryProps {
-    title?: string;
-    subtitle?: string;
-    sections: ImageParagraphProps[];
-    badges: Image[];
-}
-
 export type RichTextNode = {
   type: string;
   children?: RichTextNode[];

@@ -1,11 +1,10 @@
 import React from "react";
-import { ParagraphStoryProps } from "@/types/components/simple";
 import { Container } from "../../../components/container";
-import { ParagraphStory } from "../../../components/paragraph-story";
 
 import aboutUs from '@/public/about-us.jpeg';
 import { Locale } from "@/config";
-const aboutUsImages = [aboutUs];
+import { Heading } from "@/components/elements/heading";
+import { ImageParagraph } from "@/components/image-paragraph";
 
 const aboutUsLocalised = (companyAge: number, locale: Locale) => {
   if (locale === "zh") {
@@ -64,32 +63,29 @@ export const AboutUs = ({
 }) => {
   const companyAge = new Date().getFullYear() - new Date(companyStartDate).getFullYear();
   const { title, paragraphs } = aboutUsLocalised(companyAge, locale);
-  const about_us: ParagraphStoryProps = {
-    title,
-    sections: [
-      {
-        images: aboutUsImages.map((image, i) => ({
-          url: image.src,
-          alternativeText: `About Us Image ${i + 1}`,
-          width: image.width,
-          height: image.height,
-        })),
-        paragraphs,
-        CTAs: [],
-        direction: "img-on-left",
-      }
-    ],
-    badges: [],
+  const image = {
+    url: aboutUs.src,
+    alternativeText: `About Us Image`,
+    width: aboutUs.width,
+    height: aboutUs.height,
   }
-
 
   return (
     <Container className="bg-transparent pt-12">
-      <ParagraphStory
-        {...about_us}
-        locale={locale}
-        containerClassName="bg-transparent gap-12"
-      />
+      <div className="max-w-7xl flex flex-col gap-8 bg-transparent gap-12">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-8">
+          <div className="flex flex-col flex-grow gap-4">
+            <Heading size="md" className="m-0 text-gray-800 max-w-7xl">
+              {title}
+            </Heading>
+          </div>
+        </div>
+        <ImageParagraph
+          image={image}
+          paragraphs={paragraphs}
+          locale={locale}
+        />
+      </div>
     </Container>
   )
 }
