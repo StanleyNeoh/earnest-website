@@ -1,23 +1,35 @@
 import { ButtonProps } from "./components/shared";
 import { RichTextNode } from "./components/simple";
 
+export type ImageSize = "thumbnail" | "small" | "medium" | "large" | "full"
+
 export interface Seo {
-  metaTitle: string;
-  metaDescription: string;
+  metaTitle?: string;
+  metaDescription?: string;
   metaImage?: Image;
-  keywords: string;
-  metaRobots: string;
-  structuredData: string;
-  metaViewport: string;
-  canonicalURL: string;
+  keywords?: string;
+  metaRobots?: string;
+  structuredData?: string;
+  metaViewport?: string;
+  canonicalURL?: string;
 }
 
 export interface Image {
-  url: string;
-  alternativeText: string;
-  width: number;
-  height: number;
+  url?: string;
+  name?: string;
+  alternativeText?: string;
+  width?: number;
+  height?: number;
+  formats?: {
+    [key: string]: {
+      url?: string;
+      name?: string;
+      width?: number;
+      height?: number;
+    }
+  }
 }
+
 
 export interface Company {
   name?: string;

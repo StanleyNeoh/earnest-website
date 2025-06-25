@@ -1,10 +1,9 @@
 "use client"
 import { Project } from "@/types/types";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
 import fetchContentType from "@/lib/strapi/fetchContentType";
 import { useLoadManager } from "../../../../../../hooks/hooks";
-import { SafeImage } from "@/components/safe-image";
+import { SafeImage, StrapiImage } from "@/components/safe-image";
 
 export const ProjectItems = ({
   initialProjects,
@@ -86,11 +85,9 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
     >
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         {project?.thumbnail && (
-          <SafeImage
-            priority={true}
-            src={strapiImage(project?.thumbnail.url)}
-            alt={project.name + " image"}
-            fill
+          <StrapiImage 
+            strapiImg={project.thumbnail}
+            strapiSize="small"
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
           />

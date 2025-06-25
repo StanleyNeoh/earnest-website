@@ -1,25 +1,29 @@
 "use client";
 import React, { useMemo } from "react";
-import { RowsPhotoAlbum } from "react-photo-album";
-import "react-photo-album/rows.css";
+import Image from "next/image";
 import { Image as ImageType } from "@/types/types";
+import { strapiImageFormatSize } from "@/lib/strapi/strapiImage";
+
+import {
+  RowsPhotoAlbum,
+  RenderImageContext,
+  RenderImageProps,
+} from "react-photo-album";
+import "react-photo-album/rows.css";
 
 import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import {
   isImageFitCover,
   isImageSlide,
   useLightboxProps,
   useLightboxState,
 } from "yet-another-react-lightbox";
-import Image from "next/image";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 function isNextJsImage(slide: any) {
   return (
@@ -75,36 +79,90 @@ function NextJsImage({ slide, offset, rect }: any) {
   );
 }
 
-export const ImageGallery = ({
+function renderNextImage(
+  { alt = "", title, sizes }: RenderImageProps,
+  { photo, width, height }: RenderImageContext,
+) {
+  return (
+    <div
+      style={{
+        width: "100%",
+        position: "relative",
+        aspectRatio: `${width} / ${height}`,
+      }}
+    >
+      <Image
+        fill
+        src={photo}
+        alt={alt}
+        title={title}
+        sizes={sizes}
+        placeholder={"blurDataURL" in photo ? "blur" : undefined}
+      />
+    </div>
+  );
+}
+
+export const StrapiImageGallery = ({
   images,
   maxNumber,
-  isStrapiImage = false,
+  size = "full",
 }: {
   images?: ImageType[];
   maxNumber?: number;
-  isStrapiImage?: boolean;
+  size?: "small" | "medium" | "large" | "thumbnail" | "full";
 }) => {
   if (maxNumber !== undefined) {
     images = images?.slice(0, maxNumber);
   }
   const [index, setIndex] = React.useState(-1);
-  const photos = useMemo(() => (images?.map(({ url, width, height, alternativeText }) => ({
-    src: isStrapiImage ? strapiImage(url) : url,
-    alt: alternativeText || "featured project image",
-    width: width,
-    height: height,
-  })) || []), [images, isStrapiImage]);
+  const photos = useMemo(() => (images?.map((img) => {
+    const {
+      url = "",
+      width = 0,
+      height = 0,
+      alternativeText,
+    } = strapiImageFormatSize(img, size);
+
+    return {
+      src: url,
+      alt: alternativeText || "featured project image",
+      width,
+      height,
+    };
+  }) || []), [images]);
+
+  const fullPhotos = useMemo(() => (
+    images?.map((img) => {
+      const {
+        url = "",
+        width = 0,
+        height = 0,
+        alternativeText,
+      } = strapiImageFormatSize(img, "full");
+
+      return {
+        src: url,
+        alt: alternativeText || "featured project image",
+        width,
+        height,
+      };
+    }) || []
+  ), [images]);
 
   return (
     <>
       <RowsPhotoAlbum
         photos={photos}
+        render={{
+          image: renderNextImage,
+        }}
         onClick={({ index }) => {
           setIndex(index);
         }}
       />
       <Lightbox
-        slides={photos}
+        slides={fullPhotos}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}

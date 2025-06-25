@@ -5,11 +5,8 @@ import { useLoadManager } from "@/hooks/hooks";
 import { Locale } from "@/config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/elements/button";
-import { strapiImage } from "@/lib/strapi/strapiImage";
-
-import earnestLogo from "@/public/earnest-black-logo.svg";
 import Link from "next/link";
-import { SafeImage } from "@/components/safe-image";
+import { StrapiImage } from "@/components/safe-image";
 
 export const TestimonialItems = ({
   initialTestimonials,
@@ -85,12 +82,9 @@ const TestimonialItem = ({
   return (
     <div className={cn("flex flex-col items-center gap-8", dirClass)}>
       <div className="flex-shrink-0 w-full md:w-1/2">
-        <SafeImage
-          priority={true}
-          src={thumbnail?.url ? strapiImage(thumbnail.url) : earnestLogo.src}
-          alt={project?.name || "Project thumbnail"}
-          width={500}
-          height={320}
+        <StrapiImage
+          strapiImg={thumbnail}
+          strapiSize="small"
           className="rounded-lg shadow-md object-cover w-full h-64 md:h-80"
         />
       </div>

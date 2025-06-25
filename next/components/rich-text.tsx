@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 import { RichTextNode } from "@/types/components/simple";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { cn } from "@/lib/utils";
-import { SafeImage } from "./safe-image";
+import { SafeImage, StrapiImage } from "./safe-image";
 
 function renderText(node: RichTextNode) {
   let el: ReactNode = node.text || "";
@@ -209,11 +208,9 @@ function RichText({
         <div
           className={cn("my-6 flex flex-col items-center", imageClassName)}
         >
-          <SafeImage
-            src={strapiImage(img.url)}
-            alt={img.alternativeText || img.name || "image"}
-            width={img.width || 600}
-            height={img.height || 400}
+          <StrapiImage
+            strapiImg={img}
+            strapiSize="full"
             className="rounded-lg shadow-md max-w-full h-auto"
           />
           {img.caption && (

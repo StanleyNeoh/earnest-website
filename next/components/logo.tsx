@@ -1,5 +1,4 @@
 
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import Link from "next/link";
 import { SafeImage } from "./safe-image";
 
@@ -10,7 +9,6 @@ export const Logo = ({
   redirectUrl,
   locale,
   className,
-  isStrapiImage = false,
 }: {
   logoUrl: string;
   width?: number;
@@ -18,9 +16,7 @@ export const Logo = ({
   redirectUrl?: string;
   locale?: string;
   className?: string;
-  isStrapiImage?: boolean;
 }) => {
-  if (isStrapiImage) logoUrl = strapiImage(logoUrl);
   if (redirectUrl) {
     return (
       <Link

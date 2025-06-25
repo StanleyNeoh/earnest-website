@@ -16,7 +16,6 @@ export interface ImageParagraphProps {
   paragraphs: ParagraphProps[] | React.ReactNode;
   images: Image[];
   direction: "img-on-left" | "img-on-right" | "img-on-top" | "img-on-bottom";
-  display: "tile" | "carousel";
   CTAs: ButtonProps[];
 }
 

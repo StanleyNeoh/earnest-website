@@ -4,8 +4,8 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import { Testimonial } from "@/types/types";
 import Link from "next/link";
-import { Logo } from "@/components/logo";
 import { Locale } from "@/config";
+import { StrapiImage } from "@/components/safe-image";
 
 export const TestimonialsMarquee = ({
   testimonials,
@@ -113,14 +113,13 @@ const TestimonialLevel = ({
                 </div>
                 {
                   testimonial.company?.logo && (
-                    <Logo
-                      logoUrl={testimonial.company?.logo.url}
-                      width={testimonial.company?.logo.width}
-                      height={testimonial.company?.logo.height}
-                      locale={locale}
-                      isStrapiImage={true}
-                      className="w-32 h-auto"
-                    />
+                    <div className="flex space-x-2 items-center mr-4 relative z-20">
+                      <StrapiImage
+                        strapiImg={testimonial.company?.logo}
+                        strapiSize="thumbnail"
+                        className="w-32 h-auto"
+                      />
+                    </div>
                   )
                 }
               </div>

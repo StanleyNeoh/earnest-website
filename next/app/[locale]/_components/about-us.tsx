@@ -77,7 +77,6 @@ export const AboutUs = ({
         paragraphs,
         CTAs: [],
         direction: "img-on-left",
-        display: "tile",
       }
     ],
     badges: [],

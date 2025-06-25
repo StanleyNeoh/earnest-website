@@ -13,7 +13,6 @@ export const ParagraphStory = ({
   headerLeftClassName, headerRightClassName,
   titleClassName, subtitleClassName,
   imgParaTitleClassName, imgParaParagraphClassName,
-  isStrapiImage = false,
 }: ParagraphStoryProps & {
   locale: string;
   containerClassName?: string;
@@ -24,7 +23,6 @@ export const ParagraphStory = ({
   subtitleClassName?: string;
   imgParaTitleClassName?: string;
   imgParaParagraphClassName?: string;
-  isStrapiImage?: boolean;
 }) => {
   const headerJustify = badges.length > 0 ? "justify-between": "justify-center";
   const titleJustify = badges.length > 0 ? "text-center lg:text-start": "text-center";
@@ -48,10 +46,10 @@ export const ParagraphStory = ({
             {badges.map((badge, index) => (
               <SafeImage
                 key={index}
-                src={badge.url}
-                alt={badge.alternativeText}
-                width={badge.width}
-                height={badge.height}
+                src={badge.url || ""}
+                alt={badge.alternativeText || ""}
+                width={badge.width || 0}
+                height={badge.height || 0}
                 className="object-cover" />
             ))}
           </div>
@@ -59,19 +57,17 @@ export const ParagraphStory = ({
       </div>
 
       {sections && sections.map((section, index) => {
-        const { images, paragraphs, direction, display, CTAs } = section;
+        const { images, paragraphs, direction, CTAs } = section;
         return (
           <ImageParagraph
             key={index}
             images={images}
             paragraphs={paragraphs}
             direction={direction}
-            display={display}
             CTAs={CTAs}
             locale={locale}
             titleClassName={imgParaTitleClassName}
             paragraphClassName={imgParaParagraphClassName}
-            isStrapiImage={isStrapiImage}
           />
         );
       })}

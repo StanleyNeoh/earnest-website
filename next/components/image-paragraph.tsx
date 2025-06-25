@@ -2,26 +2,22 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/elements/button";
 import { ImageParagraphProps } from "@/types/components/shared";
-import { ImageCarousel } from "./image-carousel";
-import { ImageGallery } from "./image-gallery";
 import { Heading } from "./elements/heading";
 import { cn } from "@/lib/utils";
+import { SafeImage } from "./safe-image";
 
 export const ImageParagraph = ({
   images = [],
   paragraphs,
   direction,
-  display,
   CTAs,
   locale,
   titleClassName,
   paragraphClassName,
-  isStrapiImage = false,
 }: ImageParagraphProps & {
   locale: string;
   titleClassName?: string;
   paragraphClassName?: string;
-  isStrapiImage?: boolean;
 }) => {
   const flex_dir = direction === "img-on-left"
     ? "flex-col lg:flex-row"
@@ -32,26 +28,19 @@ export const ImageParagraph = ({
         : "flex-col-reverse";
   const paragraph_width = images?.length > 0 ? "w-full lg:w-1/2" : "w-full";
 
+  // Temporary refactor, only simgle image is supported for now
   return (
     <div className={`flex ${flex_dir} gap-16 items-center justify-between`}>
       {
         images && (
           <div className="w-full lg:w-1/2">
-            {
-              display == "carousel" &&
-              <ImageCarousel
-                images={images} auto="play"
-                showArrows={false}
-                isStrapiImage={isStrapiImage}
-              />
-            }
-            {
-              display == "tile" &&
-              <ImageGallery
-                images={images}
-                isStrapiImage={isStrapiImage}
-              />
-            }
+            <SafeImage 
+              src={images[0].url || ""}
+              alt={images[0].alternativeText || ""}
+              width={images[0].width || 0}
+              height={images[0].height || 0}
+              className="object-cover w-full h-auto"
+            />
           </div>
         )
       }

@@ -3,9 +3,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import { Company } from "@/types/types";
-import Link from "next/link";
-import { BlurImage } from "@/components/blur-image";
-import { strapiImage } from "@/lib/strapi/strapiImage";
+import { StrapiImage } from "@/components/safe-image";
 
 export const BrandsMarquee = ({
   companies,
@@ -51,13 +49,10 @@ const BrandLevel = ({
           level.map((company: Company, index: any) => {
             const { logo } = company;
             return (
-              <BlurImage
+              <StrapiImage
                 key={index}
-                src={strapiImage(logo?.url)}
-                alt={logo?.alternativeText || "Company logo"}
-                width={logo?.width}
-                height={logo?.height}
-                draggable={false}
+                strapiImg={logo}
+                strapiSize="full"
                 className="w-20 h-auto mx-8"
               />
             );

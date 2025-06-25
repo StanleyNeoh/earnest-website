@@ -2,12 +2,11 @@ import { Heading } from "../../../components/elements/heading";
 import { Subheading } from "../../../components/elements/subheading";
 import { Container } from "../../../components/container";
 import { Project } from "@/types/types";
-import { ImageCarousel } from "@/components/image-carousel";
+import { StrapiImageCarousel } from "@/components/image-carousel";
 import { RichTextRenderer } from "@/components/rich-text";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Button } from "@/components/elements/button";
 import { Locale } from "@/config";
-import { SafeImage } from "@/components/safe-image";
+import { StrapiImage } from "@/components/safe-image";
 
 const featuredProjectsLocalised = (locale: Locale) => {
   if (locale === "zh") {
@@ -62,11 +61,9 @@ const FeaturedProject = ({
       <div className={hasBadge ? "flex items-center justify-between mb-6" : "flex justify-center mb-6"}>
         <h2 className={hasBadge ? "text-3xl font-bold text-gray-800" : "text-3xl font-bold text-gray-800 text-center w-full"}>{title}</h2>
         {hasBadge && (
-          <SafeImage
-            src={strapiImage(badge.url)}
-            alt={badge.alternativeText || "Project badge"}
-            width={badge.width}
-            height={badge.height}
+          <StrapiImage
+            strapiImg={badge}
+            strapiSize="small"
             className="object-cover w-32 h-auto"
           />
         )}
@@ -74,9 +71,8 @@ const FeaturedProject = ({
       {/* Body: Responsive flex-col on mobile, flex-row on md+ */}
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2 h-full">
-          <ImageCarousel
+          <StrapiImageCarousel
             images={images || []}
-            isStrapiImage={true}
             auto="play"
             showArrows={false}
             imageClassName="h-[24rem] md:mt-8"

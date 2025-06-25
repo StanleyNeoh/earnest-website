@@ -1,20 +1,17 @@
 "use client";
 import React from "react";
 import { Project } from "@/types/types";
-import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Heading } from "../../../../../../components/elements/heading";
 import { cn } from "@/lib/utils";
 import { RichTextRenderer } from "@/components/rich-text";
-import { ImageGallery } from "@/components/image-gallery";
-import { SafeImage } from "@/components/safe-image";
+import { StrapiImageGallery } from "@/components/image-gallery";
+import { StrapiImage } from "@/components/safe-image";
 
 export const SingleProject = ({
   project,
-  locale,
   containerClassName,
 }: {
   project: Project,
-  locale: string,
   containerClassName?: string,
 }) => {
   return (
@@ -28,11 +25,9 @@ export const SingleProject = ({
         </div>
         {project.thumbnail && (
           <div className="flex-shrink-0 w-full max-w-xs lg:max-w-md">
-            <SafeImage 
-              src={strapiImage(project.thumbnail.url)}
-              alt={project.name || "Project Thumbnail"}
-              width={600}
-              height={400}
+            <StrapiImage 
+              strapiImg={project.thumbnail}
+              strapiSize="small"
               className="object-cover shadow-lg w-full h-56 lg:h-72"
             />
           </div>
@@ -47,10 +42,7 @@ export const SingleProject = ({
       {/* Gallery */}
       {project?.images?.length && (
         <div className="max-w-7xl mx-auto">
-          <ImageGallery 
-            images={project.images}
-            isStrapiImage={true}
-          />
+          <StrapiImageGallery images={project.images} size="small" />
         </div>
       )}
     </div>
