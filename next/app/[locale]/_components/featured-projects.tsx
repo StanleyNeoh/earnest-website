@@ -73,6 +73,7 @@ const FeaturedProject = ({
         <div className="w-full md:w-1/2 h-full">
           <StrapiImageCarousel
             images={images || []}
+            strapiImgSize="small"
             auto="play"
             showArrows={false}
             imageClassName="h-[24rem] md:mt-8"
