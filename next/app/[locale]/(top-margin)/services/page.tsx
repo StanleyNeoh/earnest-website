@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-import designAndBuildImg from '@/public/services/earnest-office-renovation-services-design-and-build.jpg';
-import designConsultancyImg from '@/public/services/earnest-office-renovation-services-consultancy.jpg';
-import preLeaseImg from '@/public/services/earnest-office-renovation-services-pre-lease.jpg';
-import reinstatementImg from '@/public/services/earnest-office-renovation-services-reinstatement.jpg';
+import designAndBuildImg from '@/public/services/earnest-office-renovation-services-design-and-build.webp';
+import designConsultancyImg from '@/public/services/earnest-office-renovation-services-consultancy.webp';
+import preLeaseImg from '@/public/services/earnest-office-renovation-services-pre-lease.webp';
+import reinstatementImg from '@/public/services/earnest-office-renovation-services-reinstatement.webp';
 
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";

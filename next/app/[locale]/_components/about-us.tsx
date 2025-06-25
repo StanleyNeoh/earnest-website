@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "../../../components/container";
 
-import aboutUs from '@/public/about-us.jpeg';
+import aboutUs from '@/public/about-us.webp';
 import { Locale } from "@/config";
 import { Heading } from "@/components/elements/heading";
 import { ImageParagraph } from "@/components/image-paragraph";

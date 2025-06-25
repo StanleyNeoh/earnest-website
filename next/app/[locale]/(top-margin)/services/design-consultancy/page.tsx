@@ -1,5 +1,5 @@
 import Link from "next/link";
-import designConsultancyImg from "@/public/services/earnest-office-renovation-services-consultancy.jpg";
+import designConsultancyImg from "@/public/services/earnest-office-renovation-services-consultancy.webp";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { Locale } from "@/config";

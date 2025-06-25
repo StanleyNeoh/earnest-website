@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container } from "../../../components/container";
-import heroImage from "../../../public/hero.jpg";
+import heroImage from "../../../public/hero.webp";
 import whiteEarnestLogo from "../../../public/earnest-white-logo.svg";
 import { Locale } from "@/config";
 import { SafeImage } from "@/components/safe-image";

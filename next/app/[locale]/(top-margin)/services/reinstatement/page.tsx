@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
-import reinstatementImg from "@/public/services/earnest-office-renovation-services-reinstatement.jpg";
+import reinstatementImg from "@/public/services/earnest-office-renovation-services-reinstatement.webp";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
 import { SafeImage } from "@/components/safe-image";

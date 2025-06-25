@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
-import designBuildImg from "@/public/services/earnest-office-renovation-services-design-and-build.jpg";
+import designBuildImg from "@/public/services/earnest-office-renovation-services-design-and-build.webp";
 import { Breadcrumb } from "@/app/_components/shared/Breadcrumb";
 import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
