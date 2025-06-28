@@ -21,6 +21,24 @@
       "description": "Contact Earnest Designer & Project for a free consultation and quotation on creative office interior design and strategic commercial office renovation. Earnest - your dedicated commercial interior designer & office renovation company in Singapore. Services: Pre-Lease, Design & Build, Design Consultancy, Reinstatement."
     }
   },
+  "services": {
+    "pre-lease-services": {
+      "title": "Comprehensive Pre-Lease Services in Singapore | Office Space Solutions | Office Place Planning Design",
+      "description": "Need to find a new office in Singapore? Our pre-lease services include professional advice, customized layouts, and site visits. Our office space solution services will help you find the perfect office environment to boost morale and optimize your team's productivity."
+    },
+    "design-and-build": {
+      "title": "Design and Build Services in Singapore | Earnest  Office Interior Design and Renovation Singapore | Commercial Office Fit Out Companies",
+      "description": "Transform your office space with Earnest's Design and Build Services. From concept to completion, we create innovative, efficient, and aesthetically pleasing workplaces whether it's an office renovation, factory renovation, showroom renovation and more. "
+    },
+    "design-consultancy": {
+      "title": "Design Consultancy Services | Earnest  Office Interior Design and Renovation Singapore | Interior Design Consultancy Firm",
+      "description": "Earnest collaborates with you to define and create designs that are in line with your goals and aspirations, your interior design consultant . Our no-stress approach ensures that every detail is expertly handled, resulting in a space that truly reflects your vision."
+    },
+    "reinstatement": {
+      "title": "Office Reinstatement Services in Singapore | Earnest  Office Interior Design and Renovation Singapore | Office Moving Company",
+      "description": "Learn about Earnest's Reinstatement Services for a smooth transition from your current office space to a new beginning. We handle every detail, restoring your office space to its original state, essentially your office moving company. "
+    }
+  },
   "projects": {
     "farosson": {
       "title": "Farosson project - Commercial & Office Interior Design and Renovation Portfolio| Office Renovation Interior Design and Build | Earnest  Office Interior Design and Renovation Singapore",

@@ -6,6 +6,9 @@ import { breadcrumbLocalized } from "../constants";
 import { Locale } from "@/config";
 import { SafeImage } from "@/components/safe-image";
 
+import seoJson from "@/seo.json";
+export const metadata = seoJson.services["design-and-build"];
+
 function designAndBuildLocalised(locale: string) {
   if (locale === "zh") {
     return {

@@ -6,6 +6,9 @@ import { Locale } from "@/config";
 import { breadcrumbLocalized } from "../constants";
 import { SafeImage } from "@/components/safe-image";
 
+import seoJson from "@/seo.json";
+export const metadata = seoJson.services["pre-lease-services"];
+
 const preLeaseLocalised = (locale: Locale) => {
   if (locale === "zh") {
     return {
