@@ -17,7 +17,7 @@ export function strapiImageFormatSize(
     name,
     width,
     height,
-  } = strapiSize === "full"
+  } = !(strapiImg?.formats) || strapiSize === "full"
     ? strapiImg || {}
     : strapiSize === "small"
     ? strapiImg?.formats?.small || {}

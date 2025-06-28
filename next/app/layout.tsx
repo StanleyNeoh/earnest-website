@@ -59,8 +59,8 @@ export default function RootLayout({
             right: '20px',
             backgroundColor: '#25D366',
             borderRadius: '50%',
-            width: '50px',
-            height: '50px',
+            width: '80px',
+            height: '80px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -68,7 +68,7 @@ export default function RootLayout({
             cursor: 'pointer',
             zIndex: 1000
           }}>
-            <SafeImage src={whatsappIcon} alt="WhatsApp" width={24} height={24} />
+            <SafeImage src={whatsappIcon} alt="WhatsApp" width={50} height={50} />
           </div>
         </Link>
         <SpeedInsights />

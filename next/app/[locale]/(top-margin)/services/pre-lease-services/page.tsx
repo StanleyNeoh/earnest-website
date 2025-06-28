@@ -107,7 +107,7 @@ export default function PreLeaseServicesPage({
         <div className="flex-shrink-0">
           <SafeImage
             src={preLeaseImg}
-            alt="Pre-Lease Services"
+            alt="Earnest office renovation services including pre-lease, design & build, consultancy and reinstatement."
             width={220}
             height={220}
             className="rounded-lg shadow-md object-cover"

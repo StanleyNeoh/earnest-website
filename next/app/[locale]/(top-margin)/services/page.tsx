@@ -98,7 +98,7 @@ export default async function ServicesPage({ params }: { params: { locale: Local
                 <SafeImage
                   priority={true}
                   src={section.image}
-                  alt={section.title}
+                  alt="Earnest office renovation services including pre-lease, design & build, consultancy and reinstatement."
                   width={500}
                   height={320}
                   className="rounded-lg shadow-md object-cover w-full h-64 md:h-80 cursor-pointer transition-transform hover:scale-105"

@@ -123,7 +123,7 @@ export default function DesignAndBuildPage({ params }: { params: { locale: Local
         <div className="flex-shrink-0">
           <SafeImage
             src={designBuildImg}
-            alt="Design and Build Service"
+            alt="Earnest office renovation services including pre-lease, design & build, consultancy and reinstatement."
             width={220}
             height={220}
             className="rounded-lg shadow-md object-cover"
