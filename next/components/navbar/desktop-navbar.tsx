@@ -17,7 +17,7 @@ export const DesktopNavbar = ({
 }) => {
   return (
     <div className="fixed top-0 inset-x-0 w-full z-10 bg-white">
-      <div className="max-w-7xl flex flex-row items-center justify-between mx-auto">
+      <div className="max-w-7xl flex flex-row items-center justify-between mx-auto px-10">
         <div className="w-full py-4 flex flex-row gap-8 items-center">
           <Link 
             href={`/${locale}/`}

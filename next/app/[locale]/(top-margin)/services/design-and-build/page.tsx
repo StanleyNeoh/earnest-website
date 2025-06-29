@@ -111,7 +111,7 @@ export default function DesignAndBuildPage({ params }: { params: { locale: Local
       />
 
       {/* Title and Image */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+      <div className="flex flex-col md:flex-row justify-between gap-8 mb-8">
         <div className="flex-1">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
             {title}
@@ -120,7 +120,7 @@ export default function DesignAndBuildPage({ params }: { params: { locale: Local
             {subtitle}
           </h2>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 mx-auto">
           <SafeImage
             src={designBuildImg}
             alt="Earnest office renovation services including pre-lease, design & build, consultancy and reinstatement."
