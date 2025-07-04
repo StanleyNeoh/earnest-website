@@ -360,7 +360,7 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
               <div className="w-5 h-5">
                 <IoLogoWhatsapp />
               </div>
-              <a href="https://wa.me/+6593373197" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
+              <a href="https://wa.me/+6583681683" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm">WhatsApp</a>
             </div>
             <div className="flex items-center gap-3">
               <MailIcon className="w-5 h-5" />
