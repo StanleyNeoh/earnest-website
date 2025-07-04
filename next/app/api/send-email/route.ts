@@ -3,13 +3,12 @@ import { NextResponse } from "next/server";
 import { createTransport } from "nodemailer";
 
 const transporter = createTransport({
-  service: "gmail",
+  host: process.env.EMAIL_HOST || "mail.earnest.sg",
+  port: parseInt(process.env.EMAIL_OUTGOING_PORT || "465", 10),
+  secure: true,
   auth: {
-    type: "OAuth2",
-    user: process.env.CLIENT_EMAIL,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.CLIENT_REFRESH_TOKEN,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   }
 })
 
@@ -26,8 +25,8 @@ export async function POST(req: Request) {
 
   try {
     const info = await transporter.sendMail({
-      from: process.env.CLIENT_EMAIL,
-      to: process.env.GMAIL_RECIPIENT,
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECIPIENT,
       subject: "New Form Submission",
       attachments: attachmentData,
       text: `
