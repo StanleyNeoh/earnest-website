@@ -1,4 +1,5 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import { format } from "path";
 
 /** @type {import('next').NextConfig} */
 console.log(process.env.IMAGE_HOSTNAME, "IMAGE_HOSTNAME");
@@ -12,6 +13,8 @@ const nextConfig = {
         hostname: process.env.IMAGE_HOSTNAME
       }
     ].filter(Boolean),
+    minimumCacheTTL: 24 * 60 * 60, // 1 day
+    formats: ["image/webp", "image/svg"],
   },
   pageExtensions: ["ts", "tsx"],
 };
