@@ -14,7 +14,7 @@ const nextConfig = {
       }
     ].filter(Boolean),
     minimumCacheTTL: 24 * 60 * 60, // 1 day
-    formats: ["image/webp", "image/svg"],
+    formats: ["image/webp"],
   },
   pageExtensions: ["ts", "tsx"],
 };
