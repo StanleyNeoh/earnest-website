@@ -19,3 +19,15 @@ export const formatNumber = (
     maximumFractionDigits: 2,
   }).format(number);
 };
+
+export function shortenFileName(
+  fileName: string,
+  maxLength: number = 20
+): string {
+  if (fileName.length <= maxLength) return fileName;
+
+  const start = Math.ceil((maxLength - 3) / 2);
+  const end = Math.floor((maxLength - 3) / 2);
+
+  return `${fileName.slice(0, start)}...${fileName.slice(-end)}`;
+}

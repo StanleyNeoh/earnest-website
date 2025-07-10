@@ -11,6 +11,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { Locale } from "@/config";
 import { Container } from "@/components/container";
 import { cn } from "@/lib/utils";
+import { MultiFileField } from "./_components/MultiFileField";
 
 function contactLocalised(locale: string) {
   if (locale === "zh") {
@@ -284,13 +285,9 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
                         {field.label}
                       </label>
                       <div className="mt-2">
-                        <input
-                          id={field.name}
+                        <MultiFileField 
+                          id={field.name} 
                           name={field.name}
-                          type="file"
-                          multiple
-                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                          placeholder={field.placeholder}
                           required={field.required}
                         />
                       </div>
