@@ -27,9 +27,8 @@ export const Brands = ({
 }) => {
   const { heading } = brandsLocalised(locale);
   return (
-    <Container className="bg-transparent pt-12 max-w-max">
-      <Heading className="p-4">{heading}</Heading>
-
+    <div className="space-y-4">
+      <Heading>{heading}</Heading>
       {
         companies && (
           <BrandsMarquee
@@ -38,6 +37,6 @@ export const Brands = ({
           />
         )
       }
-    </Container>
+    </div>
   );
 };

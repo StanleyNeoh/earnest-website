@@ -31,6 +31,9 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
     }, { requestor: "/[locale]/page.tsx" }),
     fetchContentType("projects", {
       populate: {
+        company: {
+          populate: ["logo"],
+        },
         featured: {
           populate: "*",
         }
@@ -46,16 +49,18 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
   return (
     <>
       <Hero locale={params.locale} />
-      <AboutUs companyStartDate={companyStartDate} locale={params.locale} />
-      <Brands companies={companies?.data || []} locale={params.locale} />
-      <Testimonials
-        testimonials={testimonials?.data || []}
-        locale={params.locale}
-      />
-      <FeaturedProjects
-        projects={projects?.data || []}
-        locale={params.locale}
-      />
+      <div className="max-w-7xl w-full mx-auto flex flex-col gap-16 pt-16 px-8">
+        <AboutUs companyStartDate={companyStartDate} locale={params.locale} />
+        <Brands companies={companies?.data || []} locale={params.locale} />
+        <Testimonials
+          testimonials={testimonials?.data || []}
+          locale={params.locale}
+        />
+        <FeaturedProjects
+          projects={projects?.data || []}
+          locale={params.locale}
+        />
+      </div>
     </>
   );
 }

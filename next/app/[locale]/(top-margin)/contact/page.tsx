@@ -348,8 +348,8 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5">
-                <PhoneIcon />
+              <div className="w-4 h-4">
+                <PhoneIcon className="w-4 h-4"/>
               </div>
               <span className="text-gray-700 text-sm">+65 6445 1683</span>
             </div>

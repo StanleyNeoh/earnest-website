@@ -4,7 +4,7 @@ import { Container } from "../../../components/container";
 import aboutUs from '@/public/about-us.webp';
 import { Locale } from "@/config";
 import { Heading } from "@/components/elements/heading";
-import { ImageParagraph } from "@/components/image-paragraph";
+import { SafeImage } from "@/components/safe-image";
 
 const aboutUsLocalised = (companyAge: number, locale: Locale) => {
   if (locale === "zh") {
@@ -34,19 +34,19 @@ const aboutUsLocalised = (companyAge: number, locale: Locale) => {
       title: "About Us",
       paragraphs: [
         {
-          title: "Who We Are",
+          title: "WHO WE ARE",
           text: `At Earnest, we specialize in creating workspaces that inspire. For over ${companyAge} years, we’ve helped companies across industries find the perfect balance between design, functionality, and cost-effectiveness.`,
         },
         {
-          title: "Our Team",
+          title: "OUR TEAM",
           text: "Our team combines deep industry expertise with a passion for innovation — delivering spaces that drive client engagement, employee productivity, and brand success.",
         },
         {
-          title: "Our Values",
+          title: "OUR VALUES",
           text: "Transparent communication, practical solutions, and quality craftsmanship are the values we live by.",
         },
         {
-          title: "Our Mission",
+          title: "OUR MISSION",
           text: "With determination, integrity, and passion, we build workspaces that are both functional and inspiring.",
         },
       ]
@@ -71,21 +71,41 @@ export const AboutUs = ({
   }
 
   return (
-    <Container className="bg-transparent pt-12">
-      <div className="max-w-7xl flex flex-col gap-8 bg-transparent gap-12">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-8">
-          <div className="flex flex-col flex-grow gap-4">
-            <Heading size="md" className="m-0 text-gray-800 max-w-7xl">
-              {title}
-            </Heading>
-          </div>
-        </div>
-        <ImageParagraph
-          image={image}
-          paragraphs={paragraphs}
-          locale={locale}
+    <div className={`max-w-7xl flex flex-col justify-center lg:flex-row gap-16 items-center`}>
+      <div className="w-full lg:w-2/5 h-full flex justify-center items-center">
+        <SafeImage
+          src={image.url || ""}
+          alt={image.alternativeText || ""}
+          width={image.width || 0}
+          height={image.height || 0}
+          className="object-cover w-auto h-full"
         />
       </div>
-    </Container>
+
+      {/* Paragraphs */}
+      <div className="flex flex-col gap-8 w-full lg:w-3/5 text-left lg:text-left items-center lg:items-start">
+        <Heading size="md" className="m-0 font-bold text-gray-800 text-center lg:text-left">
+          {title}
+        </Heading>
+        {
+          paragraphs.map(({ title, text }, index) => {
+            // @TODO: Use markdown parser with custom react components for translation
+            const chunks = text?.split(/(\r\n|\n|\r)/gm).filter((chunk) => chunk.trim() !== "") || [];
+            return (
+              <div key={index} className="flex flex-col gap-2 items-center lg:items-start">
+                <Heading size="sm" className="mx-0 font-bold text-charcoal text-center lg:text-left">
+                  {title}
+                </Heading>
+                {chunks.map((chunk, index) => (
+                  <p key={index} className="text-base md:text-lg text-charcoal text-center lg:text-left">
+                    {chunk}
+                  </p>
+                ))}
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
   )
 }

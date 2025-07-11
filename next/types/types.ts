@@ -40,8 +40,16 @@ export interface Company {
   testimonials?: Testimonial[];
 }
 
+export interface Featured {
+  title?: string;
+  badge?: Image;
+  images?: Image[];
+  description?: RichTextNode[];
+  CTAs?: ButtonProps[];
+}
+
 export interface Project {
-  companies?: Company[];
+  company?: Company;
   slug?: string;
   name?: string;
   thumbnail?: Image;
@@ -50,13 +58,7 @@ export interface Project {
   testimonials?: Testimonial[];
   completion_date?: string;
   description?: RichTextNode[];
-  featured?: {
-    title?: string;
-    badge?: Image;
-    images?: Image[];
-    description?: RichTextNode[];
-    CTAs?: ButtonProps[];
-  }
+  featured?: Featured;
   images?: Image[];
   order?: number;
 }

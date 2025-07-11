@@ -1,6 +1,4 @@
 import { Heading } from "../../../components/elements/heading";
-import { Subheading } from "../../../components/elements/subheading";
-import { Container } from "../../../components/container";
 import { Project } from "@/types/types";
 import { StrapiImageCarousel } from "@/components/image-carousel";
 import { RichTextRenderer } from "@/components/rich-text";
@@ -12,12 +10,10 @@ const featuredProjectsLocalised = (locale: Locale) => {
   if (locale === "zh") {
     return {
       title: "我们获奖的项目",
-      subtitle: "探索重新定义未来办公空间的杰出工程",
     };
   } else {
     return {
       title: "Our Recent Award-Winning Project",
-      subtitle: "Explore the project that redefines the future of workplace interiors",
     };
   }
 }
@@ -29,37 +25,44 @@ export const FeaturedProjects = ({
   projects: Project[];
   locale: Locale;
 }) => {
-  const { title, subtitle } = featuredProjectsLocalised(locale);
+  const { title } = featuredProjectsLocalised(locale);
   return (
-    <Container className="bg-transparent py-10 space-y-2">
+    <div className="space-y-4">
       <Heading>
         {title}
       </Heading>
-      <Subheading>
-        {subtitle}
-      </Subheading>
       {
         projects.map((project, i) => (
           <FeaturedProject key={i} {...project} />
         ))
       }
-    </Container>
+    </div>
   );
 };
 
 const FeaturedProject = ({
+  company,
   featured,
 }: Project) => {
   if (!featured) {
     return null;
   }
+
   const { title, description, images, badge } = featured || {};
   const hasBadge = badge !== undefined;
   return (
-    <div className="bg-white rounded-lg shadow p-6 mb-8">
+    <div className="bg-white rounded-lg shadow p-6">
       {/* Header */}
-      <div className={hasBadge ? "flex items-center justify-between mb-6" : "flex justify-center mb-6"}>
-        <h2 className={hasBadge ? "text-3xl font-bold text-gray-800" : "text-3xl font-bold text-gray-800 text-center w-full"}>{title}</h2>
+      <div className={hasBadge ? "flex items-center justify-between" : "flex justify-center"}>
+        {
+          company?.logo && (
+            <StrapiImage
+              strapiImg={company.logo}
+              strapiSize="small"
+              className="object-cover w-72 h-auto"
+            />
+          )
+        }
         {hasBadge && (
           <StrapiImage
             strapiImg={badge}
@@ -82,8 +85,8 @@ const FeaturedProject = ({
         <div className="w-full md:w-1/2 flex flex-col h-full">
           <RichTextRenderer
             content={description || []}
-            heading1ClassName="text-2xl mb-8 text-center"
-            paragraphClassName="text-center"
+            heading1ClassName="text-2xl mb-8 text-center md:text-left"
+            paragraphClassName="text-center md:text-left"
           />
           {featured?.CTAs && featured.CTAs.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-3">
