@@ -17,15 +17,17 @@ export function strapiImageFormatSize(
     name,
     width,
     height,
-  } = !(strapiImg?.formats) || strapiSize === "full"
-    ? strapiImg || {}
+  } = (
+    strapiSize === "full"
+    ? strapiImg
     : strapiSize === "small"
-    ? strapiImg?.formats?.small || {}
+    ? strapiImg?.formats?.small
     : strapiSize === "medium"
-    ? strapiImg?.formats?.medium || {}
+    ? strapiImg?.formats?.medium
     : strapiSize === "large"
-    ? strapiImg?.formats?.large || {}
-    : strapiImg?.formats?.thumbnail || {};
+    ? strapiImg?.formats?.large
+    : strapiImg?.formats?.thumbnail
+  ) || strapiImg || {};
 
   return {
     url: strapiImage(url),
