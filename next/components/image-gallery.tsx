@@ -24,6 +24,7 @@ import {
 } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { StrapiImage } from "./safe-image";
 
 function isNextJsImage(slide: any) {
   return (
@@ -80,9 +81,13 @@ function NextJsImage({ slide, offset, rect }: any) {
 }
 
 function renderNextImage(
-  { alt = "", title, sizes }: RenderImageProps,
-  { photo, width, height }: RenderImageContext,
+  props: RenderImageProps,
+  context: RenderImageContext & {
+    photo: ImageType
+  }
 ) {
+  const { sizes } = props;
+  const { photo, width, height } = context;
   return (
     <div
       style={{
@@ -91,13 +96,11 @@ function renderNextImage(
         aspectRatio: `${width} / ${height}`,
       }}
     >
-      <Image
-        fill
-        src={photo}
-        alt={alt}
-        title={title}
+      <StrapiImage
+        strapiImg={photo}
+        strapiSize="full"
         sizes={sizes}
-        placeholder={"blurDataURL" in photo ? "blur" : undefined}
+        fill
       />
     </div>
   );
@@ -116,21 +119,6 @@ export const StrapiImageGallery = ({
     images = images?.slice(0, maxNumber);
   }
   const [index, setIndex] = React.useState(-1);
-  const photos = useMemo(() => (images?.map((img) => {
-    const {
-      url = "",
-      width = 0,
-      height = 0,
-      alternativeText,
-    } = strapiImageFormatSize(img, size);
-
-    return {
-      src: url,
-      alt: alternativeText || "featured project image",
-      width,
-      height,
-    };
-  }) || []), [images, size]);
 
   const fullPhotos = useMemo(() => (
     images?.map((img) => {
@@ -153,7 +141,8 @@ export const StrapiImageGallery = ({
   return (
     <>
       <RowsPhotoAlbum
-        photos={photos}
+        // @ts-ignore
+        photos={images}
         render={{
           image: renderNextImage,
         }}

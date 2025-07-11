@@ -27,7 +27,7 @@ export function StrapiImage({
   strapiSize?: "full" | "small" | "medium" | "large" | "thumbnail";
 } & Omit<React.ComponentProps<typeof Image>, "src" | "alt">
 ) {
-
+  const { fill = false } = props
   const {
     url = "",
     name = "",
@@ -40,8 +40,9 @@ export function StrapiImage({
     <SafeImage
       src={url}
       alt={strapiImg?.alternativeText || name || ""}
-      width={width}
-      height={height}
+      fill={fill}
+      width={fill ? undefined : width}
+      height={fill ? undefined : height}
       {...props}
     />
   );
