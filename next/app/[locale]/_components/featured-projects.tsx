@@ -53,7 +53,7 @@ const FeaturedProject = ({
   return (
     <div className="bg-white rounded-lg shadow p-6">
       {/* Header */}
-      <div className={hasBadge ? "flex items-center justify-between" : "flex justify-center"}>
+      <div className={hasBadge ? "flex flex-col-reverse md:flex-row items-center justify-between" : "flex flex-col-reverse md:flex-row justify-center"}>
         {
           company?.logo && (
             <StrapiImage
