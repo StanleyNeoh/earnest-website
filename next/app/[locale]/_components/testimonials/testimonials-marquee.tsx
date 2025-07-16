@@ -116,7 +116,7 @@ const TestimonialLevel = ({
                     <div className="flex space-x-2 items-center mr-4 relative z-20">
                       <StrapiImage
                         strapiImg={testimonial.company?.logo}
-                        strapiSize="thumbnail"
+                        strapiSize="full"
                         className="w-32 h-auto"
                       />
                     </div>

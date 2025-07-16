@@ -58,7 +58,7 @@ const FeaturedProject = ({
           company?.logo && (
             <StrapiImage
               strapiImg={company.logo}
-              strapiSize="small"
+              strapiSize="full"
               className="object-cover w-72 h-auto"
             />
           )
@@ -66,7 +66,7 @@ const FeaturedProject = ({
         {hasBadge && (
           <StrapiImage
             strapiImg={badge}
-            strapiSize="small"
+            strapiSize="full"
             className="object-cover w-32 h-auto"
           />
         )}

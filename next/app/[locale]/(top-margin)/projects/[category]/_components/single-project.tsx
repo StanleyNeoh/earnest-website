@@ -27,7 +27,7 @@ export const SingleProject = ({
           <div className="flex-shrink-0 w-full max-w-xs lg:max-w-md">
             <StrapiImage 
               strapiImg={project.thumbnail}
-              strapiSize="small"
+              strapiSize="full"
               className="object-cover shadow-lg w-full h-56 lg:h-72"
             />
           </div>

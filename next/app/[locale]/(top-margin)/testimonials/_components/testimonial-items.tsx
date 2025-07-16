@@ -84,7 +84,7 @@ const TestimonialItem = ({
       <div className="flex-shrink-0 w-full md:w-1/2">
         <StrapiImage
           strapiImg={thumbnail}
-          strapiSize="small"
+          strapiSize="full"
           className="rounded-lg shadow-md object-cover w-full h-64 md:h-80"
         />
       </div>

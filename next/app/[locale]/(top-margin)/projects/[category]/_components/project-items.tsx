@@ -86,7 +86,7 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
         {project?.thumbnail && (
           <StrapiImage 
             strapiImg={project.thumbnail}
-            strapiSize="small"
+            strapiSize="full"
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
