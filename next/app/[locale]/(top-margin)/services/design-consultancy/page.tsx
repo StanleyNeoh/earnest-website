@@ -12,7 +12,7 @@ export const metadata = seoJson.services["design-consultancy"];
 function designConsultancyLocalised(locale: string) {
   if (locale === "zh") {
     return {
-      title: "服务 - 设计顾问服务",
+      title: "设计顾问服务",
       subtitle: "赋能每一个设计决策，助您自信前行，灵感不断",
       description: [
         "我们的设计顾问服务以“协作共创”为核心理念。我们与客户紧密合作，深入理解您的目标与愿景，打造真正体现企业品牌个性与文化的办公空间。",
@@ -41,7 +41,7 @@ function designConsultancyLocalised(locale: string) {
     };
   } else {
     return {
-      title: "Services - Design Consultancy",
+      title: "Design Consultancy",
       subtitle: "Empowering you to make confident, inspired design decisions.",
       description: [
         "At Earnest, our design consultancy service is rooted in close collaboration. We work hand-in-hand with you to define your objectives, understand your aspirations, and create a space that reflects your company’s vision with authenticity and finesse.",

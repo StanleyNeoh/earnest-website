@@ -12,7 +12,7 @@ export const metadata = seoJson.services["reinstatement"];
 function reinstatementLocalised(locale: string) {
   if (locale === "zh") {
     return {
-      title: "服务 - 还原装修服务",
+      title: "还原装修服务",
       subtitle: "快速、省心、全程托管 — 让您专注于开启新篇章",
       description: [
         "我们致力于为客户提供高效、无忧的办公空间还原服务。无论您是房东准备重新招租，或是企业完成租期搬迁，我们都能确保过程顺畅、按时交付。"

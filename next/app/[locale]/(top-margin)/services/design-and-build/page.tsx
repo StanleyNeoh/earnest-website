@@ -12,7 +12,7 @@ export const metadata = seoJson.services["design-and-build"];
 function designAndBuildLocalised(locale: string) {
   if (locale === "zh") {
     return {
-      title: "服务 - 设计与建造",
+      title: "设计与建造",
       subtitle: "办公空间改造，超越期待",
       description: [
         "无论您是打造全新办公室、翻新现有空间，还是改造商业物业，我们的一站式设计与建造解决方案，都将为您带来顺畅、高效且契合愿景的全过程服务体验。"
@@ -48,7 +48,7 @@ function designAndBuildLocalised(locale: string) {
     };
   } else {
     return {
-      title: "Service - Design and Build",
+      title: "Design and Build",
       subtitle: "Office transformations that exceed expectations.",
       description: [
         "Whether you're creating a brand-new office, renovating an existing space, or transforming a commercial property — our end-to-end design and build solution makes the entire journey smooth, efficient, and aligned with your vision."

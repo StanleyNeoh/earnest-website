@@ -12,7 +12,7 @@ export const metadata = seoJson.services["pre-lease-services"];
 const preLeaseLocalised = (locale: Locale) => {
   if (locale === "zh") {
     return {
-      title: "服务项目 - 租赁咨询",
+      title: "租赁咨询",
       subtitle: "租赁咨询：区域总部（RHQ）及甲级写字楼选址建议",
       description: [
         "正在筹备在新加坡设立区域总部（RHQ）？",
@@ -40,7 +40,7 @@ const preLeaseLocalised = (locale: Locale) => {
     };
   } else {
     return {
-      title: "Services - Pre-Lease Services",
+      title: "Pre-Lease Services",
       subtitle: "Pre-Lease Services: RHQ & Grade-A Office Space Advisory",
       description: [
         "Setting up a Regional Headquarters (RHQ) in Singapore?",
