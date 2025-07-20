@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import whatsappIcon from '@/public/whatsapp.svg';
+import earnestWhiteLogo from '@/public/earnest-white-logo.svg';
 import "./globals.css";
 import { SafeImage } from "@/components/safe-image";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <head>
+        <link rel="icon" href={earnestWhiteLogo.src} type="image/svg+xml" />
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`

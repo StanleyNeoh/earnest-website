@@ -1,0 +1,113 @@
+# OLD
+
+earnest.sg.	60	A	
+75.2.70.75
+ 
+earnest.sg.	60	MX	
+Priority: 0
+Destination: mail.earnest.sg
+ 
+mail.earnest.sg.	60	A	
+203.175.171.81
+ 
+www.earnest.sg.	60	CNAME	
+proxy-ssl.webflow.com
+ 
+ftp.earnest.sg.	60	A	
+203.175.171.81
+ 
+cpanel.earnest.sg.	60	A	
+203.175.171.81
+ 
+webdisk.earnest.sg.	60	A	
+203.175.171.81
+ 
+cpcalendars.earnest.sg.	60	A	
+203.175.171.81
+ 
+cpcontacts.earnest.sg.	60	A	
+203.175.171.81
+ 
+whm.earnest.sg.	60	A	
+203.175.171.81
+ 
+webmail.earnest.sg.	60	A	
+203.175.171.81
+ 
+autoconfig.earnest.sg.	60	A	
+203.175.171.81
+ 
+autodiscover.earnest.sg.	60	A	
+203.175.171.81
+ 
+_autodiscover._tcp.earnest.sg.	60	SRV	
+Priority: 0
+Weight: 0
+Port: 443
+Target: cpanelemaildiscovery.cpanel.net
+ 
+_caldav._tcp.earnest.sg.	60	SRV	
+Priority: 0
+Weight: 0
+Port: 2079
+Target: bh.paradigm.systems
+ 
+_caldavs._tcp.earnest.sg.	60	SRV	
+Priority: 0
+Weight: 0
+Port: 2080
+Target: bh.paradigm.systems
+ 
+_carddav._tcp.earnest.sg.	60	SRV	
+Priority: 0
+Weight: 0
+Port: 2079
+Target: bh.paradigm.systems
+ 
+_carddavs._tcp.earnest.sg.	60	SRV	
+Priority: 0
+Weight: 0
+Port: 2080
+Target: bh.paradigm.systems
+ 
+_caldav._tcp.earnest.sg.	60	TXT	
+path=/
+ 
+_caldavs._tcp.earnest.sg.	60	TXT	
+path=/
+ 
+_carddav._tcp.earnest.sg.	60	TXT	
+path=/
+ 
+_carddavs._tcp.earnest.sg.	60	TXT	
+path=/
+ 
+default._domainkey.earnest.sg.	60	TXT	
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw/LDUEJExxVn3vaAXviluG9d28GT0XIHDFoe4oLMWouF63XXqPaBym/IMSspDYEFG/76u4Red02W3sqbCRNx4BrB9/ghrXPRmpy3RKyfhk5c6OG/jBtUIj5EqrIwWAdfsEG5k1rbpNoMLpO0m06yEtNnwv2XQmSxUoaLttG7LlurtC1kiQFaihZQuEcUCMEkg
+Wz7Y+dfinYDCo/lvS/S35chiBoRY5xiWxAX7/iA74Wwq67hUymmw0cWDJINiEthNcrVvYDUVnqQ2QdNKnaMAKrwE9+V/yXYGYmiKaO38whY4gyvbDwEzjnmWbOG2JXgaQjFM5Ql+PnwE41Rd9thTwIDAQAB;
+ 
+_cpanel-dcv-test-record.earnest.sg.	60	TXT	
+_cpanel-dcv-test-record=ocumftu0hLSVjBeuui1xtmMvOlWXLv6kGlqTZpekmJYm_HFX4TatfalZhoLj_WEQ
+ 
+earnest.sg.	60	A	
+99.83.190.102
+ 
+localhost.earnest.sg.	60	A	
+127.0.0.1
+ 
+_84b35ba58c641887008726204594d2ff.earnest.sg.	60	CNAME	
+a1bbcd6c5ed0e7e9d860b6afd23e72a8.e0be3c7becb1d78e3ff732107fe6e60e.comodoca.com
+ 
+_webflow.earnest.sg.	60	TXT	
+one-time-verification=9f05ac58-7f61-4213-882f-87e024c3978c
+ 
+earnest.sg.	60	TXT	
+v=spf1 +mx +a +ip4:203.175.171.81 ~all
+ 
+_dmarc.earnest.sg.	60	TXT	
+v=DMARC1;p=none;sp=none;adkim=r;aspf=r;pct=100;fo=0;rf=afrf;ri=86400
+ 
+_acme-challenge.earnest.sg.	60	TXT	
+5VJ_7yLjcOb7jQgYfRrwVxq8GPACTdfAt4JtKrnF-Ws
+ 
+
