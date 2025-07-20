@@ -4,6 +4,15 @@ import { format } from "path";
 /** @type {import('next').NextConfig} */
 console.log(process.env.IMAGE_HOSTNAME, "IMAGE_HOSTNAME");
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/en',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
