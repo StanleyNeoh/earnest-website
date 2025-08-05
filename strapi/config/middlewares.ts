@@ -9,6 +9,7 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  'global::cacheControl',
   'global::cache',
   'global::deepPopulate'
 ];

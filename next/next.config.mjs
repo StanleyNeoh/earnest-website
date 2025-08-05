@@ -5,13 +5,15 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "http",
         hostname: "localhost" 
       },
       process.env.IMAGE_HOSTNAME && {
+        protocol: "https",
         hostname: process.env.IMAGE_HOSTNAME
       }
     ].filter(Boolean),
-    minimumCacheTTL: 24 * 60 * 60, // 1 day
+    minimumCacheTTL: 31536000, // 1 year in seconds
     formats: ["image/webp"],
   },
   pageExtensions: ["ts", "tsx"],
