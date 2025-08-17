@@ -2,7 +2,7 @@ import type { Viewport } from "next";
 import { Locale, locales } from '@/config'
 import Link from 'next/link';
 import Script from 'next/script';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import whatsappIcon from '@/public/whatsapp.svg';
 import favicon from '@/public/favicon.ico';
@@ -20,6 +20,49 @@ export async function generateStaticParams() {
   return locales.map(locale => ({ lang: locale }))
 }
 
+function GTMScript({
+  GTM_ID
+}: {
+  GTM_ID?: string;
+}) {
+  if (!GTM_ID) {
+    console.warn('GTM_ID is not set. Skipping Google Tag Manager script (Script).');
+    return null;
+  }
+  return (
+    <Script id="gtm-script" strategy="afterInteractive">
+      {`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${GTM_ID}');
+      `}
+    </Script>
+  );
+}
+
+function GTMNoScript({
+  GTM_ID
+}: {
+  GTM_ID?: string;  
+}) {
+  if (!GTM_ID) {
+    console.warn('GTM_ID is not set. Skipping Google Tag Manager script (NoScript).');
+    return null;
+  }
+  return (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        style={{ display: 'none', visibility: 'hidden' }}
+      ></iframe>
+    </noscript>
+  );
+}
+
 export default function RootLayout({
   children,
   params
@@ -32,27 +75,10 @@ export default function RootLayout({
     <html lang={params.lang} suppressHydrationWarning>
       <head>
         <link rel="icon" href={favicon.src} type="image/svg+xml" />
-        {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
-        </Script>
+        <GTMScript />
       </head>
       <body suppressHydrationWarning>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
+        <GTMNoScript GTM_ID={GTM_ID} />
         {children}
         <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL || '#'}>
           <div style={{
@@ -73,7 +99,7 @@ export default function RootLayout({
             <SafeImage src={whatsappIcon} alt="WhatsApp" width={50} height={50} />
           </div>
         </Link>
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
       </body>
     </html>
   );
