@@ -1,13 +1,11 @@
 import type { Viewport } from "next";
 import { Locale, locales } from '@/config'
-import Link from 'next/link';
 import Script from 'next/script';
 // import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import whatsappIcon from '@/public/whatsapp.svg';
 import favicon from '@/public/favicon.ico';
 import "./globals.css";
-import { SafeImage } from "@/components/safe-image";
+import { Overlay } from "./_components/shared/Overlay";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -80,25 +78,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <GTMNoScript GTM_ID={GTM_ID} />
         {children}
-        <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL || '#'}>
-          <div style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            backgroundColor: '#25D366',
-            borderRadius: '50%',
-            width: '80px',
-            height: '80px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            cursor: 'pointer',
-            zIndex: 1000
-          }}>
-            <SafeImage src={whatsappIcon} alt="WhatsApp" width={50} height={50} />
-          </div>
-        </Link>
+        <Overlay />
         {/* <SpeedInsights /> */}
       </body>
     </html>
