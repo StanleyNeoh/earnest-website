@@ -33,35 +33,41 @@ export function Overlay() {
     setIsWebchatOpen((prevState) => !prevState)
   }
   const clientId = process.env.NEXT_PUBLIC_WEBCHAT_CLIENT_ID
-  if (!clientId) {
-    console.error('NEXT_PUBLIC_WEBCHAT_CLIENT_ID is not set in the environment variables.')
-    return null
-  }
 
   return (
     <div className="fixed flex flex-col items-end gap-3 z-50 bottom-4 right-4">
-      <div className="order-0">
-        <Webchat
-          clientId={clientId}
-          style={{
-            display: isWebchatOpen ? 'flex' : 'none',
-            width: '360px',
-            maxWidth: '90vw',
-            height: 'min(70vh, 640px)'
-          }}
-        />
-      </div>
+      {
+        clientId && (
+          <div className="order-0">
+            <Webchat
+              clientId={clientId}
+              style={{
+                display: isWebchatOpen ? 'flex' : 'none',
+                width: '360px',
+                maxWidth: '90vw',
+                height: 'min(70vh, 640px)'
+              }}
+            />
+          </div>
+        )
+      }
       <div className='order-1 flex flex-row gap-3 items-center relative'>
         <WhatsappOverlayIcon />
-        {/* @ts-ignore */}
-        <Fab
-          onClick={toggleWebchat}
-          aria-pressed={isWebchatOpen}
-          style={{
-            width: 80,
-            height: 80,
-          }}
-        />
+        {
+          clientId && (
+            <>
+              {/* @ts-ignore */}
+              <Fab
+                onClick={toggleWebchat}
+                aria-pressed={isWebchatOpen}
+                style={{
+                  width: 80,
+                  height: 80,
+                }}
+              />
+            </>
+          )
+        }
       </div>
     </div>
   );
