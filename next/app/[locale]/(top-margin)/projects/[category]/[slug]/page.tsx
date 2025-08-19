@@ -34,9 +34,9 @@ export function generateMetadata({
 export default async function SingleProjectPage({
   params,
 }: {
-  params: { slug: string, locale: Locale };
+  params: { slug: string, locale: Locale, category: string };
 }) {
-  const { slug, locale } = params;
+  const { slug, locale, category } = params;
   const project = await fetchContentType("projects", {
     filters: { slug: params.slug },
     populate: ["thumbnail", "images"],
@@ -54,7 +54,7 @@ export default async function SingleProjectPage({
       <Breadcrumb
         crumbs={breadcrumbLocalized(locale, {
           name: project?.name || "Project",
-          href: `/${locale}/projects/${slug}`,
+          href: `/${locale}/projects/${category}/${slug}`,
         })}
         className="mb-4"
       />
