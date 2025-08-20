@@ -44,3 +44,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: "Failed to send email" })
   }
 }
+
+// Accessed by chatbot api
+export async function PUT(req: Request) {
+  const { name, email, phone, company, service, message } = await req.json()
+  console.log("RECEIVED FROM BOT API:", name, email, phone, company, service, message)
+  return
+}
