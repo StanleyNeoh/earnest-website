@@ -13,17 +13,23 @@ export function LocaleSwitcher({
   className?: string,
 }) {
   const pathname = usePathname(); // Current path
-  const segments = pathname.split("/"); // Split path into segments
 
   // Generate localized path for each locale
   const generateLocalizedPath = (locale: string): string => {
-    if (!pathname) return `/${locale}`; // Default to root path for the locale
-
-    if (segments.length <= 2) {
-      return `/${locale}`;
+    if (!pathname) {
+      return locale === "en" ? "/" : "/zh"
     }
-    segments[1] = locale; // Replace slug if available
-    return segments.join("/");
+    if (locale === "zh") {
+      const segments = pathname.split("/"); // Split path into segments
+      const joinedPath = ["zh"].concat(segments.slice(1));
+      return "/" + joinedPath.join("/");
+    } else if (locale === "en") {
+      const segments = pathname.split("/");
+      const joinedPath = segments.slice(2);
+      return "/" + joinedPath.join("/");
+    } else {
+      return "/";
+    }
   };
 
   return (

@@ -6,7 +6,7 @@ const navbarLocalized = (locale: Locale) => {
   if (locale === "zh") {
     return {
       menu: [
-        // { text: "主页", URL: `/${locale}/` },
+        // { text: "主页", URL: `/${prefix}/` },
         { text: "服务", URL: `/${locale}/services` },
         { text: "项目", URL: `/${locale}/projects` },
         { text: "客户感言", URL: `/${locale}/testimonials` },
@@ -16,11 +16,11 @@ const navbarLocalized = (locale: Locale) => {
   } else {
     return {
       menu: [
-        // { text: "Home", URL: `/${locale}/` },
-        { text: "Services", URL: `/${locale}/services` },
-        { text: "Projects", URL: `/${locale}/projects` },
-        { text: "Testimonials", URL: `/${locale}/testimonials` },
-        { text: "Contact", URL: `/${locale}/contact` },
+        // { text: "Home", URL: `/${prefix}/` },
+        { text: "Services", URL: `/services` },
+        { text: "Projects", URL: `/projects` },
+        { text: "Testimonials", URL: `/testimonials` },
+        { text: "Contact", URL: `/contact` },
       ]
     };
   }

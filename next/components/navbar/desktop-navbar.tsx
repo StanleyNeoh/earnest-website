@@ -20,7 +20,7 @@ export const DesktopNavbar = ({
       <div className="max-w-7xl flex flex-row items-center justify-between mx-auto px-10">
         <div className="w-full py-4 flex flex-row gap-8 items-center">
           <Link 
-            href={`/${locale}/`}
+            href={locale === "en" ? `/` : `/${locale}`}
             className="duration-200 hover:scale-105"
           >
             <SafeImage

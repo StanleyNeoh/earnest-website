@@ -44,7 +44,7 @@ export const MobileNavbar = ({
           <div className="fixed inset-0 bg-neutral-100/70 z-50 flex flex-col items-start justify-start space-y-10 pt-5  text-xl text-zinc-600  transition duration-200 hover:text-zinc-800">
             <div className="flex items-center justify-between w-full px-5">
               <Link
-                href={`/${locale}/`}
+                href={locale === "en" ? "/" : `/${locale}/`}
                 className="duration-200 hover:scale-105"
               >
                 <Logo

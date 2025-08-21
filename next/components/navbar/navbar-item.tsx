@@ -19,9 +19,7 @@ export function NavbarItem({
   className,
 }: Props) {
   const pathname = usePathname();
-  const shref = href.split("/").slice(2).join("/");
-  const spathname = pathname.split("/").slice(2).join("/");
-  const isActive = active || shref === spathname || shref !== "" && spathname.includes(shref);
+  const isActive = active || pathname.includes(href);
 
   return (
     <Link
