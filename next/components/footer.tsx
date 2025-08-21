@@ -15,11 +15,11 @@ const footerLocalized = (locale: Locale) => {
   } else {
     return {
       menu: [
-        { name: "Home", href: `/${locale}/` },
-        { name: "Services", href: `/${locale}/services` },
-        { name: "Projects", href: `/${locale}/projects` },
-        { name: "Testimonials", href: `/${locale}/testimonials` },
-        { name: "Contact", href: `/${locale}/contact` },
+        { name: "Home", href: `/` },
+        { name: "Services", href: `/services` },
+        { name: "Projects", href: `/projects` },
+        { name: "Testimonials", href: `/testimonials` },
+        { name: "Contact", href: `/contact` },
       ]
     };
   }

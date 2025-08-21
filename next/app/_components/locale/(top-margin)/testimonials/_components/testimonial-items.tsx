@@ -79,6 +79,7 @@ const TestimonialItem = ({
   const project = testimonial.project;
   const company = testimonial.company;
   const thumbnail = project?.thumbnail;
+  const locale_prefix = locale === "en" ? "" : `/${locale}`;
   return (
     <div className={cn("flex flex-col items-center gap-8", dirClass)}>
       <div className="flex-shrink-0 w-full md:w-1/2">
@@ -100,7 +101,7 @@ const TestimonialItem = ({
         {project?.slug && (
           <Button
             as={Link}
-            href={`/${locale}/projects/${project.category || "other"}/${project.slug}`}
+            href={locale_prefix + `/projects/${project.category || "other"}/${project.slug}`}
             variant="primary"
             className="mt-2"
           >

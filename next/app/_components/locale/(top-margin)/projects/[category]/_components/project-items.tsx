@@ -76,10 +76,11 @@ const ProjectItem = ({ project, locale }: { project: Project, locale: string }) 
 
   // @TODO: Find a better way to get the first 100 characters of the description
   const descSummary = project.description?.[0].children?.[0].text?.slice(0, 100);
+  const locale_prefix = locale === "en" ? "" : `/${locale}`;
 
   return (
     <Link
-      href={`/${locale}/projects/${project.category || 'others'}/${project.slug}` as never}
+      href={locale_prefix + `/projects/${project.category || 'others'}/${project.slug}` as never}
       className="group relative block rounded-[5rem] overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-all duration-300"
     >
       <div className="relative w-full aspect-[4/3] overflow-hidden">
