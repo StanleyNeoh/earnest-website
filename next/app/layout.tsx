@@ -75,7 +75,7 @@ export default function RootLayout({
     <html lang={params.lang} suppressHydrationWarning>
       <head>
         <link rel="icon" href={favicon.src} type="image/svg+xml" />
-        <GTMScript />
+        <GTMScript GTM_ID={GTM_ID} />
       </head>
       <body suppressHydrationWarning>
         <GTMNoScript GTM_ID={GTM_ID} />
