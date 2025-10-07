@@ -30,7 +30,7 @@ function GTMScript({
     return null;
   }
   return (
-    <Script id="gtm-script" strategy="afterInteractive">
+    <Script id="gtm-script" strategy="beforeInteractive">
       {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -74,8 +74,8 @@ export default function RootLayout({
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <head>
-        <link rel="icon" href={favicon.src} type="image/svg+xml" />
         <GTMScript GTM_ID={GTM_ID} />
+        <link rel="icon" href={favicon.src} type="image/svg+xml" />
       </head>
       <body suppressHydrationWarning>
         <GTMNoScript GTM_ID={GTM_ID} />
