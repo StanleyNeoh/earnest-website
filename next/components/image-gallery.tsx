@@ -86,15 +86,18 @@ function renderNextImage(
     photo: ImageType
   }
 ) {
-  const { sizes } = props;
+  const { sizes, className, onClick, style } = props;
   const { photo, width, height } = context;
   return (
     <div
       style={{
+        ...style,
         width: "100%",
         position: "relative",
         aspectRatio: `${width} / ${height}`,
       }}
+      className={className}
+      onClick={onClick}
     >
       <StrapiImage
         strapiImg={photo}
@@ -119,6 +122,24 @@ export const StrapiImageGallery = ({
     images = images?.slice(0, maxNumber);
   }
   const [index, setIndex] = React.useState(-1);
+  
+  const photos = useMemo(() => (
+    images?.map((img) => {
+      const {
+        url = "",
+        width = 0,
+        height = 0,
+      } = strapiImageFormatSize(img, size);
+
+      return {
+        ...img,
+        src: url,
+        width,
+        height,
+        key: url,
+      };
+    }) || []
+  ), [images, size]);
 
   const fullPhotos = useMemo(() => (
     images?.map((img) => {
@@ -141,8 +162,7 @@ export const StrapiImageGallery = ({
   return (
     <>
       <RowsPhotoAlbum
-        // @ts-ignore
-        photos={images}
+        photos={photos}
         render={{
           image: renderNextImage,
         }}

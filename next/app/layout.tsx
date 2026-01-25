@@ -63,16 +63,19 @@ function GTMNoScript({
   );
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params
 }: {
   children: React.ReactNode
-  params: { lang: Locale }
+  params: Promise<{ lang?: Locale }>
 }) {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+  const resolvedParams = await params;
+  const lang = resolvedParams?.lang || 'en';
+  
   return (
-    <html lang={params.lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <GTMScript GTM_ID={GTM_ID} />
         <link rel="icon" href={favicon.src} type="image/svg+xml" />
@@ -99,7 +102,6 @@ export default function RootLayout({
             <SafeImage src={whatsappIcon} alt="WhatsApp" width={50} height={50} />
           </div>
         </Link>
-        {/* <SpeedInsights /> */}
       </body>
     </html>
   );

@@ -10,12 +10,12 @@ import { Locale } from "@/config";
 
 import seoJson from "@/seo.json";
 import { breadcrumbLocalized } from "@/app/_components/locale/(top-margin)/projects/constants";
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { locale: string, category:string, slug: string };
-}): Metadata {
-  const { slug } = params;
+  params: Promise<{ locale: string, category:string, slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
   const {
     title,
     description,
@@ -34,12 +34,12 @@ export function generateMetadata({
 export default async function SingleProjectPage({
   params,
 }: {
-  params: { slug: string, category: string };
+  params: Promise<{ slug: string, category: string }>;
 }) {
   const locale = "en";
-  const { slug, category } = params;
+  const { slug, category } = await params;
   const project = await fetchContentType("projects", {
-    filters: { slug: params.slug },
+    filters: { slug },
     populate: ["thumbnail", "images"],
   }, {
     spreadData: true,

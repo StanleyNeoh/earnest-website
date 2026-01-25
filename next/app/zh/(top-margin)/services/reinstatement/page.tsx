@@ -44,7 +44,7 @@ function reinstatementLocalised() {
   };
 }
 
-export default function ReinstatementPage({ params }: { params: { locale: Locale } }) {
+export default function ReinstatementPage() {
   const locale = "zh";
   const {
     title,
