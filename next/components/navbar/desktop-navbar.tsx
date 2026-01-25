@@ -12,6 +12,7 @@ export const DesktopNavbar = ({
   navbarItems: {
     URL: string;
     text: string;
+    hidden?: boolean;
   }[];
   locale: string;
 }) => {
@@ -31,7 +32,7 @@ export const DesktopNavbar = ({
             />
           </Link>
           {navbarItems.map((item) => (
-            <NavbarItem href={item.URL} key={item.text}>
+            <NavbarItem href={item.URL} key={item.text} hidden={item.hidden}>
               {item.text}
             </NavbarItem>
           ))}

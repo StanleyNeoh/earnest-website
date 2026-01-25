@@ -10,12 +10,14 @@ type Props = {
   children: ReactNode;
   active?: boolean;
   className?: string;
+  hidden?: boolean;
 };
 
 export function NavbarItem({
   children,
   href,
   active,
+  hidden,
   className,
 }: Props) {
   const pathname = usePathname();
@@ -27,6 +29,7 @@ export function NavbarItem({
       className={cn(
         "text-center justify-center text-xl px-3 py-1 rounded-md  hover:bg-neutral-800 hover:text-white/80 text-charcoal hover:shadow-[0px_1px_0px_0px_var(--neutral-600)_inset] transition duration-200",
         isActive && "bg-transparent font-bold",
+        hidden && "hidden",
         className
       )}
     >

@@ -29,7 +29,7 @@ export const Footer = async ({ locale }: { locale: Locale }) => {
   const { menu } = footerLocalized(locale);
   return (
     <div className="relative mt-8">
-      <div className="border-t border-neutral-900 px-8 pt-8 pb-16 relative bg-primary">
+      <div className="border-t border-neutral-900 px-8 pt-8 pb-16 relative">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row justify-between gap-8 text-sm text-neutral-500">
           {/* Left: About, Credits and stack */}
           <div className="flex flex-col gap-4 md:items-start gap-4 text-neutral-600">

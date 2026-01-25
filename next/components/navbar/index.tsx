@@ -21,6 +21,7 @@ const navbarLocalized = (locale: Locale) => {
         { text: "Projects", URL: `/projects` },
         { text: "Testimonials", URL: `/testimonials` },
         { text: "Contact", URL: `/contact` },
+        { text: "Ads", URL: `/ads`, hidden: true },
       ]
     };
   }
