@@ -56,10 +56,10 @@ export default async function HomePage() {
           testimonials={testimonials?.data || []}
           locale={locale}
         />
-        <FeaturedProjects
+        {/* <FeaturedProjects
           projects={projects?.data || []}
           locale={locale}
-        />
+        /> */}
       </div>
     </>
   );
