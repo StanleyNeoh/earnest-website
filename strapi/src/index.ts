@@ -1,4 +1,4 @@
-import type { Core } from '@strapi/strapi';
+import { setLastUpdate } from './api/system/controllers/system';
 
 export default {
   /**
@@ -22,6 +22,9 @@ export default {
       
       if (['afterCreate', 'afterUpdate', 'afterDelete', 'afterCreateMany', 'afterUpdateMany', 'afterDeleteMany'].includes(action)) {
         
+        // Update global last updated timestamp
+        setLastUpdate(Date.now());
+
         if (!model || !model.uid) {
             strapi.log.warn(`Lifecycle event ${action} triggered without model UID`);
             return;

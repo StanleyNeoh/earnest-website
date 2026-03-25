@@ -23,6 +23,41 @@ export function useLoadManager<T>(
     shouldLoadMore: true,
   });
 
+  // Check for updates mechanism using global endpoint
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/system/last-update`, {
+          headers: {
+            // Optional: Add token if we decide to restrict it later, currently public
+            // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+          }
+        });
+        
+        if (response.ok) {
+          const { timestamp } = await response.json();
+          if (!timestamp) return;
+
+          const cached = localStorage.getItem(cache_key);
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            // If remote system updated time is newer than our local cache timestamp
+            if (parsed.timestamp && timestamp > parsed.timestamp) {
+              console.log(`[useLoadManager] Global update detected. Invalidating ${cache_key}. Remote: ${timestamp}, Local: ${parsed.timestamp}`);
+              localStorage.removeItem(cache_key);
+              setItems({
+                items: initial,
+                shouldLoadMore: true,
+              });
+            }
+          }
+        }
+      } catch (error) {
+        console.error("[useLoadManager] Error checking for global updates:", error);
+      }
+    })();
+  }, [cache_key, initial]);
+
   useLayoutEffect(() => {
     const cached = localStorage.getItem(cache_key);
     if (cached) {
