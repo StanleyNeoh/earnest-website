@@ -54,7 +54,7 @@ export default {
               strapi.log.info(`Sending revalidation request for tag: ${tag} (${action})`);
 
               const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}`, {
-                method: 'POST',
+                method: 'GET',
               });
               
               if (res.ok) {
@@ -93,7 +93,7 @@ export default {
              if (tag) {
                try {
                   const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}`, {
-                    method: 'POST',
+                    method: 'GET',
                   });
                   if (res.ok) {
                     strapi.log.info(`Successfully triggered revalidation for tag: ${tag} due to file update`);
