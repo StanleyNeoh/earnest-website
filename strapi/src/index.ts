@@ -1,4 +1,5 @@
 import { setLastUpdate } from './api/system/controllers/system';
+import type { Core } from '@strapi/strapi';
 
 export default {
   /**
