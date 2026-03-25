@@ -45,6 +45,13 @@ export default {
             if (tag) {
               const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
               const secret = process.env.REVALIDATION_TOKEN;
+
+              // Clear local backend cache middleware
+              if ((strapi as any).customCache) {
+                const pattern = `/api/${tag}`;
+                strapi.log.info(`Clearing backend cache for pattern: ${pattern}`);
+                (strapi as any).customCache.deletePattern(pattern);
+              }
               
               if (!secret) {
                 strapi.log.warn('REVALIDATION_TOKEN not set in Strapi environment, skipping revalidation request');

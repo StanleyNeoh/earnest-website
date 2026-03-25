@@ -116,6 +116,16 @@ class LRUCache<T> {
         this.cache[index].next = this.head;
         this.head = index;
     }
+
+    deletePattern(pattern: string): void {
+        const keysToDelete: string[] = [];
+        for (const key of this.indMap.keys()) {
+            if (key.startsWith(pattern)) {
+                keysToDelete.push(key);
+            }
+        }
+        keysToDelete.forEach((key) => this.delete({ key }));
+    }
 }
 
 export default (config, { strapi }: { strapi: Core.Strapi }) => {
@@ -124,6 +134,9 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
         cacheSize = 1000,
     } = config || {};
     const cache = new LRUCache<any>(cacheSize, cacheTtl);
+
+    // Expose cache to global strapi instance for lifecycle hooks
+    (strapi as any).customCache = cache;
 
     return async (ctx, next) => {
         if (ctx.request.url.startsWith('/api/clear_cache') && ctx.request.method === 'GET') {
