@@ -54,6 +54,7 @@ export default async function fetchContentType(
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
       cache,
+      next: { tags: [contentType] },
     });
 
     if (!response.ok) {
