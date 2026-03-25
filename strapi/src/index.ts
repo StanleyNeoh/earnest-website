@@ -60,7 +60,7 @@ export default {
 
               strapi.log.info(`Sending revalidation request for tag: ${tag} (${action})`);
 
-              const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}`, {
+              const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}&prop_to_backend=false`, {
                 method: 'GET',
               });
               
@@ -99,7 +99,7 @@ export default {
              const tag = ct.info.pluralName;
              if (tag) {
                try {
-                  const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}`, {
+                  const res = await fetch(`${frontendUrl}/api/revalidate?tag=${tag}&secret=${secret}&prop_to_backend=false`, {
                     method: 'GET',
                   });
                   if (res.ok) {
